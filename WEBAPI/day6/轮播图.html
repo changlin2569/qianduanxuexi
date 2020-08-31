@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../animate.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        ol {
+            /* text-decoration: none; */
+            list-style: none;
+            position: absolute;
+            top: 370px;
+            left: 100px;
+        }
+
+        img {
+            width: 600px;
+            height: 400px;
+        }
+
+        .container {
+            overflow: hidden;
+            position: relative;
+            width: 600px;
+            height: 400px;
+            margin: 0 auto;
+            /* transform: translate(-50%,-50%); */
+            background-color: skyblue;
+        }
+
+        .button_l {
+            position: absolute;
+            display: none;
+            width: 20px;
+            height: 20px;
+            font-size: 20px;
+            text-align: center;
+            line-height: 20px;
+            top: 50%;
+            background-color: #fff;
+            opacity: .8;
+            z-index: 9;
+        }
+
+        .button_r {
+            position: absolute;
+            display: none;
+            width: 20px;
+            height: 20px;
+            font-size: 20px;
+            text-align: center;
+            line-height: 20px;
+            right: 0;
+            top: 50%;
+            background-color: #fff;
+            opacity: .8;
+            z-index: 9;
+        }
+
+        ul {
+            position: absolute;
+            list-style: none;
+            width: 3000px;
+            height: 400px;
+            /* overflow: hidden; */
+        }
+
+        ul li {
+            float: left;
+        }
+
+        ol li {
+            float: left;
+            width: 10px;
+            height: 10px;
+            margin: 5px;
+            border-radius: 50%;
+            border: 2px solid #ffffff;
+            opacity: 1;
+            cursor: pointer;
+            /* background-color: #fff; */
+        }
+
+        ol .li_pai {
+            background-color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="javascript:;" class="button_l">
+            <</a> <a href="javascript:;" class="button_r">>
+        </a>
+        <ul>
+            <li>
+                <a href="">
+                    <img src="../../image/1.jpg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <img src="../../image/2.jpg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <img src="../../image/3.jpg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <img src="../../image/4.jpg" alt="">
+                </a>
+            </li>
+
+        </ul>
+        <ol></ol>
+    </div>
+    <script>
+        var container = document.querySelector('.container'),
+            left = container.querySelector('.button_l'),
+            right = container.querySelector('.button_r');
+
+        var img = container.querySelector('img');
+        var focusWidth = img.offsetWidth;
+
+        container.addEventListener('mouseenter', function () {
+            left.style.display = 'block';
+            right.style.display = 'block';
+            //清楚定时器
+            clearInterval(timer);
+            timer = null;
+        })
+        container.addEventListener('mouseleave', function () {
+            left.style.display = 'none';
+            right.style.display = 'none';
+
+            timer = setInterval(function(){
+            right.click();
+        },2000);
+        })
+
+        var ul = container.querySelector('ul'),
+            ol = container.querySelector('ol');
+
+        // console.log(ul.children.length);
+        for (var i = 0; i < ul.children.length; i++) {
+            var li = document.createElement('li');
+            ol.appendChild(li);
+            //为小圆圈创建自定义属性值
+            ol.children[i].setAttribute('index', i);
+            li.addEventListener('click', function () {
+                for (var i = 0; i < ol.children.length; i++) {
+                    ol.children[i].className = '';
+                }
+                this.className = 'li_pai';
+                var index = this.getAttribute('index');
+
+                //将索引号的值给num和circle
+                num = circle = index;
+
+                // console.log(focusWidth);
+                animate(ul, -index * focusWidth);
+            })
+        }
+        //克隆第一张图片
+        var fir = ul.children[0].cloneNode(true);
+        ul.appendChild(fir);
+        var num = 0;
+        var circle = 0; //控制小圆圈
+
+        //节流阀 防止点击过快图片轮播过快
+        var flag = true;
+        right.addEventListener('click', function () {
+            //console.log(ul.children.length);
+           if(flag){
+                // console.log(num);
+            if (num == ul.children.length - 1) {
+                ul.style.left = 0;
+                num = 0;
+            }
+            num++;
+            //console.log(num);
+
+            animate(ul, -num * focusWidth,function(){
+                flag = true;
+            });
+            circle++;
+            if (circle == ol.children.length) {
+                circle = 0;
+            }
+            for (var i = 0; i < ol.children.length; i++) {
+                ol.children[i].className = '';
+            }
+            ol.children[circle].className = 'li_pai';
+        }
+           })
+        left.addEventListener('click', function () {
+            if(flag){
+                // console.log(num);
+            if (num == 0) {
+                ul.style.left = -(ul.children.length - 1) * focusWidth;
+                num = ul.children.length - 1;
+            }
+            num--;
+            // console.log(num);
+
+            animate(ul, -num * focusWidth,function(){
+                flag = true;
+            });
+            circle--;
+            if (circle < 0) {
+                circle = ol.children.length - 1;
+            }
+            for (var i = 0; i < ol.children.length; i++) {
+                ol.children[i].className = '';
+            }
+            ol.children[circle].className = 'li_pai';
+        }
+            })
+        ol.children[0].className = 'li_pai';
+
+        var timer = setInterval(function(){
+            right.click();
+        },2000);
+    </script>
+</body>
+
+</html>

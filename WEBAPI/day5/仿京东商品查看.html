@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            top: 50px;
+            left: 50px;
+        }
+
+        .img {
+            width: 400px;
+            height: 400px;
+        }
+
+        .mask {
+            display: none;
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background-color: skyblue;
+            top: 0;
+            left: 0;
+            opacity: .5;
+            cursor: move;
+            border: 1px solid #ffffff;
+        }
+
+        .big {
+            display: none;
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            top: 0;
+            left: 420px;
+            overflow: hidden;
+            background-color: skyblue;
+        }
+
+        .bigImg {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            left: 0;
+            top: 0;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img src="C:\Users\李长林山\Pictures\DCIM\微信图片_20200519195002.jpg" alt="" class="img">
+        <div class="mask"></div>
+        <div class="big">
+            <img src="C:\Users\李长林山\Pictures\DCIM\微信图片_20200519195002.jpg" alt="" class="bigImg">
+        </div>
+    </div>
+    <script>
+        var container = document.querySelector('.container'),
+            mask = document.querySelector('.mask'),
+            big = document.querySelector('.big');
+
+        container.addEventListener('mouseover', function () {
+            mask.style.display = 'block';
+            big.style.display = 'block';
+        })
+        container.addEventListener('mouseout', function () {
+            mask.style.display = 'none';
+            big.style.display = 'none';
+        })
+        container.addEventListener('mousemove', function (e) {
+            var x = e.pageX - this.offsetLeft,
+                y = e.pageY - this.offsetTop;
+
+            var maskX = x - mask.offsetWidth / 2,
+                maskY = y - mask.offsetHeight / 2;
+
+            var maskMax = container.offsetWidth - mask.offsetWidth;
+            if (maskX <= 0) {
+                maskX = 0;
+            } else if (maskX >= maskMax) {
+                maskX = maskMax;
+            }
+            if (maskY <= 0) {
+                maskY = 0;
+            } else if (maskY >= maskMax) {
+                maskY = maskMax;
+            }
+            // console.log(maskX);
+
+            // console.log(maskY);
+
+            mask.style.left = maskX + 'px';
+            mask.style.top = maskY + 'px';
+            var bigImg = document.querySelector('.bigImg'),
+                ImgMax = bigImg.offsetWidth - big.offsetWidth;
+            //大图片移动距离 = 遮挡层移动距离 * 大图片最大移动距离 / 遮挡层最大移动距离
+
+            var bigImgX = maskX * ImgMax / maskMax,
+                bigImgY = maskY * ImgMax / maskMax;
+
+            bigImg.style.left = -bigImgX + 'px';
+            bigImg.style.top = -bigImgY + 'px';
+
+        })
+    </script>
+</body>
+
+</html>

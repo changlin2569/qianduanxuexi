@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="http:www.bilibili.com">bilibili</a>
+    <form action="http:www.bilibili.com">
+        <input type="submit" value="提交" name="s">
+    </form>
+    <script>
+        var a= document.querySelector('a');
+        a.addEventListener('click',function(e){
+            console.log(e.type);
+            
+
+            e.preventDefault();//阻止链接跳转
+        })
+
+        var sub = document.querySelector('input');
+        sub.addEventListener('click',function(evt){
+            evt.preventDefault();//组织按钮提交
+        })
+    </script>
+</body>
+</html>

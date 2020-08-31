@@ -1,0 +1,125 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    font-size: 16px;
+    background-color: gainsboro;
+}
+header {
+    height: 50px;
+    background-color: cornflowerblue;
+}
+header section {
+    margin: 0 auto;
+    width: 40%;
+}
+ 
+header section label {
+    float: left;
+    line-height: 50px;  /*设置line-height和包含块高度一致，以实现行内元素垂直居中*/
+    font-size: 20px;
+}
+ 
+#add_list {
+    float: right;
+    margin-top: 11px;
+    width: 60%;
+    height: 24px;
+    border-radius: 5px;
+    box-shadow: 0 1px 0 black;
+    font-size: 18px;
+    text-indent: 10px;
+}
+ 
+h1 {
+    position: relative;
+}
+ 
+h1 span {
+    position: absolute;
+    top: 1px;
+    right: 5px;
+    display: inline-block;
+    width: 23px;
+    height: 23px;
+    border-radius: 23px;    /*创建圆形标记*/
+    line-height: 23px;
+    font-size: 18px;
+    text-align: center;
+    background: #E6E6FA;
+}
+ 
+.content {
+    width: 40%;
+    margin: 0 auto;
+}
+ 
+li {
+    position: relative;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding: 0 10px;
+    height: 32px;
+    box-shadow: 0 1px 0 black;
+    line-height: 32px;
+    background-color: burlywood;
+    list-style: none;
+}
+ 
+ol li input {
+    position: absolute;
+    top: 4px;
+    left: 10px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+p{
+    margin: 0;
+}
+ol li p {
+    display: inline;
+    margin-left: 35px;
+}
+ 
+ol li p input{
+    top: 5px;
+    margin-left: 35px;
+    width: 70%;
+    height: 14px;
+    font-size: 14px;
+    line-height: 14px;
+}
+ 
+ol li a {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    display: inline-block;
+    border: 1px;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    font-size: 32px;
+    line-height: 10px;
+    color: red;
+    font-weight: bolder;
+    cursor: pointer;
+    background-color: gray;
+}
+ 
+#clear {
+    width: 100px;
+    margin: 0 auto;
+}
+ 
+#clearbutton {
+    border-color: red;
+    border-radius: 5px;
+    box-shadow: 0 1px 0 yellow;
+    cursor: pointer;
+}
+ 
+button h3{
+    font-size: 13px;
+    line-height: 13px;
+}

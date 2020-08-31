@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 400px;
+            height: 400px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        爱你
+    </div>
+    <script>
+        var div = document.querySelector('div');
+        // div.onclick = function(e){
+        //     console.log(e);
+            
+        // }
+        div.addEventListener('click',function(evt){
+            console.log(evt);
+            
+        })
+    </script>
+</body>
+</html>

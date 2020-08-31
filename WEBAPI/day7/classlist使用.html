@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bg{
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="one"></div>
+    <button>蓝色</button>
+    <script>
+        var div = document.querySelector('div');
+
+        console.log(div.classList[0]);
+        //classList返回元素类名
+        div.classList.add('two');
+        div.classList.remove('one');
+
+        //切换类
+        var btn = document.querySelector('button');
+        btn.addEventListener('click',function(){
+            document.body.classList.toggle('bg');
+        })
+    </script>
+</body>
+</html>

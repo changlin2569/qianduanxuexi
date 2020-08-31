@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text">
+    <button>爱心发送</button>
+    <script>
+        var btn = document.querySelector('button'),
+            time = 3;
+            btn.addEventListener('click',function(){
+                this.disabled = true;
+                var timer = setInterval(function(){
+                    if(time == 0){
+                        time = 3;
+                        clearInterval(timer);
+                        btn.disabled = false;
+                        btn.innerHTML = '爱心发送';
+                    }else{
+                        btn.innerHTML = time+'s后重新发送';
+                        time--;
+                    }
+                },1000)
+            })
+    </script>
+</body>
+</html>

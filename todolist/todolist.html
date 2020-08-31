@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>todolist-prime</title>
+    <link rel="stylesheet" href="todolist.css">
+    
+</head>
+<body>
+   
+    <header>
+        <section>
+            <label for="add_list">My todolist</label>
+            <input type="text" id="add_list" name="add_list" placeholder="type here" required>
+        </section>
+    </header>
+ 
+    <div class="content">
+        <h1>未完成<span id="todocount"></span></h1>
+        <ol id="todolist">
+        </ol>
+ 
+        <h1>已完成<span id="donecount"></span></h1>
+        <ol id="donelist">
+        </ol>
+    </div>
+ 
+    <div id="clear">
+    	<button id="clearbutton"><h3>全部清除</h3></button>
+    </div>
+    <script src="todolist.js"></script>
+</body>
+</html>

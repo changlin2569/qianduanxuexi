@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            position: relative;
+        }
+        div{
+            position: absolute;
+            height: 100px;
+            width: 100px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        var div = document.querySelector('div'),
+            startX = 0,
+            startY = 0,
+            x = 0,
+            y = 0;
+
+            div.addEventListener("touchstart",function(e){
+                startX = e.targetTouches[0].pageX;
+                startY = e.targetTouches[0].pageY;
+                x = this.offsetLeft;
+                y = this.offsetTop;
+                //console.log(e.targetTouches[0].pageX);
+            });
+            div.addEventListener("touchmove",function(e){
+                div.style.left = x + e.targetTouches[0].pageX - startX + 'px';
+                div.style.top = y + e.targetTouches[0].pageY - startY + 'px';
+                e.preventDefault();
+            });
+    </script>
+</body>
+</html>

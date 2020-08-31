@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>两边固定 中间自适应</title>
+    <style>
+        section {
+            display: flex;
+            height: 200px;
+            width: 60%;
+            margin: 0 auto;
+            background-color: aquamarine;
+        }
+
+        section div:nth-child(1) {
+            height: 200px;
+            width: 200px;
+            background: blue;
+        }
+
+        section div:nth-child(2) {
+            height: 200px;
+            width: 200px;
+            background: yellow;
+            flex: 1;
+        }
+
+        section div:nth-child(3) {
+            height: 200px;
+            width: 200px;
+            background: green;
+        }
+
+        section
+    </style>
+</head>
+
+<body>
+    <section>
+        <div></div>
+        <div></div>
+        <div></div>
+    </section>
+</body>
+
+</html>

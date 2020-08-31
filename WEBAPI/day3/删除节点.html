@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>点我删除</button>
+    <ul>
+        <li>wo</li>
+        <li>喜</li>
+        <li>欢</li>
+        <li>你</li>
+    </ul>
+    <script>
+        var btn = document.querySelector('button'),
+            ul = document.querySelector('ul');
+            btn.onclick = function(){
+                //ul.removeChild(ul.children[0]);
+                if(ul.children.length == 0){
+                    btn.disabled = true;
+                }else{
+                    ul.removeChild(ul.children[0]);
+                }
+            }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        div{
+            height: 100px;
+            width: 100px;
+            background-color: skyblue;
+        }
+    </style>
+    
+</head>
+<body>
+    <div></div>
+    <script>
+        var div = document.querySelector('div');
+        div.addEventListener("touchstart",function(){
+            console.log('喜欢你');
+        })
+        div.addEventListener("touchmove",function(){
+            console.log('在一起');
+        })
+        div.addEventListener("touchend",function(){
+            console.log('走了');
+        })
+    </script>
+</body>
+</html>

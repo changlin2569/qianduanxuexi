@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        div {
+            width: 300px;
+            height: 300px;
+        }
+
+        span {
+            float: left;
+            height: 50px;
+            width: 50px;
+            background-color: black;
+            color: wheat;
+            line-height: 50px;
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <span class="hour">1</span>
+        <span class="minute">2</span>
+        <span class="second">3</span>
+    </div>
+    <script>
+        var hour = document.querySelector('.hour'),
+            minute = document.querySelector('.minute'),
+            second = document.querySelector('.second'),
+            inputTime = +new Date('2020-6-7 19:00:00');
+            countDown();
+        setInterval(countDown, 1000);
+
+        function countDown() {
+            var newTime = +new Date(); //返回当前时间总的毫秒数
+            var times = (inputTime - newTime) / 1000; //剩余时间总数
+            var h = parseInt(times / 60 / 60 % 24);//时
+            h = h < 10 ? '0' + h : h;
+            hour.innerHTML = h;
+            var m = parseInt(times / 60 % 60);
+            m = m < 10 ? '0' + m : m;
+            minute.innerHTML = m;
+            var s = parseInt(times % 60);
+            s = s < 10 ? '0' + s : s;
+            second.innerHTML = s;
+        }
+    </script>
+</body>
+
+</html>

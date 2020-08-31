@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+        <style>
+            *{
+                padding: 0;
+                margin: 0;
+            }
+            div{
+                width: 400px;
+                height: 200px;
+                margin: 0 auto;
+            }
+            
+        </style>
+<body>
+    <div>
+        <input type="password">
+        <button>点击</button>
+    </div>
+    <script>
+        var btn = document.querySelector('button'),
+            input = document.querySelector('input');
+            
+            var flag = 0;
+            btn.onclick = function(){
+                if(flag == 0){
+                    input.type = 'text';
+                    flag = 1;
+                }else{
+                    input.type = 'password';
+                    flag = 0;
+                }
+                
+            }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button class="start">魅力</button>
+    <button class="stop">请停止散发魅力</button>
+    <script>
+        var start = document.querySelector('.start'),
+            stop = document.querySelector('.stop');
+        var timer = null;
+        start.addEventListener('click',function(){
+            timer = setInterval(function(){
+                console.log('魅力');
+            },1000);
+            
+        })
+        stop.addEventListener('click',function(){
+            clearInterval(timer);
+        })
+    </script>
+</body>
+</html>

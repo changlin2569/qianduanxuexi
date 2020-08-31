@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>我爱她，轰轰烈烈最疯狂</li>
+        <li>我爱她，轰轰烈烈最疯狂</li>
+        <li>我爱她，轰轰烈烈最疯狂</li>
+        <li>我爱她，轰轰烈烈最疯狂</li>
+        <li>我爱她，轰轰烈烈最疯狂</li>
+        <li>我爱她，轰轰烈烈最疯狂</li>
+    </ul>
+    <script>
+        var ul = document.querySelector('ul');
+        ul.addEventListener('click',function(e){
+            //alert('我的梦狠狠碎过却不会忘');
+            for(var i = 0;i<ul.children.length;i++){
+                ul.children[i].style.backgroundColor = '';
+            }
+            e.target.style.backgroundColor = 'skyblue';
+        })
+    </script>
+</body>
+</html>

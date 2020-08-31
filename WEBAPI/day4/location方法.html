@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>点击穿越</button>
+    <script>
+        var btn = document.querySelector('button');
+
+        btn.addEventListener('click',function(){
+            //可以后退
+            // location.assign('https://www.bilibili.com/');
+            //不能后退
+            location.replace('https://www.bilibili.com/');
+            //刷新效果
+            location.reload();//参数为true强制刷新效果
+        })
+    </script>
+</body>
+</html>

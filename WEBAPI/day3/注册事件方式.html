@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>我爱你</button>
+    <button>我也爱你</button>
+    <button>在一起吧</button>
+    <script>
+        var btn = document.querySelectorAll('button');
+        btn[0].onclick = function(){
+            alert('我爱你');
+        }
+        btn[0].onclick = function(){
+            alert('我也爱你');//同意元素注册两个事件后，后面覆盖前面
+        }
+
+        btn[1].addEventListener('click',function(){
+            alert('我也爱你');
+        })
+        btn[1].addEventListener('click',function(){
+            alert('真的爱你');
+        })
+
+        // btn[2].attachEvent('onclick',function(){
+        //     alert('啦啦啦');
+        // })
+    </script>
+</body>
+</html>

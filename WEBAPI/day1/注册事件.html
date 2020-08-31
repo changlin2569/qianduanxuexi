@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>我爱你</li>
+        <li>我爱你</li>
+        <li>我爱你</li>
+        <li>我爱你</li>
+        <li>我爱你</li>
+    </ul>
+    <div>
+        <li>我也爱你</li>
+        <li>我也爱你</li>
+        <li>我也爱你</li>
+        <li>我也爱你</li>
+        <li>我也爱你</li>
+        <li>我也爱你</li>
+    </div>
+    <script>
+        var lis = document.getElementsByTagName('li');
+        console.log(lis);
+
+        var div = document.querySelector('div');
+        var lis1 = div.getElementsByTagName('li');
+        console.log(lis1);
+        var li = document.querySelector('li');
+        console.log(div);
+        
+
+    //获取body标签
+    var body = document.body;
+    console.log(body);
+    //获取HTML标签
+    var html = document.documentElement;
+    console.log(html);
+    
+    </script>
+</body>
+</html>

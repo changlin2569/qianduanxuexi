@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浮动</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .banner{
+            border: 1px solid blue;
+            overflow: hidden;/*清除浮动*/
+        }
+
+        .one,
+        .two {
+            float: left;
+        }
+
+        .one {
+            height: 200px;
+            width: 200px;
+            background-color: aquamarine;
+        }
+
+        .two {
+            height: 600px;
+            width: 300px;
+            background-color: burlywood;
+        }
+
+        .three {
+            height: 200px;
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="banner">
+        <div class="one"></div>
+        <div class="two"></div>
+        <!-- <div style="clear: both;"></div> -->
+    </div>
+    <div class="three"></div>
+</body>
+
+</html>

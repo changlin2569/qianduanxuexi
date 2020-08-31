@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        table {
+            width: 500px;
+            margin: 100px auto;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        td,
+        th {
+            border: 1px solid #333;
+        }
+
+        thead tr {
+            height: 40px;
+            background-color: #ccc;
+        }
+        tr a{
+            text-decoration: none;
+            color: skyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <table cellspacing="0">
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>科目</th>
+                <th>成绩</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <script>
+        var datas = [{
+                name : '林乱',
+                subject : '语文',
+                score : 150
+            },
+            {
+                name : '林乱',
+                subject : '语文',
+                score : 150
+            },
+            {
+                name : '林乱',
+                subject : '语文',
+                score : 150
+            },
+            {
+                name : '林乱',
+                subject : '语文',
+                score : 150
+            },
+            {
+                name : '林乱',
+                subject : '语文',
+                score : 150
+            }
+        ];
+        var tbody = document.querySelector('tbody');
+        for (var i = 0; i < datas.length; i++) {
+            //创建行
+            var tr = document.createElement('tr');
+            tbody.appendChild(tr);
+            for(var k in datas[i]){
+                //console.log(1);
+                var td = document.createElement('td');
+                td.innerHTML = datas[i][k];
+                tr.appendChild(td);
+            }
+            //创建带有删除的单元格，数目和行数相同，所以放在外循环
+            var td = document.createElement('td');
+            td.innerHTML = "<a href='javascript:;'>删除</a>";
+            tr.appendChild(td);
+        }
+        var a = document.querySelectorAll('a');
+        for(var i= 0;i<a.length;i++){
+            a[i].onclick = function(){
+                tbody.removeChild(this.parentNode.parentNode);
+            }
+        }
+    </script>
+</body>
+
+</html>

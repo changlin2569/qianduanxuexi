@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播图</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            position: relative;
+            height: 700px;
+        }
+        .banner{
+            position: absolute;
+            width: 400px;
+            height: 200px;
+            margin: 0 auto;
+            top: 50%;
+            left: 50%;
+            margin-top: -100px;
+            margin-left: -200px;
+        }
+        
+        
+        img{
+            width: 400px;
+            height: 200px;
+        }
+    </style>
+    <script>
+        var sli = document.getElementsByClassName('banner');
+        var box = document.getElementsByClassName('box');
+        var index = 0;
+        var a = setInterval(slide,1000);
+        function slide(){
+            index++;
+            if(index>=sli.length) index=0;
+            for(var i=0;i<sli.length;i++){
+                sli[i].style.display = 'none';
+            }
+            sli[index].style.display = 'block';
+            sli.onmouseover = function(){
+                clearInterval('a');
+            }
+        }
+        
+    </script>
+</head>
+<body>
+        <div class="box">
+            <a href="">
+            <div class="banner slide">
+                <img src="C:\Users\李长林山\Pictures\bili\微信图片_20191004114346.jpg" alt="">
+            </div>
+            <div class="banner">
+                <img src="C:\Users\李长林山\Pictures\bili\微信图片_20191004114350.jpg" alt="">
+            </div>
+            <div class="banner">
+                <img src="C:\Users\李长林山\Pictures\bili\微信图片_20191004114354.jpg" alt="">
+            </div>
+            </a>
+        </div>
+</body>
+</html>

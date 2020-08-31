@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>显示和隐藏</title>
+    <style>
+        .one {
+            position: relative;
+            height: 216px;
+            width: 384px;
+            margin: 100px auto;
+        }
+
+        .two {
+            display: none;
+            position: absolute;
+            height: 216px;
+            width: 384px;
+            background-color: rgba(0, 0, 0, .3);
+        }
+        .one a:hover .two{
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="one">
+        <a href="3">
+            <div class="two"></div>
+            <img src="C:\Users\李长林山\Pictures\bili\微信图片_20200317181048.jpg" alt="" style="height: 216px;width: 384px;">
+        </a>
+    </div>
+</body>
+
+</html>

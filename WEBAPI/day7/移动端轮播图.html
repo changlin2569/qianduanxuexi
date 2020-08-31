@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .foucs {
+            width: 100%;
+            position: relative;
+            /* background-color: #87ceeb; */
+            height: 200px;
+        }
+
+        ul {
+            overflow: hidden;
+            width: 500%;
+            margin-left: -100%;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        ul li {
+            width: 20%;
+            float: left;
+
+        }
+
+        .foucs img {
+            width: 100%;
+        }
+
+        ol {
+            position: absolute;
+            bottom: 5px;
+            right: 10px;
+        }
+
+        ol li {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background-color: #ffffff;
+            border-radius: 10px;
+        }
+
+        ol li.current {
+            width: 15px;
+            transition: all .3s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="foucs">
+        <!-- 图片模块 -->
+        <ul>
+            <li>
+                <img src="../../image/3.jpg" alt=""></img>
+            </li>
+            <li>
+                <img src="../../image/1.jpg" alt=""></img>
+            </li>
+            <li>
+                <img src="../../image/2.jpg" alt=""></img>
+            </li>
+            <li>
+                <img src="../../image/3.jpg" alt=""></img>
+            </li>
+            <li>
+                <img src="../../image/1.jpg" alt=""></img>
+            </li>
+        </ul>
+        <!-- 小圆圈 -->
+        <ol>
+            <li class="current"></li>
+            <li></li>
+            <li></li>
+        </ol>
+    </div>
+    <script>
+        //alert(1);
+        var foucs = document.querySelector('.foucs');
+        var ul = foucs.children[0];
+        var ol = foucs.children[1];
+        var w = foucs.offsetWidth;
+        var index = 0;
+        //判断手指有没有移动
+        var flag = false;
+        var timer = setInterval(function () {
+            index++;
+            var translatex = -index * w;
+            ul.style.transition = 'all .3s';
+            ul.style.transform = 'translateX(' + translatex + 'px)';
+        }, 2000);
+
+        ul.addEventListener('transitionend', function () {
+            //console.log(1);
+
+            //当到达最后一张图片时，快速跳转到第一张
+
+            if (index == 3) {
+                index = 0;
+                var translatex = -index * w;
+                ul.style.transition = 'none';
+                ul.style.transform = 'translateX(' + translatex + 'px)';
+            } else if (index < 0) {
+                index = 2;
+                var translatex = -index * w;
+                ul.style.transition = 'none';
+                ul.style.transform = 'translateX(' + translatex + 'px)';
+            }
+
+            ol.querySelector('.current').classList.remove('current');
+            ol.children[index].classList.add('current');
+
+        })
+
+        //手指拖动效果
+        var startx = 0,
+            movex = 0;
+
+        ul.addEventListener('touchstart', function (e) {
+            startx = e.targetTouches[0].pageX;
+            clearInterval(timer);
+        })
+        ul.addEventListener('touchmove', function (e) {
+            movex = e.targetTouches[0].pageX - startx;
+            var translatex = -index * w + movex;
+            ul.style.transition = 'none';
+            ul.style.transform = 'translateX(' + translatex + 'px)';
+            flag = true;
+            e.preventDefault;//取消滚动屏幕的默认行为
+        })
+
+        //根据滑动距离判断拨放上一张或者下一张
+        ul.addEventListener('touchend', function (e) {
+            if(flag){
+                if(Math.abs(movex) > 50){
+                if(movex > 0){
+                    index--;
+                }else{
+                    index++;
+                }
+                var translatex = -index * w;
+                ul.style.transition = 'all .3s';
+                ul.style.transform = 'translateX(' + translatex + 'px)';
+            }else{
+                var translatex = -index * w;
+               
+                ul.style.transform = 'translateX(' + translatex + 'px)';
+            }
+            }
+            //手指离开重启定时器
+            clearInterval(timer);
+            timer = setInterval(function () {
+            index++;
+            var translatex = -index * w;
+            ul.style.transition = 'all .3s';
+            ul.style.transform = 'translateX(' + translatex + 'px)';
+        }, 2000);
+        })
+    </script>
+</body>
+
+</html>

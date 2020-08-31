@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>轮播</title>
+	<style>
+		* {
+			margin: 0px;
+			padding: 0px;
+		}
+		.contain {
+			width: 450px;
+			height: 450px;
+			margin: 30px auto;
+			overflow: hidden;
+		}
+
+		.banner {
+			width: 450px;
+			height: 450px;
+			position: relative;
+		}
+
+		.banner-slide {
+			width: 450px;
+			height: 450px;
+			background-repeat: no-repeat;
+			position: absolute;
+			display: none;
+		}
+
+		.slide-active {
+			display: block;
+		}
+
+		.slide1 {
+			background-image: url('image/1.jpg');
+			background-size: 400px 200px;
+		}
+
+		.slide2 {
+			background-image: url('image/2.jpg');
+			background-size: 400px 200px;
+
+		}
+
+		.slide3 {
+			background-image: url('image/3.jpg');
+			background-size: 400px 200px;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div class="contain" id="contain">
+		<div class="banner" id="banner">
+			<div class="banner-slide slide1 slide-active"></div>
+			<div class="banner-slide slide2"></div>
+			<div class="banner-slide slide3"></div>
+		</div>
+	</div>
+	<script>
+		function byId(id) {
+			return document.getElementById(id);
+		}
+		var index = 0,
+			time = null,
+			pics = byId("banner").getElementsByTagName("div");
+
+		function slideImg() {
+			var contain = byId('contain');
+			contain.onmouseover = function () {
+				if (time) {
+					clearInterval(time);
+				}
+			}
+			contain.onmouseout = function () {
+				time = setInterval(function () {
+					index++;
+					if (index >= pics.length) {
+						index = 0;
+					}
+					changeImg();
+				}, 1000)
+			}
+			contain.onmouseout();
+		}
+
+		function changeImg() {
+			for (var i = 0; i < pics.length; i++) {
+				pics[i].style.display = 'none';
+			}
+			pics[index].style.display = "block";
+		}
+		slideImg();
+	</script>
+</body>
+
+</html>

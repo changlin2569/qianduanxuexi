@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>我爱你</li>
+        <li>我爱你</li>
+        <li>我爱你</li>
+        <li>我爱你</li>
+        <li>我爱你</li>
+        <li>我爱你</li>
+    </ul>
+    <ol>
+        <li>我爱你</li>
+        <li>我爱你</li>
+        <li>我爱你</li>
+        <li>我爱你</li>
+        <li>我爱你</li>
+        <li>我爱你</li>
+    </ol>
+    <script>
+        //var lis = document.querySelectorAll('li');
+        //console.log(lis);
+        var lis = document.querySelector('ul').querySelectorAll('li');
+        //console.log(lis);
+        var ul = document.querySelector('ul');
+        console.log(ul.childNodes);  //文本节点也获取到
+        console.log(ul.children);
+        
+        var ol = document.querySelector('ol');
+        console.log(ol.firstElementChild);//获取第一个元素节点
+        console.log(ol.children[0]);
+        console.log(ol.children[ol.children.length - 1]);
+        
+        
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>抛物线运动</title>
+	<style>
+		.pwx_rect {
+			position: absolute;
+			left: 10px;
+			top: 300px;
+			background-color: #888;
+			height: 50px;
+			width: 50px;
+		}
+
+		.pwx_hr {
+			border-top: 2px solid #ddd;
+			position: absolute;
+			width: 98%;
+			left: 0px;
+			top: 350px;
+		}
+	</style>
+	<script>
+		test = function () {
+			var rect = document.getElementById("rect");
+			pwx(rect, 60, 5);
+
+		}
+
+		function pwx(rect, radian, step) {
+			var animate = function (opt) {
+				var cos = Math.cos(opt.radian * Math.PI / 180); //邻边比斜边,60度的话等于1/2
+				var sin = Math.sin(opt.radian * Math.PI / 180); //对边比斜边,30度的话等于1/2
+				var left = opt.rect.offsetLeft;
+				var top = opt.rect.offsetTop;
+				if (opt.radian > 0) {
+					left += opt.step;
+					opt.radian -= 1;
+					var a = left - opt.initLeft;
+					var c = (a / cos);
+					var b = (sin * c);
+					opt.rect.style.left = opt.initLeft + a + "px";
+					opt.rect.style.top = opt.initTop - b + "px";
+					setTimeout(function () {
+						animate(opt);
+					}, 10);
+				} else {
+					opt.rect.style.left = left + opt.step + "px";
+					opt.rect.style.top = opt.initTop + "px";
+					opt.step && animate({
+						step: --opt.step,
+						g: 1,
+						rect: opt.rect,
+						radian: opt.radian,
+						initTop: opt.rect.offsetTop,
+						initLeft: opt.rect.offsetLeft
+					});
+				}
+			}
+			animate({
+				step: step,
+				g: 1,
+				rect: rect,
+				radian: radian,
+				initTop: rect.offsetTop,
+				initLeft: rect.offsetLeft
+			});
+		}
+	</script>
+</head>
+
+<body>
+	<input type="button" value="抛物线" onclick="test()" />
+	<div class="pwx_rect" id="rect"></div>
+	<div class="pwx_hr"></div>
+</body>
+
+</html>

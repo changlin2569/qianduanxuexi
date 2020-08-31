@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 300px;
+            height: 300px;
+            background-color: skyblue;
+            text-align: center;
+            line-height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        window.addEventListener('load',function(){
+            var div = document.querySelector('div');
+            window.addEventListener('resize',function(){
+                console.log(window.innerWidth);
+                if(window.innerWidth <= 500){
+                    div.style.backgroundColor = 'pink';
+                }else{
+                    div.style.backgroundColor= 'skyblue';
+                }
+            })
+        })
+    </script>
+    <div>
+        我爱你
+    </div>
+</body>
+</html>

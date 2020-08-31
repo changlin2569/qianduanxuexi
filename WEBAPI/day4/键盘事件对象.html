@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //1.keycode  返回按键的ASCII码值
+        document.addEventListener('keydown',function(e){
+            console.log('down：'+e.keyCode);
+            //不区分字母大小写
+        })
+        //2.press区分大小写
+        document.addEventListener('keypress',function(e){
+            console.log('press：'+e.keyCode);
+            
+        })
+    </script>
+</body>
+</html>

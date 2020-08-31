@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            position: absolute;
+            width: 80px;
+            height: 80px;
+        }
+    </style>
+</head>
+<body>
+    <img src="C:\Users\李长林山\Pictures\网易云音乐相册\你要自己争气，全世界都和颜悦色_109951164255936548.jpg" alt="">
+    <script>
+        var img = document.querySelector('img');
+        document.addEventListener('mousemove',function(e){
+            //console.log(e.pageX);
+            var x= e.pageX,
+                y = e.pageY;
+            img.style.top = y + 'px';
+            img.style.left = x + 'px';
+        })
+    </script>
+</body>
+</html>

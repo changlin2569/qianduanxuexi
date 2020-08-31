@@ -1,0 +1,637 @@
+<html>
+
+<head>
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta content="text/css" http-equiv="Content-Style-Type">
+    <title>css</title>
+</head>
+
+<body>
+    <h1 align="center" class="root">
+        <a name="680hsrjqe1nkg6lb2oe8hcdjuj">css</a>
+    </h1>
+    <h2 class="topic">
+        <a name="4lu0riql7nj1gq59rm057op1af">定位</a>
+    </h2>
+    <h3 class="topic">
+        <a name="04s9ha1jmea1a1gnbn6c6atdvu">&nbsp;子绝父相</a>
+    </h3>
+    <h3 class="topic">
+        <a name="0nt50eg5sbmon75d94iv5eka6m">&nbsp;浮动或者绝对定位元素都不胡触发外边距合并的问题</a>
+    </h3>
+    <h3 class="topic">
+        <a name="598tk14horp80ke3bv7m5mtv89">&nbsp;静态定位(static)</a>
+    </h3>
+    <h3 class="topic">
+        <a name="73ao6pqurghfn21784at5s0gkj">&nbsp;&nbsp;默认定位模式，没有定位的意思，不要定位时用</a>
+    </h3>
+    <h3 class="topic">
+        <a name="7l2drija2rctd8delacp84k69o">&nbsp;相对定位(relatave)</a>
+    </h3>
+    <h3 class="topic">
+        <a name="7gvl2bc3m760k89cd8etr1o4aa">&nbsp;&nbsp;相对于它原来在标准流的位置来定位</a>
+    </h3>
+    <h3 class="topic">
+        <a name="4bfkdqmed7dai6thufcajtnnef">&nbsp;&nbsp;原来在标准流中的位置继续占有，后面的盒子仍然以标准流的方式对待他</a>
+    </h3>
+    <h3 class="topic">
+        <a name="5620d0nd5p325f9s5ikp39qefa">&nbsp;绝对定位(absolute)</a>
+    </h3>
+    <h3 class="topic">
+        <a name="0p5d1jubeak39unotoc39iqvg9">&nbsp;&nbsp;完全脱标，完全不占有位置</a>
+    </h3>
+    <h3 class="topic">
+        <a name="302gh7uafhnt8p6kvhlvpokrdt">&nbsp;&nbsp;父级没有定位，则以浏览器为准定位</a>
+    </h3>
+    <h3 class="topic">
+        <a name="323uap7hvrgg6o7e1mmia8lf39">&nbsp;&nbsp;将元素一句最近的已经定位的的父元素（祖先）进行定位</a>
+    </h3>
+    <h3 class="topic">
+        <a name="0r945u9th4u4418jln20mnom1e">&nbsp;&nbsp;绝对定位盒子居中</a>
+    </h3>
+    <h3 class="topic">
+        <a name="46daa11e7o25h6ja01njdlj17l">&nbsp;&nbsp;&nbsp;left:50%; 让盒子的左侧移动到父级元素的水平中心位置</a>
+    </h3>
+    <h3 class="topic">
+        <a name="00gqqur5nf5soiietgngu0gm72">&nbsp;&nbsp;&nbsp;margin-left:-xx px; 让盒子向左移动自身宽度的一半</a>
+    </h3>
+    <h3 class="topic">
+        <a name="2q00id8p9lprhrc89opcgq9hpd">&nbsp;固定定位(fixed)</a>
+    </h3>
+    <h3 class="topic">
+        <a name="3qrlnk4tmsn9kvqa38bk5v7upe">&nbsp;&nbsp;完全脱标，不占有位置</a>
+    </h3>
+    <h3 class="topic">
+        <a name="4odb93losm8gdvk7liourslm8r">&nbsp;&nbsp;只认浏览器可视窗口</a>
+    </h3>
+    <h3 class="topic">
+        <a name="6ikdbajatepo0k68am1i6fnda8">&nbsp;&nbsp;&nbsp;和父元素没有任何关系</a>
+    </h3>
+    <h3 class="topic">
+        <a name="6itm8kmb16h8tpv526u2npgsaf">&nbsp;&nbsp;&nbsp;不随滚动条滚动</a>
+    </h3>
+    <h3 class="topic">
+        <a name="4segtarslnjq10ii55fdb3s0j3">&nbsp;堆叠顺序(z-index)</a>
+    </h3>
+    <h3 class="topic">
+        <a name="45oqkofen08ssdu2t7j6l8ak2s">&nbsp;&nbsp;属性值：正整数，负整数，0（默认）数值越大，盒子越靠上</a>
+    </h3>
+    <h3 class="topic">
+        <a name="4lv0lvil7md6egr6kb5odptl4p">&nbsp;&nbsp;如果属性值相同，则按照书写顺序，后来居上</a>
+    </h3>
+    <h3 class="topic">
+        <a name="78mv4gs516cutod3423kfe1pv0">&nbsp;&nbsp;数值后面不能加单位</a>
+    </h3>
+    <h3 class="topic">
+        <a name="39sch8io421f7aebrr9vohibpf">&nbsp;定位改变display属性，默认转换为行内块元素</a>
+    </h3>
+    <h2 class="topic">
+        <a name="7prm0g8af9khtcd54clc1aqvk8">字体</a>
+    </h2>
+    <h3 class="topic">
+        <a name="5pb9smll75t0eeaoeobtnhjlhl">&nbsp;字体外表：font-family</a>
+    </h3>
+    <h3 class="topic">
+        <a name="0m7rvksidhn6cjo9atf1n8qlm7">&nbsp;字体大小：font-size</a>
+    </h3>
+    <h3 class="topic">
+        <a name="0jp5sl7u3gm9poc6e9742la1ig">&nbsp;字体粗细：font-weight;100到700</a>
+    </h3>
+    <h3 class="topic">
+        <a name="4orr4l8ivtp6sdfq91d2sc3nf1">&nbsp;字体样式：font-style || oblique倾斜 || normal正常</a>
+    </h3>
+    <h3 class="topic">
+        <a name="59ua4bfgjihasv3l837d81lfcs">&nbsp;整体定义 ： font || 以上从下到上定义，可以不要后两项</a>
+    </h3>
+    <h3 class="topic">
+        <a name="6q73dboo1hpq0dahtu9rf44qq2">&nbsp;行高(line-height)</a>
+    </h3>
+    <h3 class="topic">
+        <a name="02optqohfe895prbhbojv61227">&nbsp;&nbsp;设置为高度时会垂直居中显示</a>
+    </h3>
+    <h3 class="topic">
+        <a name="1ej5dn575rr5f8hclbk1g00k6m">&nbsp;text-decoration</a>
+    </h3>
+    <h3 class="topic">
+        <a name="6onuvljdpaal1lc5k48q27nelb">&nbsp;&nbsp;下划线(underline)</a>
+    </h3>
+    <h3 class="topic">
+        <a name="2p158catvcijeddmat5n2aohaa">&nbsp;&nbsp;贯穿(line-through)</a>
+    </h3>
+    <h3 class="topic">
+        <a name="4rvl1cbscja13rosep9ubina8r">&nbsp;&nbsp;上划线(overline)</a>
+    </h3>
+    <h3 class="topic">
+        <a name="0i1fbt4javt5vrga4eis9pkelk">&nbsp;&nbsp;无(none)</a>
+    </h3>
+    <h3 class="topic">
+        <a name="7c3te8rs9a2n9s7vblp6psc2hk">&nbsp;首行缩进(text-indent)</a>
+    </h3>
+    <h3 class="topic">
+        <a name="464aglhnvik97rn4o8gddac33j">&nbsp;&nbsp;单位em，字符长度</a>
+    </h3>
+    <h2 class="topic">
+        <a name="12vndi2ms6nfsj41it06c6k8pr">选择器</a>
+    </h2>
+    <h3 class="topic">
+        <a name="6n61d3tkah0t8o5duj10ljg1ed">&nbsp;标签选择器</a>
+    </h3>
+    <h3 class="topic">
+        <a name="684epmjt329jn28r260b3k3d4f">&nbsp;&nbsp;以标签名开头 如div { }</a>
+    </h3>
+    <h3 class="topic">
+        <a name="4ojoaeuagbko842huegcckma2u">&nbsp;类选择器</a>
+    </h3>
+    <h3 class="topic">
+        <a name="0t5naka9m4l448iv0k2g4thnnn">&nbsp;&nbsp;.class || 选择所有该class名的元素</a>
+    </h3>
+    <h3 class="topic">
+        <a name="2jarvh7lhqse749ior64vopa5n">&nbsp;id选择器</a>
+    </h3>
+    <h3 class="topic">
+        <a name="4irt1gr0549diqc5luvfknsrlk">&nbsp;&nbsp;以#id名开头</a>
+    </h3>
+    <h3 class="topic">
+        <a name="03hvo609u2vqr6dbvqe2t8c4la">&nbsp;包含选择器</a>
+    </h3>
+    <h3 class="topic">
+        <a name="2g45mf2cpmmao928n7moqs4ecp">&nbsp;&nbsp;空格隔开包含关系 || div p { }</a>
+    </h3>
+    <h3 class="topic">
+        <a name="4qcq7ukk0gjbepn8etlkle004k">&nbsp;群选择器 </a>
+    </h3>
+    <h3 class="topic">
+        <a name="5gn8v3b5djlskrclt1vi0ep38f">&nbsp;&nbsp;以 , 分隔 .nav,span 同时选择</a>
+    </h3>
+    <h3 class="topic">
+        <a name="3s9gjerqbqvqgmcg7220qqaqtn">&nbsp;伪类选择器</a>
+    </h3>
+    <h3 class="topic">
+        <a name="60t2n498lvtdjlakofoahpnlmj">&nbsp;&nbsp;链接伪类</a>
+    </h3>
+    <h3 class="topic">
+        <a name="027hk04rh6krpm66fv6c2adp07">&nbsp;&nbsp;&nbsp;a:link {未访问}</a>
+    </h3>
+    <h3 class="topic">
+        <a name="65nu00atim8bv03vv3bos6bsrj">&nbsp;&nbsp;&nbsp;a:visited {已经访问}</a>
+    </h3>
+    <h3 class="topic">
+        <a name="7poqp87g3up7lrvts2uf2u4kgs">&nbsp;&nbsp;&nbsp;a:hover {鼠标悬停}</a>
+    </h3>
+    <h3 class="topic">
+        <a name="5jbm8irl2ds2h24hvom8f8nr8f">&nbsp;&nbsp;&nbsp;a:active{选中}</a>
+    </h3>
+    <h2 class="topic">
+        <a name="10u2b3r8hvuegbl0lvb4jghvve">元素种类</a>
+    </h2>
+    <h3 class="topic">
+        <a name="5ntg10d8j57sgn88bhrfsbvvt2">&nbsp;块级元素(block)</a>
+    </h3>
+    <h3 class="topic">
+        <a name="5dqmpagf8drkc2ob7pc3gvm0mv">&nbsp;&nbsp;不能排在一行，有宽高</a>
+    </h3>
+    <h3 class="topic">
+        <a name="5eenrcaqv8cfu8dopfjemvm897">&nbsp;行内元素(inline)</a>
+    </h3>
+    <h3 class="topic">
+        <a name="695cj9774s2o1vsrnmu0lnirnm">&nbsp;&nbsp;再一行显示，无宽高</a>
+    </h3>
+    <h3 class="topic">
+        <a name="5bgaupln6rvl8jpqc6ivklv2pp">&nbsp;行内块元素(inline-block)</a>
+    </h3>
+    <h3 class="topic">
+        <a name="0fgsloacbc77qqone81p1brcmg">&nbsp;&nbsp;同时具有行内元素和块级元素的特征</a>
+    </h3>
+    <h2 class="topic">
+        <a name="3uh0s4v9tn2spat9021dl2cac2">高级技巧</a>
+    </h2>
+    <h3 class="topic">
+        <a name="6etscq3kuolmggsqn8a6s0032e">&nbsp;元素的显示或隐藏</a>
+    </h3>
+    <h3 class="topic">
+        <a name="4oa80agulp81b5p3033j13jonp">&nbsp;&nbsp;display 显示</a>
+    </h3>
+    <h3 class="topic">
+        <a name="7f5m1cqnm16gfoucd3hgha8b04">&nbsp;&nbsp;&nbsp;display:none;</a>
+    </h3>
+    <h3 class="topic">
+        <a name="31brhsotviqdfle057ufgrufsd">&nbsp;&nbsp;&nbsp;&nbsp;隐藏对象</a>
+    </h3>
+    <h3 class="topic">
+        <a name="5j5hg36ln7m85vk7nbr0fefe2u">&nbsp;&nbsp;&nbsp;&nbsp;不保留位置</a>
+    </h3>
+    <h3 class="topic">
+        <a name="4cst6nsk149mpjtnu40gd2i16c">&nbsp;&nbsp;&nbsp;display:block;</a>
+    </h3>
+    <h3 class="topic">
+        <a name="2pkl52tnf8hkfh04mkjrj9rll4">&nbsp;&nbsp;&nbsp;&nbsp;转换块级元素</a>
+    </h3>
+    <h3 class="topic">
+        <a name="7hbnkqe2l0q2usqommqscluk6m">&nbsp;&nbsp;&nbsp;&nbsp;显示元素</a>
+    </h3>
+    <h3 class="topic">
+        <a name="7iitlvfnd7ojknss366pdfpfdv">&nbsp;&nbsp;visibility 可见性</a>
+    </h3>
+    <h3 class="topic">
+        <a name="6ghulbuispovuam7623s3on23h">&nbsp;&nbsp;&nbsp;inherit:继承上一个父对象的可见性</a>
+    </h3>
+    <h3 class="topic">
+        <a name="1v4pijlsrrk3jbun77lmgkeb65">&nbsp;&nbsp;&nbsp;visible:对象可视</a>
+    </h3>
+    <h3 class="topic">
+        <a name="2recpf67ak15tttak2ijo38lh2">&nbsp;&nbsp;&nbsp;hidden:对象隐藏，保留位置</a>
+    </h3>
+    <h3 class="topic">
+        <a name="59se0gu4ika3g5vqhfimqkjkre">&nbsp;&nbsp;overflow 溢出</a>
+    </h3>
+    <h3 class="topic">
+        <a name="6kv12do0k3du0qmnsq5sc1p96l">&nbsp;&nbsp;&nbsp;visible:不剪切内容也不添加滚动条</a>
+    </h3>
+    <h3 class="topic">
+        <a name="6i3c3ds4f7eaq4ogln50scubpo">&nbsp;&nbsp;&nbsp;hidden:不显示超过对象尺寸的内容，超出的部分隐藏掉</a>
+    </h3>
+    <h3 class="topic">
+        <a name="4rv8dl1sc6p9muip4i15c1oeqn">&nbsp;&nbsp;&nbsp;scroll:不管超出内容与否，总是显示滚动条</a>
+    </h3>
+    <h3 class="topic">
+        <a name="1fk46h341n17micumr45kbduf2">&nbsp;&nbsp;&nbsp;auto:超出自动显示滚动条，不超出不显示</a>
+    </h3>
+    <h3 class="topic">
+        <a name="0mjcsu3ddiju6jq1j2v8l46mmg">&nbsp;鼠标样式 cursor</a>
+    </h3>
+    <h3 class="topic">
+        <a name="2mhb3btncnkh4be0ld7fjabj3g">&nbsp;&nbsp;default：小白（默认）</a>
+    </h3>
+    <h3 class="topic">
+        <a name="077fr4ebsbmqu988a0c76ult4s">&nbsp;&nbsp;pointer：小手</a>
+    </h3>
+    <h3 class="topic">
+        <a name="62v1fkv4h95rj6tk2a5ij0bb2n">&nbsp;&nbsp;move：移动</a>
+    </h3>
+    <h3 class="topic">
+        <a name="3l7pkvqalln0rs0hdv08qemrlh">&nbsp;&nbsp;not-allowed：禁止</a>
+    </h3>
+    <h3 class="topic">
+        <a name="24uf8ktlabp37e3b61lfgo9ali">&nbsp;轮廓线 outline</a>
+    </h3>
+    <h3 class="topic">
+        <a name="2tq30k9jsa8e2h5i7b84ii0cet">&nbsp;&nbsp;outline-color</a>
+    </h3>
+    <h3 class="topic">
+        <a name="75am7j5nvvnobfhk6kc723i886">&nbsp;&nbsp;outline-style</a>
+    </h3>
+    <h3 class="topic">
+        <a name="2fcp3kp6ruitl8ma4r444fkfcj">&nbsp;&nbsp;outline-width</a>
+    </h3>
+    <h3 class="topic">
+        <a name="1ih013o75qibdrphosls05ec8b">&nbsp;&nbsp;outline-none：取消轮廓线</a>
+    </h3>
+    <h3 class="topic">
+        <a name="578dl28ogv8nnh1ia1638i4c6u">&nbsp;防止拖拽文本域：resize:none</a>
+    </h3>
+    <h3 class="topic">
+        <a name="6fcqctju3c45nuc045evn9ocbg">&nbsp;垂直对齐 vertical-align</a>
+    </h3>
+    <h3 class="topic">
+        <a name="3k3u1tptqmdo25l77jv8o7s8ri">&nbsp;&nbsp;只针对行内元素或行内块元素</a>
+    </h3>
+    <h3 class="topic">
+        <a name="39lusdjir4tv5vqtpctqpeedvb">&nbsp;&nbsp;baseline 基线</a>
+    </h3>
+    <h3 class="topic">
+        <a name="79ub1rv65ljhtg1sp1fauiqsj0">&nbsp;&nbsp;top 顶线</a>
+    </h3>
+    <h3 class="topic">
+        <a name="45hiqdrqs2i3o8t8ob3heqlr5m">&nbsp;&nbsp;middle 中线</a>
+    </h3>
+    <h3 class="topic">
+        <a name="762uiur4q0mdjdj53til8osb70">&nbsp;&nbsp;bottom 底线</a>
+    </h3>
+    <h3 class="topic">
+        <a name="2dvl005hmeobr9h6ciu35khfhh">&nbsp;去除图片底侧空白缝隙</a>
+    </h3>
+    <h3 class="topic">
+        <a name="62o4df02p2tipda6kg1g8okuig">&nbsp;&nbsp;默认与基线对齐，所以底侧有空白缝隙</a>
+    </h3>
+    <h3 class="topic">
+        <a name="7608dibm1qt2ga2j61vknrlo84">&nbsp;&nbsp;给图片设置垂直对齐属性，不要与基线对齐</a>
+    </h3>
+    <h3 class="topic">
+        <a name="1ac40131t8qkhr8k03flrdbvbb">&nbsp;&nbsp;转换为块级元素</a>
+    </h3>
+    <h3 class="topic">
+        <a name="3fo4veb0pbsnpqth538j2j88jl">&nbsp;溢出文字省略号显示</a>
+    </h3>
+    <h3 class="topic">
+        <a name="7i8lmt1gl20hl4eappe6javjp0">&nbsp;&nbsp;1.强制一行显示 （white-space:nowrap）</a>
+    </h3>
+    <h3 class="topic">
+        <a name="2jo1kldg5n4n48ira4uhvcvkkv">&nbsp;&nbsp;2.超出部分隐藏（overflow:hidden）</a>
+    </h3>
+    <h3 class="topic">
+        <a name="6jvun8t4av1iip767q83mm9j92">&nbsp;&nbsp;3.用省略号代替超出部分（text-overflow:ellipsis）</a>
+    </h3>
+    <h3 class="topic">
+        <a name="18moojd8phjdo485brk8lrg68h">&nbsp;精灵技术（有效减少服务器接收和发送请求的次数，提高页面加载速度）</a>
+    </h3>
+    <h3 class="topic">
+        <a name="2k025ssvqtv6lqm7rna1032t3p">&nbsp;&nbsp;精灵图，使用一张图片，再使用background-position取到想用的图片</a>
+    </h3>
+    <h3 class="topic">
+        <a name="2nkrg686t5n9v3t1o5q6imqisc">&nbsp;滑动门</a>
+    </h3>
+    <h3 class="topic">
+        <a name="6mkqi1hggkl9ip6pm37f7eevka">&nbsp;&nbsp;两个盒子，a和span</a>
+    </h3>
+    <h3 class="topic">
+        <a name="1q52bevuldohbe3tk85t8phqdd">&nbsp;&nbsp;a 设置背景左侧，padding撑开合适宽度</a>
+    </h3>
+    <h3 class="topic">
+        <a name="3gkkqcg2flk43j2fign781jqr7">&nbsp;&nbsp;span 设置背景右侧，padding撑开合适宽度，剩下的由文字撑开</a>
+    </h3>
+    <h3 class="topic">
+        <a name="2gi7nqp2r3o18nrbrb5rvg9tk6">&nbsp;&nbsp;a包含span的目的是因为整个盒子都是可以点击的</a>
+    </h3>
+    <h3 class="topic">
+        <a name="73g7acv0anaprqm35f4mu1odmp">&nbsp;margin负值之美</a>
+    </h3>
+    <h3 class="topic">
+        <a name="39cbmmbij49hrsnc2agprsn5fc">&nbsp;&nbsp;负边距+定位：水平锤子居中</a>
+    </h3>
+    <h3 class="topic">
+        <a name="780ocv7reijaub4j10se4rmn5l">&nbsp;&nbsp;压住盒子相邻边框（先浮动）</a>
+    </h3>
+    <h3 class="topic">
+        <a name="4mu9iu7t09i7fc8mmmi2u7t9vc">&nbsp;三角形之美</a>
+    </h3>
+    <h3 class="topic">
+        <a name="1mldsdqg08e1l35p12kb4vrc82">&nbsp;&nbsp;宽高为0</a>
+    </h3>
+    <h3 class="topic">
+        <a name="0ebeiaer5our7c0nr0ti0b8mqp">&nbsp;&nbsp;4个边框都要写，只保留需要的边框颜色，其余的不能省略，都改为transparent透明就好</a>
+    </h3>
+    <h3 class="topic">
+        <a name="4np9scdaq0onlose2sbt7gajtl">&nbsp;&nbsp;照顾兼容性，加上font-size:0;line-height:0;</a>
+    </h3>
+    <h2 class="topic">
+        <a name="3li6mochu19t0kt2rctudipn42">背景</a>
+    </h2>
+    <h3 class="topic">
+        <a name="0heug34jgcldrsl056lrkk69st">&nbsp;background-color</a>
+    </h3>
+    <h3 class="topic">
+        <a name="06arvnk8v6vj9cepd6g1qs9o89">&nbsp;background-image</a>
+    </h3>
+    <h3 class="topic">
+        <a name="6je23flbfn5t87o1fov3hp7ed1">&nbsp;&nbsp;url(图片路径) 不加双引号</a>
+    </h3>
+    <h3 class="topic">
+        <a name="0dplhn92a444godrl6cdoc29m4">&nbsp;background-repeat 是否平铺</a>
+    </h3>
+    <h3 class="topic">
+        <a name="2eh73cpqfrq0evoev43ht1m6ii">&nbsp;&nbsp;repeat || no-repeat || repeat-x || repeat-y</a>
+    </h3>
+    <h3 class="topic">
+        <a name="3d3osurefjah4s0monoh2hjg9b">&nbsp;background-position 背景位置</a>
+    </h3>
+    <h3 class="topic">
+        <a name="7fvv0sq0hiqm3hepg4vjthpu47">&nbsp;&nbsp;分别是x y坐标 精确数值单位 top center 横上纵中</a>
+    </h3>
+    <h3 class="topic">
+        <a name="5s9u4qn4p8fm27pmi787q5242u">&nbsp;background-attachment 背景是否滚动</a>
+    </h3>
+    <h3 class="topic">
+        <a name="0lj5srdnc6qbrr1l8g2gsam7l9">&nbsp;&nbsp;scroll || fixed</a>
+    </h3>
+    <h3 class="topic">
+        <a name="65oouco7u6hid1a580dt0scnab">&nbsp;背景简写</a>
+    </h3>
+    <h3 class="topic">
+        <a name="4mp1ajvgmj2oajomt31g2bd14g">&nbsp;&nbsp;背景颜色 背景图片地址 平铺 滚动 位置 || 无顺序</a>
+    </h3>
+    <h3 class="topic">
+        <a name="06jglf01buir5bo2basgpfl46b">&nbsp;背景透明</a>
+    </h3>
+    <h3 class="topic">
+        <a name="1qljctln46tfuka13972t2d8mv">&nbsp;&nbsp;rgba(0,0,0,3) || 必须4个值，透明度0~1</a>
+    </h3>
+    <h2 class="topic">
+        <a name="6c8548u91ii4611gjntktftf3u">盒子模型</a>
+    </h2>
+    <h3 class="topic">
+        <a name="1gghreirdsrj80t0qqi6f2php2">&nbsp;边框(border)</a>
+    </h3>
+    <h3 class="topic">
+        <a name="2mlfg3dn22o3a0or44nblpfrbb">&nbsp;&nbsp;边框宽度(border-width)</a>
+    </h3>
+    <h3 class="topic">
+        <a name="2llmto8pnsv5vfhh7utt5u7htv">&nbsp;&nbsp;边框样式(border-styel)</a>
+    </h3>
+    <h3 class="topic">
+        <a name="39rt2fidv70hj5mpdhj2i8auqh">&nbsp;&nbsp;&nbsp;实线(solid)</a>
+    </h3>
+    <h3 class="topic">
+        <a name="1bf4bdjlitsm7aj35c7di5ru0u">&nbsp;&nbsp;&nbsp;虚线(dashed)</a>
+    </h3>
+    <h3 class="topic">
+        <a name="02itiff1iq8vhdkqu7cq0jp15u">&nbsp;&nbsp;&nbsp;点线(dotted)</a>
+    </h3>
+    <h3 class="topic">
+        <a name="7sk6lgadfp685s7k1eq4pemua5">&nbsp;&nbsp;边框颜色(border-color)</a>
+    </h3>
+    <h3 class="topic">
+        <a name="6pdvhibrocmcvjid558mtr195q">&nbsp;&nbsp;边框综合性写法 || 无顺序</a>
+    </h3>
+    <h3 class="topic">
+        <a name="5p7eari23uhqvh498ka3gv3tj3">&nbsp;&nbsp;&nbsp;宽度 || 样式 || 颜色</a>
+    </h3>
+    <h3 class="topic">
+        <a name="0rkj5ebaci8ovkofv2vr9t7skm">&nbsp;&nbsp;可以单独指定边框</a>
+    </h3>
+    <h3 class="topic">
+        <a name="3vspbqkhlju0ufdavjkev185r8">&nbsp;&nbsp;&nbsp;border-top</a>
+    </h3>
+    <h3 class="topic">
+        <a name="1qpilk6e9o2fqk8a40gcr30hns">&nbsp;&nbsp;&nbsp;border-left</a>
+    </h3>
+    <h3 class="topic">
+        <a name="4uvcob6intmggvpeoopfna2sv3">&nbsp;&nbsp;&nbsp;border-right</a>
+    </h3>
+    <h3 class="topic">
+        <a name="0qrvodda9vi8vurh6d785te78b">&nbsp;&nbsp;&nbsp;border-bottom</a>
+    </h3>
+    <h3 class="topic">
+        <a name="4khbmnni5ge21j41ngqos7k3qo">&nbsp;&nbsp;&nbsp;利用层叠性，先写大的再写小的</a>
+    </h3>
+    <h3 class="topic">
+        <a name="4vdt914cku2d3743agccc9q0hq">&nbsp;&nbsp;表格单元格合并</a>
+    </h3>
+    <h3 class="topic">
+        <a name="7sukjfn9aai8h5ga9dp3usj6ct">&nbsp;&nbsp;&nbsp;border-collapes:collapes</a>
+    </h3>
+    <h3 class="topic">
+        <a name="5htlk4mhqo7l6k8pbl22vnlan3">&nbsp;内边距(padding)</a>
+    </h3>
+    <h3 class="topic">
+        <a name="7a6j63mslj9saiq8o8u7rbeo4n">&nbsp;&nbsp;与边框相同，可单独指定四个值</a>
+    </h3>
+    <h3 class="topic">
+        <a name="1g5fdm1nin60vfioo5qqvlor6p">&nbsp;&nbsp;也可一次定义</a>
+    </h3>
+    <h3 class="topic">
+        <a name="6qkf76hvu353pgtgaolf055m0b">&nbsp;&nbsp;&nbsp;一个值</a>
+    </h3>
+    <h3 class="topic">
+        <a name="631f773atugju2hqo1e9k0kiq7">&nbsp;&nbsp;&nbsp;&nbsp;上下左右</a>
+    </h3>
+    <h3 class="topic">
+        <a name="7mc0stn34dto64v1o12l6kkvkk">&nbsp;&nbsp;&nbsp;两个值</a>
+    </h3>
+    <h3 class="topic">
+        <a name="226am91o81cok7jb122p2u9n05">&nbsp;&nbsp;&nbsp;&nbsp;上下 左右</a>
+    </h3>
+    <h3 class="topic">
+        <a name="6vahcn18evtdgcs3gurffjk3mi">&nbsp;&nbsp;&nbsp;三个值</a>
+    </h3>
+    <h3 class="topic">
+        <a name="40mi8kaosc2r8mrk5s43l6k5qj">&nbsp;&nbsp;&nbsp;&nbsp;上 左右 下</a>
+    </h3>
+    <h3 class="topic">
+        <a name="2517sqp7rcf13pghbijnfch9b5">&nbsp;&nbsp;&nbsp;四个值</a>
+    </h3>
+    <h3 class="topic">
+        <a name="3kstn7qiqbsvjo6r8gisesnp46">&nbsp;&nbsp;&nbsp;&nbsp;上 下 左 右</a>
+    </h3>
+    <h3 class="topic">
+        <a name="38ip69ni8ns1m6t90a3ltt8k8h">&nbsp;&nbsp;设置内边距后，盒子大小会有变化，在原本大小上加上内边距大小</a>
+    </h3>
+    <h3 class="topic">
+        <a name="69s8q5000upogvboj8ho0a78o9">&nbsp;&nbsp;&nbsp;如果盒子没有宽度，则不会撑开盒子</a>
+    </h3>
+    <h3 class="topic">
+        <a name="7tbv98nhospd8qc7mvm7m6dsu1">&nbsp;外边距(margin)</a>
+    </h3>
+    <h3 class="topic">
+        <a name="6tpipvd2mursvt97t1c7tcbcdv">&nbsp;&nbsp;和内边距定义大同小异</a>
+    </h3>
+    <h3 class="topic">
+        <a name="0ijbeup6tieqfslo9krg0404r3">&nbsp;&nbsp;垂直外边距合并</a>
+    </h3>
+    <h3 class="topic">
+        <a name="6gt07fen6qnr71juc20gr0o0ll">&nbsp;&nbsp;&nbsp;取两个值中的较大者</a>
+    </h3>
+    <h3 class="topic">
+        <a name="5bhsuve9po4caako681jkktkgo">&nbsp;块级盒子水平居中</a>
+    </h3>
+    <h3 class="topic">
+        <a name="24fmh5o6cihvj85id0q8ri2f7q">&nbsp;&nbsp;盒子必须有具体宽度</a>
+    </h3>
+    <h3 class="topic">
+        <a name="4hbt2n9lqv8k1nenje28nsqdil">&nbsp;&nbsp;左右外边距设置为 auto</a>
+    </h3>
+    <h3 class="topic">
+        <a name="5v6ghmnb8bgb31ucgaas053n2h">&nbsp;&nbsp;文字居中和盒子居中的区别</a>
+    </h3>
+    <h3 class="topic">
+        <a name="2lgho1pbuhltpo37uep7so0bh1">&nbsp;&nbsp;&nbsp;text-align:center 盒子中的文字和行内元素和行内块元素居中</a>
+    </h3>
+    <h3 class="topic">
+        <a name="5oh74tvnod5rtkeigl4ih48jpi">&nbsp;插入图片和背景图片的区别</a>
+    </h3>
+    <h3 class="topic">
+        <a name="5a2qcnmi6kdtlrqo6jmskcjpp4">&nbsp;&nbsp;插入图片</a>
+    </h3>
+    <h3 class="topic">
+        <a name="7ml0eg72vronaqjq1v7beej1oc">&nbsp;&nbsp;&nbsp;主要用于产品展示，移动位置只能靠模型 padding margin</a>
+    </h3>
+    <h3 class="topic">
+        <a name="53rdsu01880j8pudbuhjn0junk">&nbsp;&nbsp;背景图片</a>
+    </h3>
+    <h3 class="topic">
+        <a name="366uv3kc15spvp9s28mdu4cl2j">&nbsp;&nbsp;&nbsp;用于小图标或超大背景，移动位置用 background-position</a>
+    </h3>
+    <h3 class="topic">
+        <a name="2o2rdi0imhi8nb114drb5k8n2u">&nbsp;清楚元素默认的内外边距</a>
+    </h3>
+    <h3 class="topic">
+        <a name="78hogfccov36hme1chg39i0oo6">&nbsp;&nbsp;通配符选择器，写css的第一句，行内元素一般设置左右边距</a>
+    </h3>
+    <h3 class="topic">
+        <a name="6h3ggju8rdlo69rp0ds8bdmssl">&nbsp;塌陷（父子）</a>
+    </h3>
+    <h3 class="topic">
+        <a name="38b38qklichomr92hb5pvobo1g">&nbsp;&nbsp;给父元素设置上边框 1px</a>
+    </h3>
+    <h3 class="topic">
+        <a name="66b5p0mcdh0372qjutmlbn7au4">&nbsp;&nbsp;给父元素设置上内边距 1px</a>
+    </h3>
+    <h3 class="topic">
+        <a name="3cim5t0cl8ed6tat4q9u5huqj6">&nbsp;&nbsp;给父元素 overflow:hidden</a>
+    </h3>
+    <h3 class="topic">
+        <a name="6q0clmfdqumme55136r59lgg7n">&nbsp;圆角边框(border-redius)</a>
+    </h3>
+    <h3 class="topic">
+        <a name="4ciqcv1p16pm92tj76k2tbv29g">&nbsp;&nbsp;正圆 设置50%</a>
+    </h3>
+    <h3 class="topic">
+        <a name="16h2mu3iil0qvjcjm7ipel0v6k">&nbsp;&nbsp;矩形 设置高度一半</a>
+    </h3>
+    <h3 class="topic">
+        <a name="7dvfq1fhav9170bbng09pelpp5">&nbsp;盒子阴影(box-shadow)</a>
+    </h3>
+    <h3 class="topic">
+        <a name="3pk2j6c9enl5atnt0l9k62rso9">&nbsp;&nbsp;水平阴影 垂直阴影 模糊距离 阴影尺寸 阴影颜色 内外阴影</a>
+    </h3>
+    <h3 class="topic">
+        <a name="5897mu23phs99b4fhq3qe1vtid">&nbsp;&nbsp;水平垂直必须</a>
+    </h3>
+    <h3 class="topic">
+        <a name="194bmfv0cgr8nkia23fvt6vqag">&nbsp;li元素清除样式</a>
+    </h3>
+    <h3 class="topic">
+        <a name="445l040fjm2kmlqhchsrqs7h03">&nbsp;&nbsp;list-style:none</a>
+    </h3>
+    <h2 class="topic">
+        <a name="1el7mblbastqsrqc38lvoacb5a">浮动</a>
+    </h2>
+    <h3 class="topic">
+        <a name="1n19euhovtl4vij3ejg7i8mqjp">&nbsp;让多个盒子一行显示，实现文字环绕图片效果</a>
+    </h3>
+    <h3 class="topic">
+        <a name="0q5itod4i7a3oo6old4fkrlq6j">&nbsp;左浮动和右浮动</a>
+    </h3>
+    <h3 class="topic">
+        <a name="440ema2nvsid0ivk3m0p10aokp">&nbsp;设置了浮动的元素，漂浮在普通流上面，不占位置，脱标</a>
+    </h3>
+    <h3 class="topic">
+        <a name="1l3f0moqn0or6lvcpio1r95g37">&nbsp;浮动会改变元素display属性，生成一个块级框，且不论是什么元素，都变为类似行内块元素，但他们之间没有空隙</a>
+    </h3>
+    <h3 class="topic">
+        <a name="3lm3m3ebvio7hnp2iufb51t980">&nbsp;浮动的元素是紧靠在一起的，如果父级元素装不下，则会另起一行显示</a>
+    </h3>
+    <h3 class="topic">
+        <a name="3s558sm75bp3cidr19dbt3v8jt">&nbsp;子盒子浮动参照父盒子对齐，不会与父盒子边框重叠，也不会超过父盒子的内边距</a>
+    </h3>
+    <h3 class="topic">
+        <a name="0k1ojl4opl0sfnjqnvm4is36i1">&nbsp;浮动只会影响当前或者后面的盒子，不会影响前面的标准流</a>
+    </h3>
+    <h3 class="topic">
+        <a name="3scprk64dbbnr95phc0c44k59u">&nbsp;清除浮动（主要解决父级元素因为子级元素浮动导致高度为0的问题）</a>
+    </h3>
+    <h3 class="topic">
+        <a name="4fkjh4kntimtml360fj9nsbhk1">&nbsp;&nbsp;clear</a>
+    </h3>
+    <h3 class="topic">
+        <a name="15fe55oi0ba4s5ujnck3jjle4j">&nbsp;&nbsp;&nbsp;在最后浮动的一个元素后添加一个空的盒子清除浮动</a>
+    </h3>
+    <h3 class="topic">
+        <a name="5p8urkumv27ivn5aj506s0v153">&nbsp;&nbsp;&nbsp;父级元素添加overflow:hidden</a>
+    </h3>
+    <h3 class="topic">
+        <a name="2cu8rulknshotcun8e2c8u6s8e">&nbsp;&nbsp;&nbsp;after伪元素清除浮动</a>
+    </h3>
+</body>
+
+</html>

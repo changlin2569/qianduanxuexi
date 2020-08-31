@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+    }
+    .father{
+        width: 500px;
+        height: 500px;
+        background-color: skyblue;
+    }
+    .son{
+        width: 250px;
+        height: 250px;
+        background-color: steelblue;
+    }
+</style>
+</head>
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+    <script>
+        var father = document.querySelector('.father'),
+            son = document.querySelector('.son');
+
+            father.addEventListener('mouseenter',function(){
+                console.log('我喜欢你');
+                
+            })
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>我爱你</div>
+    <ul>
+        <li>我</li>
+        <li>爱</li>
+        <li>你</li>
+    </ul>
+    <script>
+        var div = document.querySelector('div'),
+            ul = document.querySelector('ul');
+            //前者返回触发事件的对象，后者返回绑定事件的对象
+            div.onclick = function(e){
+                console.log(e.target);
+                console.log(this);
+                
+            }
+            ul.addEventListener('click',function(e){
+                console.log(e.target);
+                console.log(this);
+                
+            })
+    </script>
+</body>
+</html>

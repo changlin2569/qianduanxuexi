@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        div{
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <button class="one">我喜欢你</button>
+    <button class="two">我爱你</button>
+    <div>我也喜欢你</div>
+    <script>
+        var div = document.querySelector('div');
+
+        function animate(obj,target){
+            //点击次数越多就会开启很多定时器
+            clearInterval(obj.timer)
+          
+
+            //为不同元素设置不同定时器
+             obj.timer = setInterval(function(){
+                
+                 //步长值,取整数，避免小数
+
+            var step =(target - obj.offsetLeft) / 10 ;
+            //回退时判断是否小于零，小于零取小的数
+            step = step<0 ? Math.floor(step):Math.ceil(step);
+            if(obj.offsetLeft == target){
+                clearInterval(obj.timer);
+            }
+            obj.style.left = obj.offsetLeft + step + 'px';
+        },15)
+        }
+
+        var btnOne = document.querySelector('.one'),
+            btnTwo = document.querySelector('.two')
+        btnOne.addEventListener('click',function(){
+            animate(div,500);
+        })
+        btnTwo.addEventListener('click',function(){
+            animate(div,800);
+        })
+    </script>
+</body>
+</html>

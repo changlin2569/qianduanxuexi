@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>我喜欢你</button>
+    <div></div>
+    <script>
+        var btn = document.querySelector('button'),
+            div = document.querySelector('div');
+
+            btn.addEventListener('click',function(){
+                location.href = 'https://www.bilibili.com/';
+            })
+
+            var time = 5;
+            function fn(){
+                if(time == 0){
+                    location.href = 'https://www.bilibili.com/';
+                }else{
+                    div.innerHTML = time + '秒后进行穿越';
+                    time--;
+                }
+            }
+            fn();
+            setInterval(fn,1000);
+    </script>
+</body>
+</html>

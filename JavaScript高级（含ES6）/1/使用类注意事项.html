@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>点击</button>
+    <script>
+        var that;
+        class Star {
+            constructor(name, age) {
+                that = this;
+                this.name = name;
+                this.age = age;
+                //console.log(this.sing);
+                this.sing();
+                this.btn = document.querySelector('button');
+                //console.log(this.age);
+                this.btn.onclick = this.sing;
+            }
+            sing() {
+                console.log(this.name); //方法中的this指向btn按钮
+
+                console.log(this);
+
+                console.log(that.name);//that指向constructor中的this
+            }
+        }
+        var star = new Star('华晨宇', 18);
+    </script>
+</body>
+
+</html>

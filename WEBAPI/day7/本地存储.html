@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <input type="text">
+    <button class="set">存储数据</button>
+    <button class="get">获取数据</button>
+    <button class="remove">删除数据</button>
+    <button class="cllear">清空数据</button>
+    <script>
+        var ipt = document.querySelector('input');
+        var set = document.querySelector('.set');
+        var get = document.querySelector('.get');
+        set.addEventListener('click',function(){
+            sessionStorage.setItem('name',ipt.value);
+            localStorage.setItem('name',ipt.value);
+        })
+
+        get.addEventListener('click',function(){
+            console.log(sessionStorage.getItem('name'));
+        })
+
+        //清除所有括号中不用写
+    </script>
+</body>
+</html>
