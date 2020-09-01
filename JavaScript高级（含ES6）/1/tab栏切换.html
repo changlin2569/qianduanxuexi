@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>面向对象 Tab</title>
+    <link rel="stylesheet" href="tab.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main>
+        <h4>
+            Js 面向对象 动态添加标签页
+        </h4>
+        <div class="tabsbox" id="tab">
+            <!-- tab 标签 -->
+            <nav class="fisrstnav">
+                <ul>
+                    <li class="liactive"><span>测试1</span><span class="iconfont icon-guanbi"></span></li>
+                    <li><span>测试2</span><span class="iconfont icon-guanbi"></span></li>
+                    <li><span>测试3</span><span class="iconfont icon-guanbi"></span></li>
+                </ul>
+                <div class="tabadd">
+                    <span>+</span>
+                </div>
+            </nav>
+
+            <!-- tab 内容 -->
+            <div class="tabscon">
+                <section class="conactive">测试1</section>
+                <section>测试2</section>
+                <section>测试3</section>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        var that;
+        class Tab {
+            constructor(id) {
+                that = this;
+                this.tab = document.querySelector(id);
+                
+                this.tabadd = this.tab.querySelector('.tabadd');
+                //获取li的父亲
+                this.ul = this.tab.querySelector('.fisrstnav ul:first-child');
+                //获取section父亲
+                this.section = this.tab.querySelector('.tabscon');
+                this.init();
+            }
+
+             //初始化函数
+             init() {
+                 this.obtain();
+                 //添加事件
+                 this.tabadd.onclick = this.add;
+                    for (var i = 0; i < this.lis.length; i++) {
+                        this.lis[i].index = i;
+                        this.lis[i].onclick = this.toggle;
+                        this.removes[i].onclick = this.remove;
+                        this.spans[i].ondblclick = this.edit;
+                        this.sections[i].ondblclick = this.edit;
+                    }
+                }
+            //获取li和section
+            obtain(){
+                this.removes = this.tab.querySelectorAll('.icon-guanbi');
+                this.lis = this.tab.querySelectorAll('li');
+                this.sections = this.tab.querySelectorAll('section');
+                this.spans = this.tab.querySelectorAll('.fisrstnav li span:first-child');
+            }
+            //切换
+            toggle() {
+                that.clear();
+                this.className = 'liactive';
+                that.sections[this.index].className  = 'conactive';
+            }
+            //遍历
+            clear(){
+                for(var i= 0;i<this.lis.length;i++){
+                    this.lis[i].className = '';
+                    this.sections[i].className = '';
+                }
+            }
+            //添加
+            add() {
+                that.clear();
+                var li = '<li class="liactive"><span>新建标签页</span><span class="iconfont icon-guanbi"></span></li>';
+                var section = '<section class="conactive">测试</section>'
+                that.ul.insertAdjacentHTML('beforeend',li);
+                that.section.insertAdjacentHTML('beforeend',section);
+                that.init();
+            }
+            //删除
+            remove(e){
+                //阻止冒泡
+                e.stopPropagation();
+                var index = this.parentNode.index;
+                //console.log(index);
+                that.lis[index].remove();
+                that.sections[index].remove();
+                //删除完后重新获取新的index
+                that.init();
+                //删除选定标签页后减减到前一个选定
+                index--;
+                //如果删除前面的，后边选定状态不变
+                if(document.querySelector('.liactive')) return;
+                //手动调用点击事件
+                that.lis[index] && that.lis[index].click();
+            }
+            //修改
+            edit() {
+                window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+                //alert('1');
+                //获取原span的文本
+                var str = this.innerHTML;
+                this.innerHTML = '<input type="text" />'
+                //console.log(str);
+                //获取input
+                var input = this.children[0];
+                //console.log(input);
+                input.value = str;
+                input.select();//源文本保持选中状态
+                input.onblur = function(){
+                    this.parentNode.innerHTML = this.value;
+                }
+                //按下回车修改表单
+                input.onkeyup = function(e){
+                    if(e.keyCode === 13){
+                        //手动执行试去焦点事件
+                        this.blur();
+                    }
+                }
+            }
+            
+        }
+        new Tab('#tab');
+    </script>
+</body>
+
+</html>
