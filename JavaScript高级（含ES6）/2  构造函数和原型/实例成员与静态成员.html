@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Star(name,age){
+            this.name = name;
+            this.age = age;
+            this.sing = function(){
+                alert(11);
+            }
+        }
+        var star = new Star('华晨宇',18);
+        //实例成员，构造函数内部创建，又实例化对象访问
+        console.log(star.sing);
+        console.log(star.name);
+        
+        //静态成员，创建于构造函数上的成员，由构造函数访问
+        Star.song = '地球之盐';
+        console.log(Star.song);
+    </script>
+</body>
+</html>

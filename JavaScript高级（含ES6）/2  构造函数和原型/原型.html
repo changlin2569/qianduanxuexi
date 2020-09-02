@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         function Star(name,age){
+            this.name = name;
+            this.age = age;
+            // this.sing = function(){
+            //     alert(11);
+            // }
+        }
+        var hua = new Star('华晨宇',18);
+        var jay = new Star('周杰伦',18);
+        console.dir(Star);
+        //添加原型对象
+        Star.prototype.sing = function(){
+            console.log('唱歌');
+        }
+        //公共属性定义在构造函数里，公共方法定义在原型对象中
+        hua.sing();
+        jay.sing();
+    </script>    
+</body>
+</html>

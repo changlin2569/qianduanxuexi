@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //利用new object创建对象
+        var obj1 = new Object();
+        console.log(obj1);
+        
+        //利用对象字面量创建对象
+        var obj2 = {
+            age(){
+                console.log(11);
+            }
+        };
+        obj2.age();
+
+        //利用构造函数创建对象
+        function Star(name,age){
+            this.name = name;
+            this.age = age;
+            this.sing = function(){
+                alert(11);
+            }
+        }
+        var star = new Star('华晨宇',18);
+        console.log(star);
+        star.sing();
+    </script>
+</body>
+</html>
