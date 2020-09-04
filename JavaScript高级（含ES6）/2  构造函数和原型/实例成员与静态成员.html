@@ -20,7 +20,10 @@
         console.log(star.name);
         
         //静态成员，创建于构造函数上的成员，由构造函数访问
-        Star.song = '地球之盐';
+        Star.song = function(){
+            console.log('地球之盐');
+        };
+        Star.song();
         console.log(Star.song);
     </script>
 </body>

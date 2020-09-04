@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Star(name,age){
+            this.name = name;
+            this.age = age;
+        }
+
+        var that;
+        Star.prototype.sing = function(){
+            console.log('等你下课');
+            that = this;
+        }
+
+        var jay = new Star('周杰伦',18);
+        //构造函数中的this指向对象实例
+        jay.sing();
+        //原型对象中的this指向对象实例
+        console.log(that === jay);
+    </script>
+</body>
+</html>

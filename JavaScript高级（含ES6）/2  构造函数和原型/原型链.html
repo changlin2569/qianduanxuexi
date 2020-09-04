@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Star(name,age){
+            this.name = name;
+            this.age = age;
+        }
+
+        Star.prototype.sing = function(){
+            console.log('地球之盐');
+        }
+        var star = new Star('华晨宇',18);
+        //只要是对象就有__proto__原型，指向原型对象
+        console.log(Star.prototype);
+        //Star原型对象里面的原型指向Object.prototype原型对象
+        console.log(Star.prototype.__proto__ === Object.prototype);
+        //Object.prototype原型对象中的原型指向空
+        console.log(Object.prototype.__proto__);
+    </script>
+</body>
+</html>
