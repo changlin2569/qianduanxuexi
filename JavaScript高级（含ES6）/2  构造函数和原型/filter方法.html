@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = [2,44,888,3,99,56];
+        //此函数返回的是一个新数组，所以必须有数组接收
+        var newarr = arr.filter(function(value,index,arre){
+            return value % 2 === 0;
+        });
+        console.log(newarr);
+    </script>
+</body>
+</html>

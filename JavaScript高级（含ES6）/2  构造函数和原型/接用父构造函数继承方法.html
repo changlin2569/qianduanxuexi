@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         function Father(name,age){
+            this.name = name;
+            this.age = age;
+        }
+        Father.prototype.song = function(){
+            console.log('等你下课');
+        }
+        function Son(name,age){
+            // 直接将夫构造函数使用,改变this指向，使父亲中的this指向孩子中的
+            Father.call(this,name,age);
+        }
+        
+        //1赋值方法
+        //Son.prototype = Father.prototype;
+        
+        //2创建实例对象方法,子元素方法改变不会影响父元素
+        Son.prototype = new Father();
+        var jay = new Son('周杰伦',18);
+        //1方法缺陷，给子元素添加一个方法时，会改变父元素的方法
+        Son.prototype.sing = function(){
+            console.log('雨下整夜');
+        }
+        console.log(jay);
+        jay.song();
+        console.log(Father.prototype);
+    </script>
+</body>
+</html>

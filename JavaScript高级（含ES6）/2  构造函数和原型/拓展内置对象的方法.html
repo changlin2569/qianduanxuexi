@@ -18,6 +18,8 @@
             return sum;
         }
 
+        //数组或字符串对象中不能给原型对象覆盖操作 Array.prototype = {}
+
         //var arr = [9,9,9]
         var arr = new Array(9,9,9);
         console.log(arr.sum());

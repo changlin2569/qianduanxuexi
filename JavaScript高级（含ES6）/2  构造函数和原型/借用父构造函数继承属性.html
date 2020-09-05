@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Father(name,age){
+            this.name = name;
+            this.age = age;
+        }
+        function Son(name,age,song){
+            // 直接将夫构造函数使用,改变this指向，使父亲中的this指向孩子中的
+            Father.call(this,name,age);
+            this.song = song;
+        }
+        var jay = new Son('周杰伦',18,'等你下课');
+        console.log(jay.name + jay.song);
+    </script>
+</body>
+</html>

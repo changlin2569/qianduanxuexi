@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function song(x,y){
+            console.log('等你下课');
+            console.log(this);
+            console.log(x + y);
+        }
+
+        var puma = {
+            name: 91
+        };
+        song();
+        //1调用函数
+        song.call();
+        //2改变函数中的this指向与传递参数
+        song.call(puma,1,2);
+    </script>
+</body>
+</html>
