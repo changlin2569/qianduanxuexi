@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var jay = {
+            id: 1,
+            name: '周杰伦',
+            song: '等你下课'
+        }
+
+        //如果没有就是添加属性操作
+        Object.defineProperty(jay,'sing',{
+            value: '总有一天'
+        })
+        //如果有就是修改操作
+        Object.defineProperty(jay,'song',{
+            value: '七里香'
+        })
+        //writable参数可以使属性不可修改
+        Object.defineProperty(jay,'movie',{
+            value: '不能说的秘密',
+            writable: false ,
+            //enumerable决定目标属性是否可以枚举，默认false
+
+            enumerable:false,
+            //configurable目标属性是否可以被删除或是可以再次修改特性，默认false
+            configurable:false
+        })
+        jay.id = 2;
+        delete jay.movie;
+        console.log(jay);
+        //枚举后没有movie属性
+        console.log(Object.keys(jay));
+    </script>
+</body>
+</html>
