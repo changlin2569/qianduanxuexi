@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var jay = {
+            name: '周杰伦'
+        }
+        function fn(j){
+            console.log(this + j);
+        }
+        //也有调用函数的作用，参数传递必须是数组
+        fn.apply(jay,['周']);
+
+        //利用apply方法，可以处理数组问题等
+        var arr = [11,22,33,44,55,66];
+
+        //var max = Math.max.apply(null,arr);
+        //this指向不能为空，严格模式下会报错
+        var max = Math.max.apply(Math,arr);
+        console.log(max);
+    </script>
+</body>
+</html>

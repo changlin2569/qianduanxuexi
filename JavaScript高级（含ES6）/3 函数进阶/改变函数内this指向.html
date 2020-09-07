@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var jay = {
+            name : '周杰伦'
+        }
+        function fn(a,b){
+            console.log(a + b);
+            console.log(this);
+        }
+        //调用函数,改变this指向和传递参数
+        fn.call(jay,1,2);
+
+        //实现函数的继承
+        function Father(name,age,song){
+            this.name = name ,
+            this.age = age,
+            this.song = song
+        }
+        function Son(name,age,song){
+            Father.call(this,name,age,song)
+        }
+        var j = new Son('周杰伦',18,'七里香');
+        console.log(j);
+    </script>
+</body>
+</html>
