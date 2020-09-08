@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //指有权访问另一个函数作用域中变量的函数
+        function fn(){
+            var x = 9;
+            function fn1(){
+                console.log(x);
+            }
+            fn1();
+        }
+        fn();
+    </script>
+</body>
+</html>

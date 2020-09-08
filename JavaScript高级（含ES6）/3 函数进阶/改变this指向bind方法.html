@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>发送短信</button>
+    <button>发送短信</button>
+    <button>发送短信</button>
+    <script>
+        var jay = {
+            name: '周杰伦'
+        }
+
+        function fn(x,y){
+            console.log(this);
+            console.log(x + y);
+        }
+
+        //bind方法没有调用函数的作用，会返回一个原函数的拷贝函数
+        var newFn = fn.bind(jay,1,2);
+        newFn();
+        //如果需要更改函数this指向但不想立即调用此函数
+        //点击按钮禁用，三秒后恢复
+        // var btn = document.querySelector('button');
+        // btn.addEventListener('click',function(){
+        //     btn.disabled = true;
+        //     setTimeout(function(){
+        //         // btn.disabled = false;//第一种方法
+        //         // this.disabled = false;定时器中的this指向window对象
+        //         this.disabled = false;
+        //     }.bind(this),2000)//定时器函数外的this指向btn，里面的this指向外面的this
+
+        // })
+        //很多按钮
+        var btns = document.querySelectorAll('button');
+        for(var i = 0;i<btns.length;i++){
+            btns[i].onclick = function(){
+                this.disabled = true;
+                setTimeout(function(){
+                    this.disabled = false;
+                }.bind(this),2000)
+            }
+        }
+    </script>
+</body>
+</html>

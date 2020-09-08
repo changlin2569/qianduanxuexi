@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //作为参数传递
+        function fn(x,y,callback){
+            console.log(x + y);
+            callback && callback();
+        }
+        fn(1,2,function(){
+            console.log('等你下课');
+        })
+
+        //返回值为函数
+        function fn1(){
+            return function(){
+                console.log('七里香');
+            }
+        }
+        fn1();
+    </script>
+</body>
+</html>

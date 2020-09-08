@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 为整个脚本开启严格模式 -->
+    <script>
+        "use strict"
+
+    </script>
+    <script>
+        (function(){
+            "use strict"//因为脚本中只有一个立即执行函数，所以也是为脚本开启严格模式
+        })()
+    </script>
+    <script>
+        // fn开启了严格模式，fn2没有 
+        function fn (){
+            "use strict"
+        }
+        function fn1(){
+
+        }
+    </script>
+</body>
+</html>
