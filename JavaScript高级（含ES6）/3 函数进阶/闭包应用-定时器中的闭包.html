@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul class="nav">
+        <li>等你下课</li>
+        <li>七里香</li>
+        <li>晴天</li>
+        <li>轨迹</li>
+    </ul>
+    <script>
+        var lis = document.querySelector('.nav').querySelectorAll('li');
+        //console.log(lis[1].innerHTML);
+        for (var i = 0;i < lis.length;i++){
+            //定时器为异步任务，循环完后i值为4 ，没有第四个li
+            // setTimeout(function(){ 
+            //     console.log(lis[i].innerHTML);
+            // })
+            (function(j){
+                setTimeout(function(){
+                    console.log(lis[j].innerHTML);
+                },2000)
+            })(i)
+        }
+    </script>
+</body>
+</html>

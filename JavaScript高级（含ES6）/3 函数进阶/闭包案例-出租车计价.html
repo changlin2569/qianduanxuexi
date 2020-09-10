@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //起步价8块3公里，后每公里3块，堵车加10元
+        var car = (function(){
+            var start = 8;
+            var num = 0;
+            return {
+                cc : function(k){
+                    if(k <= 3){
+                        num = 8;
+                    }else{
+                        num = (k - 3) * 3 + 8;
+                    }
+                    return num;
+                },
+                dd : function(flag){
+                    return  flag ? num + 10 : num;
+                }
+            }
+        })();
+        console.log(car.cc(4));
+        console.log(car.dd(true));
+    </script>
+</body>
+</html>

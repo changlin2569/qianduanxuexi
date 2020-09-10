@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul class="nav">
+        <li>等你下课</li>
+        <li>七里香</li>
+        <li>晴天</li>
+        <li>轨迹</li>
+    </ul>
+    <script>
+        var lis = document.querySelector('.nav').querySelectorAll('li');
+        for(var i = 0;i < lis.length;i++){
+            //执行完for函数后，i的值为4.所以不管如何点击都输出4
+            // lis[i].index = i;
+            // lis[i].onclick = function(){
+            //     console.log(i);
+            // }
+            //立即执行函数也是一个小闭包
+            //在这里立即执行函数没有上面效率快，没有及时销毁变量
+            (function(i){
+                lis[i].onclick = function(){
+                console.log(i);
+            }
+            })(i)
+        }
+    </script>
+</body>
+</html>
