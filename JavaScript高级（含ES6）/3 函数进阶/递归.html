@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let num = 0;
+        function fn(){
+            console.log('我喜欢你');
+            num++;
+            if(num == 9){
+                return;//必须要有return条件
+            }
+            fn();
+        }
+        fn();
+    </script>
+</body>
+</html>
