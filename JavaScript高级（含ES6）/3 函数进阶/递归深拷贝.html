@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var jay = {
+            name: '周杰伦',
+            song: '等你下课',
+            sing: {
+                age: 18
+            },
+            sm: ['七里香', '晴天']
+        };
+
+        var o = {};
+        //封装一个深拷贝函数
+        function deepCopy(newObj, oldObj) {
+            for (k in oldObj) {
+                //获取属性值
+                var item = oldObj[k];
+                //判断其中的数据类型
+                if (item instanceof Array) {//先判断数组类型，因为数组也算是一个对象
+                    newObj[k] = [];
+                    deepCopy(newObj[k], item);
+                } else if (item instanceof Object) {
+                    newObj[k] = {};
+                    deepCopy(newObj[k], item);
+                } else {
+                    newObj[k] = item;
+                }
+            }
+
+        }
+        deepCopy(o, jay);
+        console.log(o);
+    </script>
+</body>
+
+</html>

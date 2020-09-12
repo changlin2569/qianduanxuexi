@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        var data = [
+            {
+                id : 1,
+                name : '华语',
+                goods :[
+                    {
+                        id : 11,
+                        name : '周杰伦'
+                    },{
+                        id : 12,
+                        name : '华晨宇'
+                    }
+                ]
+            },{
+                id : 2,
+                name : '欧美'
+            }
+        ];
+        //有时候需要输出对象
+        function getId(json,id){
+            //遍历数组
+            var o = {};
+            json.forEach(function(value){
+                //console.log(value);
+                if(value.id == id){
+                    //console.log(value);//加入判断条件，输出1里面的数组
+                    o = value;
+                    return o;//为下面的递归返回一个值
+                }else if(value.goods && value.goods.length > 0){
+                   o = getId(value.goods,id);
+                }
+            })
+            return o;
+        }
+        console.log(getId(data,1));
+        console.log(getId(data,11));
+        //console.log(data);
+    </script>
+</body>
+</html>

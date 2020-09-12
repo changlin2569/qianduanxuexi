@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var  jay = {
+            name : '周杰伦',
+            song : '等你下课',
+            sing : {
+                age : 18
+            }
+        };
+
+        var o = {};
+
+        //for in 方法
+        // for (k in jay){
+        //     //k 是属性名 jay[k]是属性值
+        //     o[k] = jay[k];
+        // }
+
+        //新方法浅拷贝
+        Object.assign(o,jay);
+
+        console.log(o);
+        o.sing.age = 12;//深层次的对象的地址传递给o，修改o就修改了原对象
+        console.log(jay);
+    </script>
+</body>
+</html>
