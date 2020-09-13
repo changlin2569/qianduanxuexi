@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var re = /abc/;
+        //只要是字符串里有abc就返回true
+        console.log(re.test('abc'));
+        console.log(re.test('abcc'));
+        console.log(re.test('abcabc'));
+        console.log('--------------------------------');
+        var reg = /^abc/;
+        //必须是a开头的字符串才返回true
+        console.log(reg.test('abc'));
+        console.log(reg.test('abcc'));
+        console.log(reg.test('abcabc'));
+        console.log('--------------------------------');
+        var re1 = /^abc$/;
+        //如果是^$在一起，表示是精确匹配
+
+        //必须是abc这个字符串才返回true
+        console.log(re1.test('abc'));
+        console.log(re1.test('abcc'));
+        console.log(re1.test('abcabc'));
+        console.log('--------------------------------');
+        
+    </script>
+</body>
+</html>

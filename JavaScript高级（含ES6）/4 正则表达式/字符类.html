@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //字符类：[]表示有一系列字符可供选择，只要匹配其中一个就可以了
+        var re = /[abc]/;    //只要包含有a 或者b 或者 c就可以
+        console.log(re.test('abc'));
+        console.log(re.test('afg'));
+        console.log(re.test('oops'));
+        console.log('-----------------------------------------');
+
+        var re1 = /^[abc]$/;   //只要有a或者b或者c就可以  有且只有一个
+        console.log(re1.test('a'));
+        console.log(re1.test('c'));
+        console.log(re1.test('aaa'));
+        console.log('-----------------------------------------');
+
+        var re2 = /^[a-z]$/;   //表示是26个英文字母任何一个都返回true
+        console.log(re1.test('a'));
+        console.log(re1.test('c'));
+        console.log(re1.test('z'));
+        console.log('-----------------------------------------');
+
+        var re3 = /^[a-zA-Z0-9]$/;   //表示可以小写大写0-9选择，只能验证一个
+
+        var re4 = /^[^a-zA-Z0-9]$/;    //中括号内的^表示取反不能小写大写0-9选择
+    </script>
+</body>
+</html>

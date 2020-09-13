@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //通过调用对象创建
+        var reg = new RegExp(/123/);
+
+        console.log(reg);
+
+        //直接通过字面量创建
+
+        var reg1 = /123/;
+
+        console.log(reg1);
+
+        //检测正则表达式
+
+        console.log(reg1.test('123'));//返回true
+        console.log(reg1.test('abc'));
+    </script>
+</body>
+</html>
