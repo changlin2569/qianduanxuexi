@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 例如北京地区电话号码为 010-12345678  某些地区 0123-1234567
+        var reg = /\d{3}-\d{8}|\d{4}-\d{7}/;
+
+        //里面的或符号是单杠 | 
+
+        //也可以这样来简单表达
+
+        var reg1 = /\d{3,4}-\d{7,8}/;
+    </script>
+</body>
+</html>

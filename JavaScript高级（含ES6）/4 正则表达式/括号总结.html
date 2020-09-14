@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var reg = /^abc$/;
+        //只有输入abc才返回true
+
+        var reg1 = /^[abc]$/;
+        //中i有输入a或者b或者c，其中任意一个返回true
+
+        var reg2 = /^abc{3}$/;
+        //只有c重复三次返回true
+        console.log(reg2.test('abccc'));
+        console.log(reg2.test('abcabcabc'));
+
+        var reg3 = /^(abc){3}$/;
+        console.log(reg3.test('abcabcabc'));
+
+    </script>
+</body>
+</html>
