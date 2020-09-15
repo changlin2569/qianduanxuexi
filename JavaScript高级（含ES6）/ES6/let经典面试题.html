@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //输出的i为全局变量，使用var定义
+        //函数执行时输出的是全局作用域下的i值
+        // var arr = [];
+        // for(var i = 0;i<2;i++){
+        //     arr[i] = function(){
+        //         console.log(i);
+        //     }
+        // }
+        // arr[0]();
+        // arr[1]();
+
+        //let关键字产生块级作用域
+        let arr = [];
+        for(let i = 0;i<2;i++){
+            arr[i] = function(){
+                console.log(i);
+            }
+        }
+        arr[0]();
+        arr[1]();
+    </script>
+</body>
+</html>
