@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        var age = 20;
+        var obj = {
+            age : 20,
+            say : ()=>{
+                console.log(this.age);
+            }
+        }
+
+        //对象中没有作用域，所以this指向全局window
+        //但是window下没有age属性
+        obj.say();
+    </script>
+</body>
+</html>

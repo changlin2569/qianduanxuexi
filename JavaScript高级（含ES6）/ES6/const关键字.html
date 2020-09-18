@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //具有块级作用域
+
+        // if(true){
+        //     const a = 10
+        //     if(true){
+        //         const a= 20;
+        //         console.log(a);
+        //     }
+        //     console.log(a);
+        // }
+        // console.log(a);
+
+        // const PI = 3.14;
+        // PI = 1;
+        // console.log(PI);
+
+        const arr = [1,2,3];
+            //可以修改复杂数据类型中的值
+            //不能修改复杂数据本身
+        arr[0] = 4;
+
+        console.log(arr);
+    </script>
+</body>
+</html>

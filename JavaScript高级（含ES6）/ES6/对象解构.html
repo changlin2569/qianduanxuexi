@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        let jay = {
+            name : '周杰伦',
+            age : '等你下课'
+        }
+        //需要根据变量名匹配
+        // let {name , age} = jay;
+        // console.log(name);
+        // console.log(age);
+
+
+        //左边的名字只用于属性匹配，匹配后将值赋给右边的变量0
+        let {name : myName} = jay;
+        console.log(myName);
+    </script>
+</body>
+</html>
