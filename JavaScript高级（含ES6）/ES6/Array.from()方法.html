@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // let ary = {
+        //     0 : 'lili',
+        //     1 : 'changchang',
+        //     2 : 'linlin',
+        //     3 : 'shanshan',
+        //     length : 4
+        // }
+
+        // let arr = Array.from(ary);
+        // console.log(arr);
+
+        let ary = {
+            0 : 2,
+            1 : 4,
+            length : 2
+        }
+
+        let arr = Array.from(ary,item => item * 2);
+        //接收后一个参数函数，给每一项乘2
+        console.log(arr);
+    </script>
+</body>
+</html>

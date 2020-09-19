@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        //可以解析变量
+        let str = `周杰伦`;
+        let str1 = `hello,my name is ${str}`;
+        console.log(str1);
+
+        //可以换行
+        let str2 = `woxianzai 
+            yaobiaoyan 
+            huanhang`;
+            console.log(str2);
+
+        //可以调用函数
+
+        let fn = function(){
+            // console.log('我是函数');
+            return '我是函数';
+        }
+
+        let str3 = `我是模板字符串 ${fn()}`;
+        console.log(str3);
+    </script>
+</body>
+</html>

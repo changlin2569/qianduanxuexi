@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //求和函数
+        //前面加三个点点就表示接收参数到数组中
+        let sum = (...arr) => {
+            let totle = 0;
+            arr.forEach(value => totle += value);//一个参数和返回语句可以省略括号
+            return totle;
+        }
+        console.log(sum(1, 2));
+        console.log(sum(1, 2, 3));
+
+
+        //解构与剩余参数
+        let arr = [1,2,3,4];
+        let [arg,...arger] = arr;
+        console.log(arg);
+        console.log(arger);
+    </script>
+</body>
+
+</html>

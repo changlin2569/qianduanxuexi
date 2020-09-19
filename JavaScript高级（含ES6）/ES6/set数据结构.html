@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let s1 = new Set();
+        console.log(s1.size);//0
+
+        //可以接收数组作为参数，用来初始化
+        let s2 = new Set(['a','b']);
+        console.log(s2.size);//2
+
+        //可用于数组去重
+        let s3 = new Set(['a','a','b','b','c']);
+        console.log(s3.size);//3
+        let arr = [...s3];
+        console.log(arr);
+    </script>
+</body>
+</html>

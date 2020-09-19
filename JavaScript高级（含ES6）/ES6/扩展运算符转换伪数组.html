@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script>
+        let divs = document.querySelectorAll('div');
+        //divs是一个伪数组
+        console.log(divs);
+        //转换为真正的数组
+        
+        let divArr = [...divs];
+        console.log(divArr);
+    </script>
+</body>
+</html>

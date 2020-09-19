@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr = [1,2,3];
+        // ...arr   相当于 arr = 1,2,3
+        console.log(...arr);
+        console.log(1,2,3);
+        //逗号在log方法中被用作分隔
+
+        //用作拼接数组
+        let arr1 = [1,2,3];
+        let arr2 = [4,5,6];
+        let arr3 = [...arr1,...arr2];
+        console.log(arr3);
+        //也可用作push方法
+        let arr4 = [];
+        arr4.push(...arr1,...arr2);
+        console.log(arr4);
+    </script>
+</body>
+</html>

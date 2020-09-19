@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let s = new Set();
+        console.log(s.size);
+
+        //添加
+        s.add('a').add('b');
+        console.log(s.size);
+
+        //删除
+        let flag = s.delete('a');
+        console.log(s.size);
+        console.log(flag);
+
+        //查询
+        let flag1 = s.has('b');//在has中填入想要查找的值
+        console.log(flag1);
+
+        //清除
+        s.clear();
+        console.log(s.size);
+    </script>
+</body>
+</html>
