@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        li{
+            list-style: none;
+        }
+        .container{
+            width: 400px;
+            height: 50px;
+            margin: 0 auto;
+            background-color: aqua;
+        }
+        .itemlis{
+            float: left;
+            text-align: center;
+            line-height: 50px;
+            width: 100px;
+            height: 50px;
+        }
+
+        .yincang{
+            position: relative;
+            width: 400px;
+            height: 200px;
+            margin: 0 auto;
+            background-color: pink;
+        }
+        .yincang ul{
+            position: absolute;
+            display: block;
+            float: left;
+            text-align: center;
+            line-height: 50px;
+            width: 100px;
+            height: 200px;
+        }
+        .yincang ul:nth-child(1){
+            left: 0;
+        }
+        .yincang ul:nth-child(2){
+            left: 100px;
+        }
+        .yincang ul:nth-child(3){
+            right: 100px;
+        }
+        .yincang ul:nth-child(4){
+            right: 0;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="itemlis">私信</div>
+        <div class="itemlis">私信</div>
+        <div class="itemlis">私信</div>
+        <div class="itemlis">私信</div>
+        
+    </div>
+    <div class="yincang">
+        <ul>
+            <li>信息</li>
+            <li>信息</li>
+            <li>信息</li>
+            <li>信息</li>
+        </ul>
+        <ul>
+            <li>信息1</li>
+            <li>信息</li>
+            <li>信息</li>
+            <li>信息</li>
+        </ul>
+        <ul>
+            <li>信息2</li>
+            <li>信息</li>
+            <li>信息</li>
+            <li>信息</li>
+        </ul>
+        <ul>
+            <li>信息3</li>
+            <li>信息</li>
+            <li>信息</li>
+            <li>信息</li>
+        </ul>
+    </div>
+    <script>
+        let itemlis = document.querySelectorAll('.itemlis');
+        let ullis = document.querySelector('.yincang').querySelectorAll('ul');
+        // let item = document.querySelector('.container').children;
+        // console.log(container);
+        // console.log(itemlis);
+        for(let i = 0;i<itemlis.length;i++){
+            ullis[i].style.display = 'none';
+            itemlis[i].addEventListener('mouseover',function(){
+                ullis[i].style.display = 'block';
+            })
+            itemlis[i].addEventListener('mouseleave',function(){
+                ullis[i].style.display = 'none';
+            })
+        }
+        for(let i = 0;i<itemlis.length;i++){
+            ullis[i].style.display = 'none';
+            ullis[i].addEventListener('mouseover',function(){
+                ullis[i].style.display = 'block';
+            })
+            ullis[i].addEventListener('mouseleave',function(){
+                ullis[i].style.display = 'none';
+            })
+        }
+    </script>
+</body>
+</html>

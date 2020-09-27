@@ -21,6 +21,7 @@
             for(var i = 0;i<ul.children.length;i++){
                 ul.children[i].style.backgroundColor = '';
             }
+            //只有点击li才会触发，所以用到target，不然点击ul也会触发
             e.target.style.backgroundColor = 'skyblue';
         })
     </script>

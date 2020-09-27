@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            position: relative;
+            height: 500px;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .container {
+            position: relative;
+            height: 50px;
+            width: 100%;
+            /* overflow: hidden; */
+            /* background-color: blue; */
+        }
+
+        .leftli {
+            position: absolute;
+            height: 50px;
+            left: 0;
+            width: 1000px;
+            /* overflow: hidden; */
+            line-height: 50px;
+        }
+
+        .leftli li {
+            float: left;
+            display: inline-block;
+            width: 60px;
+            text-align: center;
+        }
+
+        .leftli li:hover{
+            background-color: aqua;
+        }
+        .leftli .itemlis {
+            position: absolute;
+            display: none;
+            left: 357px;
+            top: 36px;
+            float: left;
+            width: 60px;
+            height: 100px;
+            /* background-color: aqua; */
+        }
+        .leftli .itemlis li{
+            height: 33.3%;
+            line-height: 33.3px;
+            border-bottom: groove;
+        }
+
+        .rightli {
+            position: absolute;
+            position: absolute;
+            height: 50px;
+            right: 0;
+            width: 200px;
+            overflow: hidden;
+            line-height: 50px;
+        }
+
+        .rightli li {
+            float: right;
+            display: inline-block;
+            width: 60px;
+            text-align: center;
+        }
+
+        .rightli li a {
+            width: 100%;
+            height: 100%;
+            display: inline-block;
+            text-decoration: none;
+            color: #fff;
+            background-color: #4b6cf6;
+        }
+
+        .zhuti {
+            position: absolute;
+            text-align: center;
+            width: 500px;
+            height: 100px;
+            transform: translate(-50%, -50%);
+            left: 50%;
+            top: 50%;
+            /* background-color: cyan; */
+        }
+
+        .search {
+            height: 30px;
+            background-color: cyan;
+            border: groove;
+            border-radius: 10px;
+        }
+
+        input {
+            float: left;
+            width: 80%;
+            height: 100%;
+            border: none;
+        }
+
+        button {
+            width: 20%;
+            height: 100%;
+            background-color: #4b6cf6;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="leftlis">
+            <ul class="leftli">
+                <li>新闻</li>
+                <li>hao123</li>
+                <li>地图</li>
+                <li>视频</li>
+                <li>贴吧</li>
+                <li>学术</li>
+                <li>更多</li>
+                <ul class="itemlis">
+                    <li>图片</li>
+                    <li>图片</li>
+                    <li>图片</li>
+                </ul>
+            </ul>
+            <ul class="rightli">
+                <li>
+                    <a href="">登录</a>
+                </li>
+                <li>设置</li>
+            </ul>
+        </div>
+    </div>
+    <div class="zhuti">
+        <form action="">
+            <div class="search">
+                <input type="text" placeholder="搜索">
+                <button>百度一下</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        let lis = document.querySelector('.leftli').querySelectorAll('li');
+        let itemlis = document.querySelector('.itemlis');
+        // console.log(lis);
+        // let flag = true;
+        lis[6].addEventListener('mouseover',function(){
+            itemlis.style.display = 'block';
+        })
+        lis[6].addEventListener('mouseleave',function(){
+            itemlis.style.display = 'none';
+        })
+        itemlis.addEventListener('mouseover',function()
+        {
+            itemlis.style.display = 'block';
+        })
+        itemlis.addEventListener('mouseleave',function()
+        {
+            itemlis.style.display = 'none';
+        })
+    </script>
+</body>
+
+</html>
