@@ -1,0 +1,195 @@
+html {
+  font-size: 50px;
+}
+
+@media screen and (min-width: 320px) {
+  html {
+    font-size: 21.33333333px;
+  }
+}
+
+@media screen and (min-width: 360px) {
+  html {
+    font-size: 24px;
+  }
+}
+
+@media screen and (min-width: 375px) {
+  html {
+    font-size: 25px;
+  }
+}
+
+@media screen and (min-width: 384px) {
+  html {
+    font-size: 25.6px;
+  }
+}
+
+@media screen and (min-width: 400px) {
+  html {
+    font-size: 26.66666667px;
+  }
+}
+
+@media screen and (min-width: 414px) {
+  html {
+    font-size: 27.6px;
+  }
+}
+
+@media screen and (min-width: 424px) {
+  html {
+    font-size: 28.26666667px;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  html {
+    font-size: 32px;
+  }
+}
+
+@media screen and (min-width: 540px) {
+  html {
+    font-size: 36px;
+  }
+}
+
+@media screen and (min-width: 720px) {
+  html {
+    font-size: 48px;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  html {
+    font-size: 50px;
+  }
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  min-width: 320px;
+  width: 15rem;
+  margin: 0 auto;
+  line-height: 1.5;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f2f2f2;
+}
+
+body .nav {
+  position: relative;
+  overflow: hidden;
+  width: 15rem;
+  height: 3.6rem;
+}
+
+body .nav .nav-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 15rem;
+  height: 3.6rem;
+}
+
+body .nav .nav-bg img {
+  width: 15rem;
+}
+
+body .nav .nav-top {
+  position: relative;
+  width: 13.64rem;
+  height: 1.76rem;
+  margin: 0 auto;
+}
+
+body .nav .nav-top a {
+  display: inline-block;
+}
+
+body .nav .nav-top a:nth-child(1) {
+  margin: 0.34rem 0 0 0;
+  width: 0.72rem;
+  height: 1.2rem;
+}
+
+body .nav .nav-top a:nth-child(1) image {
+  width: 0.72rem;
+  height: 1.2rem;
+}
+
+body .nav .nav-top a:nth-child(2) {
+  width: 10rem;
+  height: 1.76rem;
+}
+
+body .nav .nav-top a:nth-child(2) img {
+  width: 9rem;
+  height: 1.1rem;
+  margin: 0.36rem 1rem 0 0;
+}
+
+body .nav .nav-top a:nth-child(3) {
+  width: 0.72rem;
+  height: 1.2rem;
+  margin: 0.34rem 0 0.34rem 1.5rem;
+}
+
+body .nav .nav-input {
+  position: relative;
+  width: 100%;
+  height: 1.76rem;
+}
+
+body .nav .nav-input form {
+  margin: 0 auto;
+  width: 14.04rem;
+}
+
+body .nav .nav-input form input {
+  box-sizing: border-box;
+  outline: none;
+  color: #999999;
+  width: 100%;
+  border-radius: 1.25rem;
+  border: 0;
+  padding: 0.3rem 0 0.3rem 1.4rem;
+  font-size: 0.56rem;
+}
+
+body .nav .nav-input .icon {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.72rem;
+  width: 0.72rem;
+  height: 0.72rem;
+  background: url(../image/5.png) no-repeat;
+  background-size: 0.72rem;
+}
+
+body .banner {
+  width: 15rem;
+  height: 5.2rem;
+  background: url(../image/6.png) no-repeat;
+  background-size: 100%;
+}
+
+body .banner .banner-slide {
+  position: relative;
+  width: 14.04rem;
+  height: 5.2rem;
+  margin: 0 auto;
+  border-radius: 0.2rem;
+  overflow: hidden;
+}
+
+body .banner .banner-slide img {
+  position: absolute;
+  top: -25%;
+  width: 100%;
+}
