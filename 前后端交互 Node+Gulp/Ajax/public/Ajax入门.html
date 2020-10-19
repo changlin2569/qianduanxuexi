@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 创建Ajax对象
+        var xhr = new XMLHttpRequest();
+        //创建爱阿信请求地址和方法
+        xhr.open('get','http://localhost:3000/first');
+        // 发送请求
+        xhr.send();
+        // 由于受网速影响等，请求不会立即响应，所以绑定时间获得响应
+        xhr.onload = function(){
+            console.log(xhr.responseText);
+            console.log(xhr);
+        }
+    </script>
+</body>
+</html>
