@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .container {
+            position: relative;
+            display: block;
+            width: 200px;
+            height: 20px;
+            top: 20px;
+            left: 20px;
+        }
+
+        .container .item {
+            display: blo;
+            float: left;
+            text-align: center;
+            width: 50px;
+            height: 20px;
+            line-height: 20px;
+            border: 1px solid #888;
+            box-sizing: border-box;
+        }
+
+        .container .item:hover{
+            background-color: skyblue;
+        }
+
+        .container .item a{
+            text-decoration: none;
+            color: black;
+        }
+
+        .container .item .list {
+            display: none;
+            border: 1px solid red;
+            box-sizing: border-box;
+        }
+
+        .container .item .list li{
+            border-bottom: 1px solid red;
+        }
+
+        .container .item .list:nth-child(4){
+            border: none;
+            color: royalblue;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="container">
+        <li class="item">
+            <a href="">信息</a>
+            <ul class="list">
+                <li>通知</li>
+                <li>通知</li>
+                <li>通知</li>
+                <li>通知</li>
+            </ul>
+        </li>
+        <li class="item">
+            <a href="">信息</a>
+            <ul  class="list">
+                <li>通知</li>
+                <li>通知</li>
+                <li>通知</li>
+                <li>通知</li>
+            </ul>
+        </li>
+        <li class="item">
+            <a href="">信息</a>
+            <ul  class="list">
+                <li>通知</li>
+                <li>通知</li>
+                <li>通知</li>
+                <li>通知</li>
+            </ul>
+        </li>
+        <li class="item">
+            <a href="">信息</a>
+            <ul  class="list">
+                <li>通知</li>
+                <li>通知</li>
+                <li>通知</li>
+                <li>通知</li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+        let lis = document.querySelector('.container').querySelectorAll('.item');
+        let uls = document.querySelectorAll('.list');
+        // console.log(lis);
+        // console.log(uls);
+        for(let i = 0;i < uls.length;i++){
+            lis[i].addEventListener('mousemove',function(){
+                // console.log(1);
+                uls[i].style.display = 'block';
+            })
+            lis[i].addEventListener('mouseout',function(){
+                // console.log(1);
+                uls[i].style.display = '';
+            })
+        }
+        for(var i = 0;i < uls.length - 1;i++){
+            console.log(i);
+        }
+        console.log(i);
+        console.log(uls[i]);
+    </script>
+</body>
+
+</html>
