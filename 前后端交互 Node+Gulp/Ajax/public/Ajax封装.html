@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 封装Ajax函数
+        function ajax(options) {
+            // 创建Ajax对象
+            let xhr = new XMLHttpRequest();
+            // 请求地址和请求方式
+            xhr.open(options.type, options.url);
+            // 发送请求
+            xhr.send()
+            // 获取服务器响应数据
+            xhr.onload = function () {
+                // console.log(xhr.responseText);
+                // 实现自己操作响应数据
+                options.success(xhr.responseText);
+            }
+        }
+        // 实参值可以是一个对象，理解容易
+        ajax({
+            type: 'get',
+            url: 'http://localhost:3000/first',
+            success: function (data) {
+                console.log(`这是我自己操作${data}`);
+            }
+        })
+    </script>
+</body>
+
+</html>

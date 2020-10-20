@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 封装Ajax函数
+        function ajax(options) {
+            // 创建Ajax对象
+            let xhr = new XMLHttpRequest();
+            let params = '';
+            // 接收请求参数，进行拼接
+            for (var arr in options.data) {
+                // params += arr + '=' + options.data[arr] + '&';
+                params += `${arr}=${options.data[arr]}&`
+            }
+            // 截取字符串最后的&
+            params = params.substr(0, params.length - 1);
+            // console.log(params);
+            // 请求地址和请求方式
+            if (options.type == 'get') {
+                options.url = `${options.url}?${params}`
+                console.log(options.url);
+            }
+            xhr.open(options.type, options.url);
+
+            // 发送请求
+            if (options.type == 'get') {
+                xhr.send()
+            } else {
+                // 设置请求参数格式类型
+                // 用户希望的向服务器端传递的请求参数类型
+                var content = options.header['Content-Type'];
+                xhr.setRequestHeader('Content-Type',content);
+                // 判断传递对象的格式传递不同的请求参数
+               if(content == 'application/JSON'){
+                   xhr.send(JSON.stringify(options.data))
+               }else{
+                   xhr.send(params)
+               }
+            }
+            // 获取服务器响应数据
+            xhr.onload = function () {
+                // console.log(xhr.responseText);
+                // 对请求成功与否进行判断
+                if(xhr.status == 200){
+                    // 实现自己操作响应数据
+                options.success(xhr.responseText);
+                }else{
+                    options.error(xhr.responseText,xhr);
+                }
+            }
+        }
+        // 实参值可以是一个对象，理解容易
+        ajax({
+            type: 'post',
+            url: 'http://localhost:3000/first',
+            // 传递参数选择对象格式
+            data: {
+                name: 'linlin',
+                age: 18,
+            },
+            header: {
+                // 便于用户自定义请求格式
+                'Content-Type': 'application/JSON',
+            },
+            success: function (data) {
+                console.log(`这是我自己操作${data}`);
+            },
+            error:function(data,xhr){
+                console.log(`失败信息${data}`);
+                console.log(xhr);
+            }
+        })
+    </script>
+</body>
+
+</html>

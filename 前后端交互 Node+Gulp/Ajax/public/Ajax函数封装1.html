@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 封装Ajax函数
+        function ajax(options) {
+            // 创建Ajax对象
+            let xhr = new XMLHttpRequest();
+            let params = '';
+            // 接收请求参数，进行拼接
+            for (var arr in options.data) {
+                // params += arr + '=' + options.data[arr] + '&';
+                params += `${arr}=${options.data[arr]}&`
+            }
+            // 截取字符串最后的&
+            params = params.substr(0, params.length - 1);
+            // console.log(params);
+            // 请求地址和请求方式
+            if (options.type == 'get') {
+                options.url = `${options.url}?${params}`
+                console.log(options.url);
+            }
+            xhr.open(options.type, options.url);
+
+            // 发送请求
+            if (options.type == 'get') {
+                xhr.send()
+            } else {
+                // 设置请求参数格式类型
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.send(params);
+            }
+            // 获取服务器响应数据
+            xhr.onload = function () {
+                // console.log(xhr.responseText);
+                // 实现自己操作响应数据
+                options.success(xhr.responseText);
+            }
+        }
+        // 实参值可以是一个对象，理解容易
+        ajax({
+            type: 'post',
+            url: 'http://localhost:3000/first',
+            // 传递参数选择对象格式
+            data: {
+                name: 'linlin',
+                age: 18,
+            },
+            success: function (data) {
+                console.log(`这是我自己操作${data}`);
+            },
+        })
+    </script>
+</body>
+
+</html>

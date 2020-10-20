@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" name="username" id="name">
+    <input type="text" name="password" id="pad">
+    <button id="btn">提交</button>
+    <script>
+        let btn = document.querySelector('#btn');
+        let username = document.querySelector('#name');
+        let password = document.querySelector('#pad');
+        btn.addEventListener('click',function(){
+            let name = username.value;
+            let pad = password.value;
+            let params = `username=${name}&password=${pad}`
+            // 创建请求对象
+            let xhr = new XMLHttpRequest();
+            // 请求参数和请求地址
+            xhr.open('post',`http://localhost:3000/post`);
+            //明确请求参数的类型
+            xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+            // 发送请求
+            // console.log(name + pad);
+            xhr.send(params);
+            // 获取请求数据
+            xhr.onload = function(){
+                console.log(xhr.responseText);
+            }
+        })
+    </script>
+</body>
+</html>
