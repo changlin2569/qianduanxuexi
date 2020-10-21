@@ -8,6 +8,9 @@ const bodyParser = require('body-parser');
 const app = express();
 // 文件操作
 const fs = require('fs');
+// 引入url模块
+const url = require('url');
+// const { url } = require('inspector');
 // 解析url参数
 app.use(bodyParser.urlencoded());
 // 解析json数据
@@ -47,6 +50,18 @@ app.get('/cache',(req,res) => {
         res.send(result);
     })
 })
+
+// 验证邮箱地址唯一性
+app.get('/verifyEmailAdress',(req,res) => {
+    // res.send(url.parse(req.url,true))
+    let params = url.parse(req.url,true)
+    if(params.query.email == 'itheima@qq.com'){
+        res.status(400).send({'message': '您输入的邮箱已被占用'})
+    }else{
+        res.send({'message': '邮箱输入正确'})
+    }
+})
+
 // 监听端口
 app.listen(3000);
 

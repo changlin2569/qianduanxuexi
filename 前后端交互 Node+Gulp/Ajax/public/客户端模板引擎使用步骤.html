@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/js/template-web.js"></script>
+</head>
+
+<body>
+    <div>
+
+    </div>
+    <!-- 准备art-template模板 -->
+    <script id="tpl" type="text/html">
+        <h1>{{username}}{{age}}</h1>
+    </script>
+    <script>
+        // 告诉模板引擎哪个和哪个进行拼接
+        // 内置template方法 1）id  2）拼接的数据
+        // 返回值为html字符串
+        let html = template('tpl', {
+            username: 'linlin',
+            age: 18
+        });
+        document.querySelector('div').innerHTML = html;
+    </script>
+</body>
+
+</html>

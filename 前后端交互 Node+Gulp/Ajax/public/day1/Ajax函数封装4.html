@@ -76,7 +76,7 @@
                 // 判断是否为JSON类型格式，如果是转换为对象格式
                 if (resContent.includes('application/json')) {
                     responseText = JSON.parse(responseText);
-                    console.log(1);
+                    // console.log(1);
                 }
                 // 对请求成功与否进行判断
                 if (xhr.status == 200) {

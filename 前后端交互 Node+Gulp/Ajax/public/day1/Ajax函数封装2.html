@@ -38,7 +38,7 @@
                 var content = options.header['Content-Type'];
                 xhr.setRequestHeader('Content-Type',content);
                 // 判断传递对象的格式传递不同的请求参数
-               if(content == 'application/JSON'){
+               if(content == 'application/json'){
                    xhr.send(JSON.stringify(options.data))
                }else{
                    xhr.send(params)
@@ -67,7 +67,7 @@
             },
             header: {
                 // 便于用户自定义请求格式
-                'Content-Type': 'application/JSON',
+                'Content-Type': 'application/json',
             },
             success: function (data) {
                 console.log(`这是我自己操作${data}`);
