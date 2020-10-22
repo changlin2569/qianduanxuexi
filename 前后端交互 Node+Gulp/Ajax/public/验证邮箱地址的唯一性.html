@@ -72,14 +72,14 @@
                     data: {
                         email: inputMsg,
                     },
-                    success: function(data){
+                    success: function(result){
                         p.className = 'info bg-success';
-                        p.innerHTML = data.message;
-                        console.log(data);
+                        p.innerHTML = result.message;
+                        console.log(result);
                     },
-                    error:function(){
+                    error:function(result){
                         p.className = 'info bg-error';
-                        p.innerHTML = data.message;
+                        p.innerHTML = result.message;
                     }
 
                 })

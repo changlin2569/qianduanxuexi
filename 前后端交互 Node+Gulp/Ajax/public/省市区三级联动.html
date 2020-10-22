@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/js/template-web.js"></script>
+    <script src="/js/ajax.js"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        div{
+            width: 300px;
+            height: 40px;
+            margin: 0 auto;
+        }
+
+        select{
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <select name="" id="province">
+            
+        </select>
+        <select name="" id="city">
+            <option value="">请选择城市</option>
+        </select>
+        <select name="" id="area">
+            <option value="">请选择县区</option>
+        </select>
+    </div>
+    <!-- 页面加载时就要将省份信息渲染到界面上 -->
+    <script id="provinceTpl" type="text/html">
+        <option value="">请选择省份</option>
+        {{each province}}
+        <option value="{{$value.id}}">{{$value.name}}</option>
+        {{/each}}
+    </script>
+    <!-- 渲染城市 -->
+    <script id="cityTpl" type="text/html">
+        <option value="">请选择城市</option>
+        {{each city}}
+        <option value="{{$value.id}}">{{$value.name}}</option>
+        {{/each}}
+    </script>
+    <script>
+        let province = document.querySelector('#province');
+        let city = document.querySelector('#city');
+        let area = document.querySelector('#area');
+        //渲染省份信息到界面上
+        ajax({
+            type: 'get',
+            url: 'http://localhost:3000/province',
+            success: function(result) {
+                // console.log(result);
+                let html = template('provinceTpl',{province: result});
+                province.innerHTML = html;
+            }
+        })
+
+        province.addEventListener('change',function(){
+            let pid = this.value;
+            // console.log(pid);
+            ajax({
+                url: '/cities',
+                data: {
+                    id: pid,
+                },
+                success:function(result) {
+                    console.log(result);
+                    let html = template('cityTpl',{city: result});
+                    city.innerHTML = html;
+                }
+            })
+        })
+    </script>
+</body>
+</html>
