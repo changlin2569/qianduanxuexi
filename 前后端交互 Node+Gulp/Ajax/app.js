@@ -3,7 +3,9 @@ const express = require('express');
 // 路径处理模块
 const path = require('path');
 //接收post请求参数
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
+// 读取formdata数据
+const formidable = require('formidable'); 
 // 创建文本服务器
 const app = express();
 // 文件操作
@@ -12,9 +14,9 @@ const fs = require('fs');
 const url = require('url');
 // const { url } = require('inspector');
 // 解析url参数
-app.use(bodyParser.urlencoded());
+// app.use(bodyParser.urlencoded());
 // 解析json数据
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
 // 静态资源访问服务功能
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -144,6 +146,32 @@ app.get('/cities',(req,res) => {
             name: '嘉兴市'
         }])
     }
+})
+
+// formdata表单对象
+app.post('/formdata',(req,res) => {
+    //创建formidable表单解析对象
+    let form = new formidable.IncomingForm();
+    // 解析客户端传递过来的FormData对象
+    // 第一个参数报讯错误对象，第二个保存表单对象普通请求信息，第三个文件上传相关信息
+    form.parse(req,(err,fields,files) => {
+        res.send(fields);
+    })
+})
+
+// formdata上传二进制文件
+app.post('/uploadfile',(req,res) => {
+    //创建formidable表单解析对象
+    let form = new formidable.IncomingForm();
+    // 设置客户端上传文件的存储路径
+    form.uploadDir = path.join(__dirname,'public','uploads');
+    // 保留上传文件的后缀
+    form.keepExtensions = true;
+    // 解析客户端传递过来的FormData对象
+    // 第一个参数报讯错误对象，第二个保存表单对象普通请求信息，第三个文件上传相关信息
+    form.parse(req,(err,fields,files) => {
+        res.send('上传成功');
+    })
 })
 // 监听端口
 app.listen(3000);

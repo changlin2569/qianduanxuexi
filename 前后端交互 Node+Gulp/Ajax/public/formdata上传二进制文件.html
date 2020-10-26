@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <div>
+       <input type="file" id="file">
+       <label for="">请选择文件</label>
+    </div>
+    <script>
+        let file = document.querySelector('#file');
+
+        file.addEventListener('change',function(){
+            // 创建formdata对象
+            let formdata = new FormData();
+            //向对象中追加方法
+            formdata.append('attrName',this.files[0]);
+            let xhr = new XMLHttpRequest(); 
+            xhr.open('post','http://localhost:3000/uploadfile');
+            //发送Ajax请求
+            xhr.send(formdata);
+            xhr.onload = function() {
+                console.log(xhr.responseText);
+            }
+        })
+    </script>
+</body>
+</html>
