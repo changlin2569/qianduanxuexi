@@ -170,7 +170,8 @@ app.post('/uploadfile',(req,res) => {
     // 解析客户端传递过来的FormData对象
     // 第一个参数报讯错误对象，第二个保存表单对象普通请求信息，第三个文件上传相关信息
     form.parse(req,(err,fields,files) => {
-        res.send('上传成功');
+        // res.send(files);
+        res.send(files.attrName.path.split('public')[1]);
     })
 })
 // 监听端口

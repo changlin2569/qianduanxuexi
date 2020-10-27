@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .progress{
+            width: 200px;
+            height: 20px;
+            border: 1px solid black;
+            box-sizing: border-box;
+        }
+        .progress .progress-up{
+            width: 50%;
+            height: 100%;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+   <div>
+       <input type="file" id="file">
+       <label for="">请选择文件</label>
+       <div class="progress">
+           <div class="progress-up"></div>
+       </div>
+    </div>
+    <div class="imgCon">
+        <!-- <img src="" alt=""> -->
+    </div>
+    <script>
+        let file = document.querySelector('#file');
+        let upProgress = document.querySelector('.progress-up');
+        let imgCon = document.querySelector('.imgCon');
+
+        file.addEventListener('change',function(){
+            // 创建formdata对象
+            let formdata = new FormData();
+            //向对象中追加方法
+            formdata.append('attrName',this.files[0]);
+            let xhr = new XMLHttpRequest(); 
+            xhr.open('post','http://localhost:3000/uploadfile');
+            //文件上传过程中会一直触发upload下的onprogress事件
+            //必须卸载open事件之后
+            xhr.upload.onprogress = function(e){
+                // console.log(1);
+                // console.log(e);
+                let index = `${parseInt((e.loaded / e.total) * 100)}%`;
+                upProgress.style.width = index;
+                upProgress.innerHTML = index;
+            }
+            //发送Ajax请求
+            xhr.send(formdata);
+            
+            // console.log(xhr);
+
+            xhr.onload = function() {
+                console.log(xhr.responseText);
+                let img = document.createElement('img');
+                img.src = `${xhr.responseText}`;
+                img.onload = function() {
+                    // imgCon.append(img);
+                    imgCon.appendChild(img);
+                }
+            }
+        })
+    </script>
+</body>
+</html>
