@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/js/jsonp.js"></script>
+    <script src="/js/template-web.js"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        div{
+            width: 1000px;
+            height: 300px;
+            margin: 0 auto;
+            /* background-color: blueviolet; */
+        }
+
+        table{
+            width: 100%;
+        }
+
+        tr{
+            width: 100%;
+        }
+
+        tr td{
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <table>
+            
+        </table>
+    </div>
+    <script id="tpl" type="text/html">
+        <tr>
+            <td>时间</td>
+            <td>温度</td>
+            <td>天气</td>
+            <td>风向</td>
+            <td>风力</td>
+        </tr>
+        {{each data}}
+        <tr>
+            <td>{{dateFormate($value.update_time)}}</td>
+            <td>{{$value.degree}}</td>
+            <td>{{$value.weather}}</td>
+            <td>{{$value.wind_direction}}</td>
+            <td>{{$value.wind_power}}</td>
+        </tr>
+        {{/each}}
+    </script>
+    <script>
+        let table = document.querySelector('table');
+        // 向模板中开放外部变量
+        template.defaults.imports.dateFormate = dateFormate;
+        function dateFormate(date) {
+            let year = date.substr(0,4);
+            let month = date.substr(4,2);
+            let day = date.substr(6,2);
+            let hour = date.substr(8,2);
+            return `${year}年${month}月${day}日${hour}时`;
+        }
+        jsonp({
+            url: 'https://wis.qq.com/weather/common',
+            data:{
+                source: 'pc',
+                weather_type: 'forecast_1h',
+                province: '陕西省',
+                city: '西安市',
+            },
+            success: function (data) {
+                console.log(data);
+                let html = template('tpl',{data: data.data.forecast_1h});
+                table.innerHTML = html;
+            }
+        })
+    </script>
+</body>
+</html>

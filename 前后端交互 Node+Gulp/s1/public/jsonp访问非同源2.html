@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 实现按钮调用非同源请求和服务器端函数名替换 -->
+    <button>点击发送请求</button>
+    <script>
+        function fn1(data) {
+            console.log('非同源调用');
+            console.log(data);
+        }
+    </script>
+    <!-- <script src="http://localhost:3001/testProve"></script> -->
+    <script>
+        let btn = document.querySelector('button');
+        btn.addEventListener('click', function () {
+            jsonp({
+                url: 'http://localhost:3001/testProve?callback=fn1',
+            });
+        })
+
+        function jsonp(options) {
+            let script = document.createElement('script');
+            script.src = options.url;
+            document.body.appendChild(script);
+            script.onload = function() {
+                document.body.removeChild(script);
+            }
+        }
+    </script>
+</body>
+
+</html>
