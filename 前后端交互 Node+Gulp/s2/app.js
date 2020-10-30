@@ -19,6 +19,15 @@ app.use(session({
 // 静态资源访问服务功能
 app.use(express.static(path.join(__dirname, 'public')));
 
+// express框架拦截所有请求,避免重复为CORS请求设置响应参数
+app.use((req,res,next) => {
+	// 允许那些二客户端访问我，* 表示都可以访问
+	res.header('Access-Control-Allow-Origin','*');
+	// 允许使用那些请求访问我
+	res.header('Access-Control-Allow-Methods','get,post');
+	next();
+})
+
 app.get('/test',(req,res) => {
 	let params = 'fn({name : "linlin"})';
 	res.send(params);
@@ -33,6 +42,15 @@ app.get('/testProve',(req,res) => {
 
 	// 调用express框架下的jsonp方法
 	res.jsonp({name: 'inlin'})
+})
+
+// CORS访问非同源
+app.get('/cross',(req,res) => {
+	// 允许那些二客户端访问我，* 表示都可以访问
+	// res.header('Access-Control-Allow-Origin','*');
+	// 允许使用那些请求访问我
+	// res.header('Access-Control-Allow-Methods','get,post');
+	res.send('访问成功');
 })
 // 监听端口
 app.listen(3001);

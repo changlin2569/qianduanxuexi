@@ -12,6 +12,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/server', (req, res) => {
 	request('http://localhost:3001/cross', (err, response, body) => {
 		res.send(body);
+		// console.log(body);
 	})
 });
 
