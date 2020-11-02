@@ -46,4 +46,7 @@ function indexofRemoval(arr) {
 
 // indexofRemoval(arr);
 
-//4 
+//4 indexOf + 新数组
+function indexOfNewarr() {
+    
+}

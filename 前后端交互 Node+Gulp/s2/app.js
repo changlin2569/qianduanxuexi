@@ -52,6 +52,14 @@ app.get('/cross',(req,res) => {
 	// res.header('Access-Control-Allow-Methods','get,post');
 	res.send('访问成功');
 })
+
+// $.aiax方法发送jsonp请求
+app.get('/jsonp',(req,res) => {
+	// res.jsonp({name: '林林',age: 20});
+	// 修改函数的名称
+	let params = req.query.cb;
+	res.send(`${params}({name: "linlin",age: 20})`);
+})
 // 监听端口
 app.listen(3001);
 // 控制台提示输出

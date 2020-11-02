@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/js/jquery.min.js"></script>
+</head>
+<body>
+    <button id="btn">点击发送请求</button>
+    <script>
+        $('#btn').on('click',function () {
+            // console.log(11);
+            $.ajax({
+                url: 'http://localhost:3001/jsonp',
+                //声明是jsonp方式
+                dataType: 'jsonp',
+                // 修改callback参数名名称
+                jsonp: 'cb',
+                // 指定函数名称
+                // jsonpCallback: 'fn',
+                success: function (res) {
+                    console.log(res);
+                }
+            })
+        })
+    </script>
+</body>
+</html>
