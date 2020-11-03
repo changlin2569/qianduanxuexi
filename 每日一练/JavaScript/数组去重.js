@@ -47,6 +47,20 @@ function indexofRemoval(arr) {
 // indexofRemoval(arr);
 
 //4 indexOf + 新数组
-function indexOfNewarr() {
-    
+function indexOfNewarr(arr) {
+    if(arr.length == 0 || typeof arr === 'Array'){
+        return;
+    }else {
+        let newArr = [];
+        for(let i = 0;i < arr.length;i++){
+            // console.log(arr[i]);
+            // console.log(arr.indexOf(arr[i]));
+            if(arr.indexOf(arr[i],i + 1) == -1){
+                newArr.push(arr[i]);
+            }
+        }
+        return newArr;
+    }
 }
+
+console.log(indexOfNewarr(arr));;

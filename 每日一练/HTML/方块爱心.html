@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 1000px;
+        }
+
+        .box {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
+            top: 100px;
+            /* border: 1px solid black; */
+            /* transform: translateY(-50%); */
+            /* background-color: skyblue; */
+        }
+
+        .left {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            border-radius: 50%;
+            transform: rotate(45deg);
+            background-color: pink;
+        }
+
+        .right {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            left: 120px;
+            top: 0;
+            border-radius: 50%;
+            transform: rotate(45deg);
+            background-color: palegreen;
+        }
+
+        .bottom {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            left: 60px;
+            top: 60px;
+            transform:  rotate(45deg);
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="left"></div>
+        <div class="right"></div>
+        <div class="bottom"></div>
+    </div>
+</body>
+</html>
