@@ -85,4 +85,21 @@ function includesArr(arr) {
     }
 }
 
-console.log(includesArr(arr));
+// console.log(includesArr(arr));
+// 6. indexof + filter方法去重
+function mapArray (arr) {
+    if (arr.length == 0) {
+        return;
+    } else {
+        let newArr = [];
+        [...newArr] = arr.filter((item,index) => {
+            if (arr.indexOf(item,index + 1) == -1) {
+                return item;
+            }
+        })
+        return newArr;
+    }
+}
+
+// console.log(mapArray(arr));
+
