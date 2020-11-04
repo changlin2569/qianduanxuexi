@@ -1,6 +1,11 @@
-const { findSourceMap } = require("module");
+const {
+    findSourceMap
+} = require("module");
+const {
+    isArray
+} = require("util");
 
-let arr = [8,1,1,2,3,3,3,4,6,4,77];
+let arr = [8, 1, 1, 2, 3, 3, 3, 4, 6, 4, 77];
 
 // for(let i = 0;i < arr.length;i++){
 //     for(let j = i + 1;j < arr.length;j++){
@@ -12,12 +17,12 @@ let arr = [8,1,1,2,3,3,3,4,6,4,77];
 // }
 
 // 1 基本方法
-function removal(arr){
-    for(let i = 0;i < arr.length;i++){
-        for(let j = i + 1;j < arr.length;j++){
-            if(arr[j] == arr[i]){
-                arr.splice(j,1);
-                j--;//防止跳过元素
+function removal(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = i + 1; j < arr.length; j++) {
+            if (arr[j] == arr[i]) {
+                arr.splice(j, 1);
+                j--; //防止跳过元素
             }
         }
     }
@@ -33,11 +38,11 @@ let setArr = [...new Set(arr)];
 
 // 3 array.indexof方法去重
 function indexofRemoval(arr) {
-    for(let i = 0;i < arr.length;i++){
-        let index = arr.indexOf(arr[i],i+1);
+    for (let i = 0; i < arr.length; i++) {
+        let index = arr.indexOf(arr[i], i + 1);
         // console.log(index);
-        if(index != -1){
-            arr.splice(index,1);
+        if (index != -1) {
+            arr.splice(index, 1);
             i--;
         }
     }
@@ -48,14 +53,14 @@ function indexofRemoval(arr) {
 
 //4 indexOf + 新数组
 function indexOfNewarr(arr) {
-    if(arr.length == 0 || typeof arr === 'Array'){
+    if (arr.length == 0) {
         return;
-    }else {
+    } else {
         let newArr = [];
-        for(let i = 0;i < arr.length;i++){
+        for (let i = 0; i < arr.length; i++) {
             // console.log(arr[i]);
             // console.log(arr.indexOf(arr[i]));
-            if(arr.indexOf(arr[i],i + 1) == -1){
+            if (arr.indexOf(arr[i], i + 1) == -1) {
                 newArr.push(arr[i]);
             }
         }
@@ -63,4 +68,21 @@ function indexOfNewarr(arr) {
     }
 }
 
-console.log(indexOfNewarr(arr));;
+// console.log(indexOfNewarr(arr));
+
+// 5 includes去重
+function includesArr(arr) {
+    if (arr.length == 0) {
+        return;
+    } else {
+        let newArr = [];
+        for (let i = 0; i < arr.length; i++) {
+            if (!newArr.includes(arr[i])) {
+                newArr.push(arr[i]);
+            }
+        }
+        return newArr;
+    }
+}
+
+console.log(includesArr(arr));
