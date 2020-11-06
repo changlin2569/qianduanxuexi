@@ -103,3 +103,13 @@ function mapArray (arr) {
 
 // console.log(mapArray(arr));
 
+function reduceArr(arr) {
+    if (arr.length == 0) {
+        return;
+    } else {
+        return arr.reduce((newArr,item) =>
+        newArr.includes(item) ? newArr : [...newArr,item],[]);
+    }
+}
+
+console.log(reduceArr(arr));

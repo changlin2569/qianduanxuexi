@@ -7,6 +7,9 @@ function arrObj (arr) {
         let index = 0;
         let obj = {};
         for (let i = 0;i < arr.length;i++) {
+            if (arr[i] == arr[i + 1]) {
+                continue;
+            }
             for (let j = 0;j < arr.length;j++) {
                 if (arr[i] == arr[j]){
                     index++;
@@ -18,5 +21,4 @@ function arrObj (arr) {
         return obj;
     }
 }
-
 console.log(arrObj(arr));
