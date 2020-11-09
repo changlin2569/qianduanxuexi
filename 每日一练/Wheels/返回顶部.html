@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            position: relative;
+            height: 2500px;
+            background-color: blanchedalmond;
+        }
+
+        p {
+            display: none;
+            position: fixed;
+            cursor: pointer;
+            bottom: 60px;
+            right: 20px;
+            border: 30px;
+            border-style: solid;
+            border-color: transparent transparent turquoise transparent;
+        }
+    </style>
+</head>
+
+<body>
+    <p></p>
+    <script>
+        let p = document.querySelector('p');
+        let body = document.body;
+
+        document.addEventListener('scroll', function () {
+            // let offsetY = window.scrollY;
+            let offsetY = window.pageYOffset;
+            // console.log(offsetY);
+            if (offsetY >= 300) {
+                p.style.display = 'block';
+            } else {
+                p.style.display = 'none';
+            }
+        });
+
+        p.addEventListener('click',function() {
+            returnAnimate(window,0);
+        })
+
+        function returnAnimate(obj,target) {
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function() {
+                let step = (target - obj.pageYOffset) / 10;
+                step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                window.scroll(0,window.pageYOffset + step);
+                if (window.pageYOffset == target) {
+                    clearInterval(obj.timer)
+                }
+            },50)
+        }
+    </script>
+</body>
+
+</html>
