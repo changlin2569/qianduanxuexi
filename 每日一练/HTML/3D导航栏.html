@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,14 +39,34 @@
 
         .box :nth-child(2) {
             background-color: skyblue;
-            transform:translateY(50px) rotateX(-90deg);
+            transform: translateY(50px) rotateX(-90deg);
         }
     </style>
 </head>
+
 <body>
     <div class="box">
         <div></div>
         <div></div>
     </div>
+    <script>
+        function a(b, c) {
+            var b;
+            console.log(b);
+            // alert(b);
+        }
+        a(1, 2);
+
+        function bar() {
+            a = 1;
+            console.log(a);
+        }
+        bar();
+
+        var x = 1;
+        var x;
+        console.log(x);
+    </script>
 </body>
+
 </html>

@@ -56,11 +56,15 @@
             obj.timer = setInterval(function() {
                 let step = (target - obj.pageYOffset) / 10;
                 step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                // console.log(step);
+                // console.log(window.pageYOffset);
+                // console.log(window.pageYOffset + step);
                 window.scroll(0,window.pageYOffset + step);
+                // console.log(window.pageYOffset + step);
                 if (window.pageYOffset == target) {
                     clearInterval(obj.timer)
                 }
-            },50)
+            },20)
         }
     </script>
 </body>
