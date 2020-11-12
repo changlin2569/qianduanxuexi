@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <style>
+        .container {
+            width: 300px;
+            height: 300px;
+        }
+
+        .container:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            background-color: chartreuse;
+        }
+
+        .container:nth-child(1) div {
+            width: 100px;
+            height: 100px;
+            background-color: cyan;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div v-on:click='fatherhandle'>
+            <!-- 组织冒泡 -->
+            <div v-on:click.stop='bindhandle'></div>
+            <!-- <a href="https://www.bilibili.com" v-on:click.prevent='fatherhandle'>bilibili</a> -->
+        </div>
+        <form action="">
+            用户名：
+            <input type="text" name="name" v-model='name' v-on:keyup.q='keyhandle'>
+            密码：
+            <input type="text" name="password" v-model='psd' v-on:keyup.enter='btnhandle'>
+            <button type="button" v-on:click='btnhandle'>提交</button>
+        </form>
+    </div>
+    <script>
+        Vue.config.keyCodes.q = 81;
+        let vue = new Vue({
+            el: '.container',
+            data: {
+                name: '',
+                psd: '',
+            },
+            methods: {
+                bindhandle: function(e) {
+                    console.log(11);
+                    // e.stopPropagation();
+                },
+                fatherhandle: function(e) {
+                    console.log(22);
+                    // e.preventDefault();
+                },
+                btnhandle: function() {
+                    console.log(this.name);
+                    console.log(this.psd);
+                },
+                keyhandle: function(e) {
+                    console.log(e.keyCode);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>{{msg}}</h1>
+        <h1 v-text="msg"></h1>
+        <div v-html="msg1"></div>
+        <!-- 显示原始信息 -->
+        <h2 v-pre>{{msg}}</h2>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '.container',
+            data: {
+                msg: 'hello world',
+                msg1: '<h2>hello vue</h2>'
+            }
+        })
+        // console.log(vm);
+    </script>
+</body>
+</html>

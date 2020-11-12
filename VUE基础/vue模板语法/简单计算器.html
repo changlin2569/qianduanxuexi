@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        数值一：
+        <input type="text" v-model='x'>
+        数值二：
+        <input type="text" v-model='y'>
+        <button type="button" v-on:click='addHandle()'>点击相加</button>
+        <h2>结果：{{num}}</h2>
+    </div>
+    <script>
+        let vue = new Vue({
+            el: '.container',
+            data: {
+                x: '',
+                y: '',
+                num: '',
+            },
+            methods: {
+                addHandle: function () {
+                    // this.num = +this.x + +this.y;
+                    this.num = Number(this.x) + Number(this.y);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

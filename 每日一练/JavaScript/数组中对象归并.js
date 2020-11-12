@@ -26,7 +26,6 @@ let inArr = [
 
 function classy(inArr) {
     let arr = [];
-    let newArr = [];
     for (let i = 0;i < inArr.length - 1;i++) {
         if (inArr[i].company == inArr[i + 1].company) {
             continue;
@@ -36,11 +35,10 @@ function classy(inArr) {
                 arr.push(inArr[j].customer);
             }
         }
-        // console.log(arr);
-        newArr.push({company: `${inArr[i].company}`,customer: arr})
+        inArr[i].customer = arr;
         arr = [];
     }
-    return newArr;
+    return inArr;
 }
 
 console.log(classy(inArr));
