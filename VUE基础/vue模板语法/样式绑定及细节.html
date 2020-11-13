@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: skyblue;
+        }
+
+        .boxOne {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div v-bind:class="{box: isBox,boxOne: isBoxOne}">样式1</div>
+        <div v-bind:class="[boxClass,boxOneClass]">样式2</div>
+        <div v-bind:class="arrClass">样式3</div>
+        <div v-bind:class="objClass">样式4</div>
+    </div>
+    <script>
+        let vue = new Vue({
+            el: '.container',
+            data: {
+                isBox: true,
+                isBoxOne: true,
+                boxClass: 'box',
+                boxOneClass: 'boxOne',
+                arrClass: ['box','boxOne'],
+                objClass: {
+                    box: true,
+                    boxOne: true,
+                }
+            },
+            methods: {
+
+            }
+        })
+    </script>
+</body>
+</html>

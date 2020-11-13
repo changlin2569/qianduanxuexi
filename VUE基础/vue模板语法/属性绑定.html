@@ -5,24 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="../vue.js"></script>
-    <style>
-        [v-cloak] {
-            display: none;
-        }
-    </style>
 </head>
 <body>
-    <div class="container" v-cloak>
-        <h1>{{msg}}</h1>
+    <div class="container">
+        <a v-bind:href="url">bilibili</a>
+        <a :href="url">bilibili</a>
+        <a href="https://www.bilibili.com">bilibili</a>
     </div>
     <script>
-        var vm = new Vue({
+        let vue = new Vue({
             el: '.container',
             data: {
-                msg: 'hello world',
-            }
-        })
-        // console.log(vm);
+                url: 'https://www.bilibili.com',
+            },
+        });
     </script>
 </body>
 </html>

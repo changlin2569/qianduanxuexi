@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div v-bind:style="{border: borderStyle,height: heightStyle}">样式1</div>
+        <div v-bind:style="objStyle">样式2</div>
+        <!-- 数组样式，后面的样式会覆盖前面已有的样式，添加没有的样式 -->
+        <div v-bind:style="[objStyle,overStyle]">样式3</div>
+    </div>
+    <script>
+        let vue = new Vue({
+            el: '.container',
+            data: {
+                borderStyle: '1px solid red',
+                heightStyle: '100px',
+                objStyle: {
+                    border: '1px solid blue',
+                    height: '100px',
+                },
+                overStyle: {
+                    border: '2px dashed pink',
+                    height: '200px',
+                    backgroundColor: 'skyblue',
+                }
+            },
+        })
+    </script>
+</body>
+</html>

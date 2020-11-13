@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div class="container">
+        <input type="text" v-bind:value="msg" v-on:input="bindHandle">
+        <!-- 简写，直接将事件写在v-on属性中 -->
+        <input type="text" v-bind:value="msg" v-on:input="msg=$event.target.value">
+        <h1 v-text="msg"></h1>
+    </div>
+    <script>
+        let vue = new Vue({
+            el: '.container',
+            data: {
+                msg: 'happy',
+            },
+            methods: {
+                bindHandle: function(e) {
+                    this.msg = e.target.value;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
