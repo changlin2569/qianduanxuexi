@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            width: 500px;
+            height: 500px;
+        }
+
+        .container .header {
+            width: 100%;
+            height: 100px;
+        }
+
+        .header span {
+            float: left;
+            text-align: center;
+            width: 33.333333%;
+            height: 100px;
+            line-height: 100px;
+            font-size: 40px;
+            border: 1px solid black;
+            cursor: pointer;
+            box-sizing: border-box;
+        }
+
+        .color {
+            background-color: powderblue;
+        }
+
+        .content {
+            width: 100%;
+            height: 400px;
+        }
+
+        .content div {
+            display: none;
+            width: 100%;
+            height: 400px;
+        }
+
+        .content img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .current {
+            display: block!important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <span v-bind:class="index==currentIndex?'color':''" v-on:click="changeHandle(index)" :key="item.id" v-for="(item,index) in colors">{{item.name}}</span>
+        </div>
+        <div class="content">
+            <div v-bind:class="index==currentIndex?'current':''" :key="item.id" v-for="(item,index) in colors">
+                <img v-bind:src="item.path" alt="">
+            </div>
+        </div>
+    </div>
+    <script>
+        let vue = new Vue({
+            el: '.container',
+            data: {
+               currentIndex: 0,
+               colors: [
+                   {
+                        id: 0,
+                        name: 'blue',
+                        path: 'images/0.jpg'
+                   },
+                   {
+                        id: 1,
+                        name: 'pink',
+                        path: 'images/1.jpg'
+                   },
+                   {
+                        id: 2,
+                        name: 'green',
+                        path: 'images/2.jpg'
+                   },
+               ]
+            },
+            methods: {
+                changeHandle: function(index) {
+                    console.log(index);
+                    this.currentIndex = index;
+                }
+            },
+        })
+    </script>
+</body>
+</html>

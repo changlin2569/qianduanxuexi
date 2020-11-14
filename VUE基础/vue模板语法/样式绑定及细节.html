@@ -19,7 +19,7 @@
 </head>
 <body>
     <div class="container">
-        <div v-bind:class="{box: isBox,boxOne: isBoxOne}">样式1</div>
+        <div :class="{box: isBox,boxOne: isBoxOne}">样式1</div>
         <div v-bind:class="[boxClass,boxOneClass]">样式2</div>
         <div v-bind:class="arrClass">样式3</div>
         <div v-bind:class="objClass">样式4</div>
