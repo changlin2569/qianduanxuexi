@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div class="container">
+        <span>用户名:</span>
+        <input type="text" v-model.lazy="name">
+        <h2>{{msg}}</h2>
+    </div>
+    <script>
+        let vue = new Vue({
+            el: '.container',
+            data: {
+                name: '',
+                msg: '',
+            },
+            methods: {
+                checkHandle: function(name) {
+                    // 模拟异步操作,类似于Ajax
+                    let that = this;
+                    // console.log(this);
+                    setTimeout(function() {
+                        if (name == 'linlin') {
+                            that.msg = '该用户名已被占用';
+                        } else {
+                            that.msg = '该用户名可用';
+                        }
+                    },3000)
+                }
+            },
+            watch: {
+                name: function(val) {
+                    this.checkHandle(val);
+                    this.msg = '正在验证....';
+                }
+            }
+        })
+    </script>
+</body>
+</html>

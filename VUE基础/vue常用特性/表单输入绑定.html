@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <form action="" class="container">
+        <span>姓名：</span>
+        <input type="text" v-model="name">
+        <span>性别：</span>
+        <input type="radio" id="male" value="0" v-model="sex">
+        <label for="male">男</label>
+        <input type="radio" id="female" value="1" v-model="sex">
+        <label for="female">女</label>
+        <span>爱好：</span>
+        <input type="checkbox" id="basketball" value="0" v-model="hobby">
+        <label for="basketball">篮球</label>
+        <input type="checkbox" id="run" value="1" v-model="hobby">
+        <label for="run">跑步</label>
+        <input type="checkbox" id="sing" value="2" v-model="hobby">
+        <label for="sing">唱歌</label>
+        <span>职业：</span>
+        <select name="" id="" v-model="professtion">
+            <option value="0">学生</option>
+            <option value="1">老师</option>
+            <option value="2">医生</option>
+        </select>
+        <span>个人介绍：</span>
+        <textarea name="" id="" cols="30" rows="10" v-model="intro"></textarea>
+        <button @click.prevent="btnHandle()">提交</button>
+    </form>
+    <script>
+        let vue = new Vue({
+            el: '.container',
+            data: {
+                name: 'linlin',
+                sex: 1,
+                hobby: [0,1],//数据形式为数组，因为处理的是多个值
+                professtion: 2,
+                intro: 'hello world'
+            },
+            methods: {
+                btnHandle: function() {
+                    // console.log(this.name);
+                    console.log(this.sex);
+                    console.log(this.hobby);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

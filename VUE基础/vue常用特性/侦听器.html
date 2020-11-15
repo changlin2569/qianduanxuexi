@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div class="container">
+        <span>姓名：</span>
+        <input type="text" v-model="name">
+        <span>年龄：</span>
+        <input type="text" v-model="age">
+        <h1>{{info}}</h1>
+    </div>
+    <script>
+        let vue = new Vue({
+            el: '.container',
+            data: {
+                name: '',
+                age: '',
+                info: '',
+            },
+            // 计算属性也可以完成此操作，相比于侦听器来说简单
+            computed: {
+                add: function() {
+                    return `${this.name} ${this.age}`;
+                }
+            },
+            // 当需要在数据变化时执行异步或开销较大的操作时，使用侦听器方式
+            watch: {
+                name: function(val) {
+                    this.info = `${val} ${this.age}`;
+                },
+                age: function(val) {
+                    this.info = `${this.name} ${val}`;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>{{date | format("yyyy-mm-dd")}}</h1>
+    </div>
+    <script>
+        Vue.filter('format',function(val,arg) {
+            if (arg == 'yyyy-mm-dd') {
+                return `${val.getFullYear()}-${val.getMonth()}-${val.getDate()}`;
+            }
+            return val;
+        })
+        let vue = new Vue({
+            el: '.container',
+            data: {
+                date: new Date(),
+            },
+        })
+    </script>
+</body>
+</html>

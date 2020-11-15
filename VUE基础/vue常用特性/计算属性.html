@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>{{msg.split('').reverse().join('')}}</h1>
+        <h1>{{reverseHandle}}</h1>
+        <h1>{{reverseHandle}}</h1>
+        <h1>{{reverseTap()}}</h1>
+        <h1>{{reverseTap()}}</h1>
+    </div>
+    <script>
+        let vue = new Vue({
+            el: '.container',
+            data: {
+                msg: 'hello world',
+            },
+            methods: {
+                reverseTap: function() {
+                    // methods方法电泳几次就执行几次
+                    console.log(11);
+                    return this.msg.split('').reverse().join('');
+                }
+            },
+            computed: {
+                reverseHandle: function() {
+                    // computed会将返回结果存储在缓存中
+                    // 下次调用同样的方法直接拿上次的结果
+                    // 所以调用了两次方法但是11只打印了一次
+                    console.log(11);
+                    return this.msg.split('').reverse().join('');
+                }
+            }
+        })
+    </script>
+</body>
+</html>
