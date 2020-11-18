@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <button-log></button-log>
+        <!-- 标签模板中只能以短横线的方式调用 -->
+        <hello-world></hello-world>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        // 驼峰命名法
+        Vue.component('HelloWorld',{
+            data: function () {
+                return {
+                    msg: 'hello world',
+                }
+            },
+            // 驼峰命名的只能在模板语法中调用
+            template: '<div>{{msg}}</div>'
+        })
+        // 短横线命名方式
+        Vue.component('button-log',{
+            data: function () {
+                return {
+                    msg: 'hello world',
+                }
+            },
+            // template: '<button @click="hello">点击</button>',
+            // 支持模板字符串
+            template: `<div>
+                <button @click="hello">点击</button>
+                <HelloWorld></HelloWorld>
+                </div>`,
+            methods: {
+                hello: function () {
+                    console.log('hello world');
+                }
+            }
+        })
+        let vue = new Vue({
+            el: '.container',
+            data: {
+
+            }
+        })
+    </script>
+</body>
+</html>

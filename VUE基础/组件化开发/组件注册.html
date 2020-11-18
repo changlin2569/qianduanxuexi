@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <button-count></button-count>
+        <button-count></button-count>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        // 组件注册
+        Vue.component('button-count',{
+            data: function () {
+                return {
+                    count: 0
+                }
+            },
+            // template: '<button @click="count++">{{count}}</button>',
+            template: '<button @click="add">{{count}}</button>',
+            methods: {
+                add: function () {
+                    this.count += 10;
+                }
+            }
+        });
+        let vue = new Vue({
+            el: '.container',
+            data: {
+
+            }
+        })
+    </script>
+</body>
+</html>

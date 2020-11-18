@@ -93,7 +93,27 @@
                 bookId: '',
                 flag: false,
                 bookFlag: false,
-                bookInfo: [],
+                bookInfo: [{
+                        id: '0',
+                        name: '西游记',
+                        time: new Date(),
+                    },
+                    {
+                        id: '1',
+                        name: '摆渡人',
+                        time: new Date(),
+                    },
+                    {
+                        id: '2',
+                        name: '云边有个小卖部',
+                        time: new Date(),
+                    },
+                    {
+                        id: '3',
+                        name: '三体',
+                        time: new Date(),
+                    }
+                ],
             },
             methods: {
                 addBook: function () {
@@ -158,37 +178,15 @@
             // 页面初始化挖成，模板已经存在，可以填充数据了
             mounted: function () {
                 // 创建阿贾克斯对象
-                // let xhr = new XMLHttpRequest();
+                let xhr = new XMLHttpRequest();
                 // 请求地址和请求方法
-                // xhr.open('get','http://localhost:3000/bookInfo');
+                xhr.open('get','http://localhost:3000/bookInfo');
                 // 发送请求
-                // xhr.send();
+                xhr.send();
                 // 处理服务器端返回的数据
-                // xhr.onload = function () {
-                    // console.log(xhr.responseText);
-                // }
-
-                let data = [{
-                        id: '0',
-                        name: '西游记',
-                        time: new Date(),
-                    },
-                    {
-                        id: '1',
-                        name: '摆渡人',
-                        time: new Date(),
-                    },
-                    {
-                        id: '2',
-                        name: '云边有个小卖部',
-                        time: new Date(),
-                    },
-                    {
-                        id: '3',
-                        name: '三体',
-                        time: new Date(),
-                    }];
-                    this.bookInfo = data;
+                xhr.onload = function () {
+                    console.log(xhr.responseText);
+                }
             }
         })
     </script>

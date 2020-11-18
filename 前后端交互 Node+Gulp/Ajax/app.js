@@ -174,6 +174,31 @@ app.post('/uploadfile',(req,res) => {
         res.send(files.attrName.path.split('public')[1]);
     })
 })
+
+// vue图书管理
+app.get('/bookInfo',(req,res) => {
+    res.send([{
+        id: '0',
+        name: '西游记',
+        time: new Date(),
+    },
+    {
+        id: '1',
+        name: '摆渡人',
+        time: new Date(),
+    },
+    {
+        id: '2',
+        name: '云边有个小卖部',
+        time: new Date(),
+    },
+    {
+        id: '3',
+        name: '三体',
+        time: new Date(),
+    }
+])
+})
 // 监听端口
 app.listen(3000);
 
