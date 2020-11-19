@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <hello-world></hello-world>
+        <hello-javascript></hello-javascript>
+        <hello-vue></hello-vue>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        let commentA = {
+            data: function () {
+                return {
+                    msg: 'hello world',
+                }
+            },
+            template: '<h1>{{msg}}</h1>',
+        };
+        let commentB = {
+            data: function () {
+                return {
+                    msg: 'hello javascript',
+                }
+            },
+            template: '<h1>{{msg}}</h1>',
+        };
+        let commentC = {
+            data: function () {
+                return {
+                    msg: 'hello vue',
+                }
+            },
+            template: '<h1>{{msg}}</h1>',
+        }
+        let vue = new Vue({
+            el: '.container',
+            data: {
+                
+            },
+            components: {
+                'hello-world': commentA,
+                'hello-javascript': commentB,
+                'hello-vue': commentC,
+            }
+        });
+    </script>
+</body>
+</html>

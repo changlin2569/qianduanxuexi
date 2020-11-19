@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <hello-msg title="父组件传值"></hello-msg>
+        <hello-msg :title="fmsg" content="Hello"></hello-msg>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        Vue.component('hello-msg', {
+            props: ['title','content'],
+            data: function () {
+                return {
+                    msg: 'Hello son',
+                }
+            },
+            template: "<h1>{{msg + '----' + title + '----' + content}}</h1>"
+        });
+        let vue = new Vue({
+            el: '.container',
+            data: {
+                fmsg: '动态父组件传值',
+            },
+        });
+    </script>
+</body>
+</html>
