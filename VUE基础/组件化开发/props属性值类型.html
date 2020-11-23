@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <hello-msg :pstr="pstr" :pnum="9" :pbool="true" :parr="parr"></hello-msg>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        // 数值类型的值如果不加冒号就会解析为字符串
+        // 布尔类型的值也是如此
+        Vue.component('hello-msg',{
+            props: ['pstr','pnum','pbool','parr'],
+            data: function () {
+                return {
+
+                }
+            },
+            template: `<div>
+                <div>{{pstr}}</div>
+                <h1>{{pnum}}</h1>
+                <h1>{{pbool}}</h1>
+                <ul>
+                    <li v-for="(item,index) in parr">{{item}}</li>    
+                </ul>
+                </div>`
+        })
+        let vue = new Vue({
+            el: '.container',
+            data: {
+                pstr: '字符串',
+                parr: ['blue','pink','green']
+            }
+        });
+    </script>
+</body>
+</html>

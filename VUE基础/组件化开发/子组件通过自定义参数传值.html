@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <add-num :pnum="pnum" @add-pnum="addHandle($event)"></add-num>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        Vue.component('add-num',{
+            props: ['pnum'],
+            template: `<div>
+                <h1>{{pnum}}</h1>
+                <button @click='$emit("add-pnum",9)'>累加</button>
+                </div>`,
+        })
+        let vue = new Vue({
+            el: '.container',
+            data: {
+                pnum: 9,
+            },
+            methods: {
+                addHandle: function (e) {
+                    this.pnum += e;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

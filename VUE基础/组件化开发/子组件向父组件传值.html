@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <color-item :parr="colors" @push-white='addHandle'></color-item>
+        <button @click='logColor'>输出颜色</button>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        Vue.component('color-item',{
+            props: ['parr'],
+            template: `<ul>
+                    <li v-for="(item,index) in parr">{{item}}</li>
+                    <button @click="parr.push('white')">添加白色</button>
+                    <button @click='$emit("push-white")'>添加白色</button>
+                </ul>`,
+        });
+        let vue = new Vue({
+            el: '.container',
+            data: {
+                colors: ['blue','pink','green'],
+            },
+            methods: {
+                logColor: function () {
+                    console.log(this.colors);
+                },
+                addHandle: function () {
+                    this.colors.push('white');
+                    // console.log(11);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

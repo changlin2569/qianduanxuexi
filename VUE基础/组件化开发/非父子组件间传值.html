@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <jenny-num></jenny-num>
+        <danny-num></danny-num>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        let eventHub = new Vue();
+        Vue.component('jenny-num',{
+            data: function () {
+                return {
+                    num: 9,
+                }
+            },
+            template: `<div>
+                <h1>{{num}}</h1>
+                <button @click="dannyAdd">累加</button>
+                </div>`,
+            methods: {
+                dannyAdd: function () {
+                    eventHub.$emit('addJenny',2);
+                }
+            },
+            mounted: function () {
+                    let that = this;
+                    eventHub.$on('addDanny',function(val) {
+                        that.num += val;
+                    })
+                }
+        });
+        Vue.component('danny-num',{
+            data: function () {
+                return {
+                    num: 9,
+                }
+            },
+            template: `<div>
+                <h1>{{num}}</h1>
+                <button @click="jennyAdd">累加</button>
+                </div>`,
+            methods: {
+                jennyAdd: function () {
+                    eventHub.$emit('addDanny',1);
+                }
+            },
+            mounted: function () {
+                    let that = this;
+                    eventHub.$on('addJenny',function(val) {
+                        that.num += val;
+                    })
+                }
+        });
+        let vue = new Vue({
+            el: '.container',
+            data: {
+
+            },
+        });
+    </script>
+</body>
+</html>
