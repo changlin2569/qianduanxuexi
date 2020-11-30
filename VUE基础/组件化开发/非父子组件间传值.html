@@ -25,11 +25,13 @@
                 </div>`,
             methods: {
                 dannyAdd: function () {
+                    // 触发兄弟组件的监听事件
                     eventHub.$emit('addJenny',2);
                 }
             },
             mounted: function () {
                     let that = this;
+                    // 监听事件
                     eventHub.$on('addDanny',function(val) {
                         that.num += val;
                     })

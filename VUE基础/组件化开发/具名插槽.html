@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+       <named-slot>
+           <h1 slot="header">头部插槽组件信息</h1>
+           <h1 slot="header">头部插槽组件信息</h1>
+           <p>中间匿名插槽</p>
+           <p>中间匿名插槽</p>
+           <h2 slot="footer">底部插槽组件信息</h2>
+
+           <template slot="header">
+                <h1>头头头</h1>
+                <h2>头头头</h2>
+           </template>
+       </named-slot>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        Vue.component('named-slot',{
+            template : `
+            <div>
+                <header>
+                    <slot name="header">头部插槽</slot>
+                </header>
+                <slot>匿名插槽</slot>
+                <footer>
+                    <slot name="footer">底部插槽</slot>    
+                </footer>
+            </div>
+            `
+        })
+        let vue = new Vue({
+            el: '.container',
+            data: {
+
+            },
+        });
+    </script>
+</body>
+</html>
