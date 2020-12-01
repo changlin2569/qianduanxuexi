@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <test-scope :color="color">
+            <template slot-scope="slotProps">
+                <h1 v-if="slotProps.color.id == 2">{{slotProps.color.name}}</h1>
+                <h2 v-else>{{slotProps.color.name}}</h2>
+            </template>
+        </test-scope>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        Vue.component('test-scope',{
+            props: ['color'],
+            template: `
+            <div>
+                <ul>
+                    <li :key="item.id" v-for="item in color">
+                        <slot :color="item"></slot>    
+                    </li>    
+                </ul>
+            </div>
+            `
+        })
+        let vue = new Vue({
+            el: '.container',
+            data: {
+                color: [
+                    {
+                        id: 1,
+                        name: 'blue',
+                    },
+                    {
+                        id: 2,
+                        name: 'green',
+                    },
+                    {
+                        id: 3,
+                        name: 'yellow',
+                    }
+                ],
+            },
+        });
+    </script>
+</body>
+</html>
