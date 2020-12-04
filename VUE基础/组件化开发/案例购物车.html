@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .container,
+        .shopping {
+            width: 300px;
+            height: 500px;
+            margin: 0 auto;
+        }
+
+        .shopping .header {
+            width: 100%;
+            height: 40px;
+            font-size: 20px;
+            line-height: 40px;
+            text-align: center;
+            background-color: skyblue;
+        }
+
+        .container .cart {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+        }
+
+        .cart .goods {
+            display: flex;
+            width: 100%;
+            height: 50px;
+            align-items: center;
+            border-bottom: 1px dashed black;
+            box-sizing: border-box;
+        }
+
+        .cart .goods:last-child {
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="shopping">
+            <div class="header">
+                <span>我的购物车</span>
+            </div>
+            <div class="cart">
+                <div class="goods">
+                    <div class="name">
+                        <span>iPhone12</span>
+                    </div>
+                    <div class="amount">
+                        <span>-</span>
+                        <input type="text">
+                        <span>+</span>
+                    </div>
+                    <div class="remove">
+                        <span>X</span>
+                    </div>
+                </div>
+                <div class="goods">
+                    <div class="name">
+                        <span>iPhone12</span>
+                    </div>
+                    <div class="amount">
+                        <span>-</span>
+                        <input type="text">
+                        <span>+</span>
+                    </div>
+                    <div class="remove">
+                        <span>X</span>
+                    </div>
+                </div>
+                <div class="goods">
+                    <div class="name">
+                        <span>iPhone12</span>
+                    </div>
+                    <div class="amount">
+                        <span>-</span>
+                        <input type="text">
+                        <span>+</span>
+                    </div>
+                    <div class="remove">
+                        <span>X</span>
+                    </div>
+                </div>
+                <div class="goods">
+                    <div class="name">
+                        <span>iPhone12</span>
+                    </div>
+                    <div class="amount">
+                        <span>-</span>
+                        <input type="text">
+                        <span>+</span>
+                    </div>
+                    <div class="remove">
+                        <span>X</span>
+                    </div>
+                </div>
+                <div class="goods">
+                    <div class="name">
+                        <span>iPhone12</span>
+                    </div>
+                    <div class="amount">
+                        <span>-</span>
+                        <input type="text">
+                        <span>+</span>
+                    </div>
+                    <div class="remove">
+                        <span>X</span>
+                    </div>
+                </div>
+                <div class="goods">
+                    <div class="name">
+                        <span>iPhone12</span>
+                    </div>
+                    <div class="amount">
+                        <span>-</span>
+                        <input type="text">
+                        <span>+</span>
+                    </div>
+                    <div class="remove">
+                        <span>X</span>
+                    </div>
+                </div>
+            </div>
+            <div class="total">
+                <div class="money">
+                    <span>总计：16799</span>
+                </div>
+                <div class="account">
+                    结算
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        let vue = new Vue({
+            el: '.container',
+            data: {
+
+            },
+        });
+    </script>
+</body>
+</html>
