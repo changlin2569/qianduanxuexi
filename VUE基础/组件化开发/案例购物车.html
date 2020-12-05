@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,106 +45,225 @@
         .cart .goods:last-child {
             border: none;
         }
+
+        .goods .name {
+            flex: 1;
+        }
+
+        .goods .amount {
+            width: 110px;
+            font-size: 25px;
+        }
+
+        .goods .amount span {
+            display: inline-block;
+            width: 20px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            cursor: pointer;
+            background-color: rgb(204, 201, 201);
+        }
+
+        .goods .amount input {
+            width: 30px;
+            height: 20px;
+        }
+
+        .goods .remove {
+            font-size: 30px;
+            color: red;
+        }
+
+        .goods .remove:hover {
+            background-color: #ffcb3d;
+            cursor: pointer;
+        }
+
+        .total {
+            display: flex;
+            width: 100%;
+            height: 50px;
+            background-color: #ffcb3d;
+        }
+
+        .total .money {
+            flex: 2;
+            line-height: 50px;
+            font-size: 25px;
+            color: red;
+        }
+
+        .total .account {
+            width: 70px;
+            line-height: 50px;
+            text-align: center;
+            background-color: #e8593d;
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="shopping">
+
+
+            <cart></cart>
+
+
+        </div>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        let header = {
+            props: ['uname'],
+            template: `
             <div class="header">
-                <span>我的购物车</span>
+                <span>{{uname}}的购物车</span>
             </div>
+            `
+        };
+        let list = {
+            props: ['goods'],
+            template: `
             <div class="cart">
-                <div class="goods">
-                    <div class="name">
-                        <span>iPhone12</span>
-                    </div>
-                    <div class="amount">
-                        <span>-</span>
-                        <input type="text">
-                        <span>+</span>
-                    </div>
-                    <div class="remove">
-                        <span>X</span>
-                    </div>
-                </div>
-                <div class="goods">
-                    <div class="name">
-                        <span>iPhone12</span>
-                    </div>
-                    <div class="amount">
-                        <span>-</span>
-                        <input type="text">
-                        <span>+</span>
-                    </div>
-                    <div class="remove">
-                        <span>X</span>
+                    <div class="goods" :key="item.id" v-for="item in goods">
+                        <div class="name">
+                            <span>{{item.name}}</span>
+                        </div>
+                        <div class="amount">
+                            <span @click="sub(item.id,$event)">-</span>
+                            <input type="text" :value="item.num" @change="changeHandle(item.id,$event)"/>
+                            <span>+</span>
+                        </div>
+                        <div class="remove" @click="deleteHandle(item.id)">
+                            <span>×</span>
+                        </div>
                     </div>
                 </div>
-                <div class="goods">
-                    <div class="name">
-                        <span>iPhone12</span>
-                    </div>
-                    <div class="amount">
-                        <span>-</span>
-                        <input type="text">
-                        <span>+</span>
-                    </div>
-                    <div class="remove">
-                        <span>X</span>
-                    </div>
-                </div>
-                <div class="goods">
-                    <div class="name">
-                        <span>iPhone12</span>
-                    </div>
-                    <div class="amount">
-                        <span>-</span>
-                        <input type="text">
-                        <span>+</span>
-                    </div>
-                    <div class="remove">
-                        <span>X</span>
-                    </div>
-                </div>
-                <div class="goods">
-                    <div class="name">
-                        <span>iPhone12</span>
-                    </div>
-                    <div class="amount">
-                        <span>-</span>
-                        <input type="text">
-                        <span>+</span>
-                    </div>
-                    <div class="remove">
-                        <span>X</span>
-                    </div>
-                </div>
-                <div class="goods">
-                    <div class="name">
-                        <span>iPhone12</span>
-                    </div>
-                    <div class="amount">
-                        <span>-</span>
-                        <input type="text">
-                        <span>+</span>
-                    </div>
-                    <div class="remove">
-                        <span>X</span>
-                    </div>
-                </div>
-            </div>
+            `,
+            methods: {
+                deleteHandle: function (id) {
+                    // console.log(this);
+                    // console.log(id);
+                    // props传递数据应该是单向的，子组件不要直接子修改父组件的数据
+                    this.$emit("removeHandle", id);
+                },
+                sub: function (id,e) {
+                    // console.log(e);
+                    this.$emit("subHandle",{
+                        id: id,
+                        target: e.target,
+                    });
+                },
+                changeHandle: function (id,e) {
+                    // console.log(e.target.value);
+                    this.$emit('changeHandle',{
+                        id: id,
+                        target: e.target,
+                    });
+                }
+            }
+        };
+        let total = {
+            props: ['goods'],
+            template: `
             <div class="total">
                 <div class="money">
-                    <span>总计：16799</span>
+                    <span>总计：{{addPrice}}</span>
                 </div>
                 <div class="account">
                     结算
                 </div>
             </div>
-        </div>
-    </div>
-    <script src="../vue.js"></script>
-    <script>
+            `,
+            computed: {
+                addPrice: function () {
+                    let cost = 0;
+                    this.goods.forEach(function (good) {
+                        cost += good.price * good.num;
+                    })
+                    return cost;
+                }
+            }
+        };
+        Vue.component('cart', {
+            data: function () {
+                return {
+                    username: '库克',
+                    goods: [{
+                            id: 1,
+                            name: "iPhone12",
+                            price: 6799,
+                            num: 1,
+                        },
+                        {
+                            id: 2,
+                            name: "airpods pro",
+                            price: 1999,
+                            num: 1,
+                        },
+                        {
+                            id: 3,
+                            name: "ipad2020",
+                            price: 2999,
+                            num: 2,
+                        },
+                        {
+                            id: 4,
+                            name: "macbook",
+                            price: 8799,
+                            num: 2,
+                        },
+                        {
+                            id: 5,
+                            name: "ipod",
+                            price: 2799,
+                            num: 1,
+                        }
+                    ]
+                }
+            },
+            template: `
+            <div>
+                <shop-header :uname='username'></shop-header>
+                <shop-cart :goods="goods" @removeHandle="removeHandle($event)" 
+                @subHandle="subHandle($event)" @changeHandle="changeHandle($event)"></shop-cart>
+                <shop-total :goods="goods"></shop-total>
+            </div>
+            `,
+            methods: {
+                removeHandle: function (id) {
+                    // console.log(id);
+                    this.goods.forEach(item => {
+                        if (item.id == id) {
+                            this.goods.splice(id - 1, 1);
+                        }
+                    })
+                },
+                subHandle: function (val) {
+                    // console.log(this);
+                    index = val.id -1;
+                    if(this.goods[index].num == 1) {
+                        return false;
+                    }
+                    this.goods[index].num -= 1;
+                },
+                changeHandle: function (val) {
+                    // console.dir(val);
+                    let index = this.goods.findIndex(item => {
+                        return item.id == val.id;
+                    });
+                    // console.log(index);
+                    this.goods[index].num = val.target.value;
+                }
+            },
+            components: {
+                "shop-header": header,
+                "shop-total": total,
+                "shop-cart": list,
+            }
+        })
         let vue = new Vue({
             el: '.container',
             data: {
@@ -152,4 +272,5 @@
         });
     </script>
 </body>
+
 </html>
