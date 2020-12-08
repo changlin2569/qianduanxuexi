@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function queryData(url) {
+            return p = new Promise(function(resolve, reject) {
+                let xhr = new XMLHttpRequest();
+                xhr.open('get', url);
+                xhr.send();
+                // xhr.onreadystatechange = function() {
+
+                // }
+                xhr.onload = function () {
+                    // console.log(xhr);
+                    resolve(xhr.responseText);
+                }
+            });
+        };
+
+        let p1 = queryData('http://localhost:3000/p1');
+        let p2 = queryData('http://localhost:3000/p2');
+        let p3 = queryData('http://localhost:3000/p3');
+
+        // 并发处理多个异步任务，所有任务完成才返回结果
+        Promise.all([p1, p2, p3]).then(function (data) {
+            console.log(data);
+        });
+        // 只要有一个任务完成就返回结果
+        Promise.race([p1, p2, p3]).then(function (data) {
+            console.log(data);
+        });
+    </script>
+</body>
+</html>

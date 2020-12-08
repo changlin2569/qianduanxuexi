@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function queryData(url) {
+            let p = new Promise(function(resolve, reject) {
+                let xhr = new XMLHttpRequest();
+                xhr.open('get', url);
+                xhr.send();
+                // xhr.onreadystatechange = function() {
+
+                // }
+                xhr.onload = function () {
+                    // console.log(xhr);
+                    resolve(xhr.responseText);
+                }
+            });
+            return p;
+        }
+
+        queryData('http://localhost:3000/data')
+        .then(function (data) {
+            console.log(data);
+            return queryData('http://localhost:3000/data1');
+        })
+        .then(function (data) {
+            console.log(data);
+            return queryData('http://localhost:3000/data2');
+        })
+        .then(function (data) {
+            console.log(data);
+        });
+    </script>
+</body>
+</html>
