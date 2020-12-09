@@ -49,6 +49,21 @@ app.get('/p3',(req,res) => {
         res.send('hello xupt');
     },3000)
 });
+
+app.get('/fetch',(req,res) => {
+    // res.send({
+    //     name: 'fetch',
+    //     age: 36,
+    // });
+    res.json({
+        name: 'fetch',
+        age: 36,
+    });
+});
+
+app.get('/axios',(req,res) => {
+    res.send('hello axios');
+});
 // 监听端口
 app.listen(3000);
 
