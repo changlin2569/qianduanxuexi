@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="js/axios.js"></script>
+    <script>
+        // 第一个请求的结果用作第二个请求的参数   
+        axios.defaults.baseURL = 'http://localhost:3000/';
+        async function queryData(url) {
+            let queryOne = await axios(url);
+            let queryTwo = await axios(`asyncTwo?id=${queryOne.data}`);
+            return queryTwo;
+        }
+        queryData('async').then(function (data) {
+            console.log(data);
+        });
+    </script>
+</body>
+
+</html>

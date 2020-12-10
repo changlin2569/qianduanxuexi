@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="js/axios.js"></script>
+    <script>
+        // get请求参数传递
+        // axios.get('http://localhost:3000/axiosget?id=111').then(data => {
+        //     console.log(data.data);
+        // });
+        // axios.get('http://localhost:3000/axiosget/222').then(data => {
+        //     console.log(data.data);
+        // });
+        // axios.get('http://localhost:3000/axiosget',{
+        //     params: {
+        //         id: '333',
+        //     }
+        // }).then(data => {
+        //     console.log(data.data);
+        // });
+
+        // post
+        axios.post('http://localhost:3000/axiospost',{
+            id: 555,
+            name: 'Test',
+        }).then(data => {
+            console.log(data);
+        });
+
+        let params = new URLSearchParams();
+        params.append('id','666');
+        params.append('name', 'Test');
+        axios.post('http://localhost:3000/axiospost',params).then(data => {
+            console.log(data);
+        })
+    </script>
+</body>
+</html>

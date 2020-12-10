@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="js/axios.js"></script>
+    <script>
+        // 请求拦截器
+        axios.interceptors.request.use(function (config) {
+            // 查看请求地址
+            console.log(config);
+            console.log(config.url);
+            config.headers.token = 'qwertyuiop';
+            return config;
+        },function (err) {
+            console.log(err);
+        });
+        // 响应拦截器
+        axios.interceptors.response.use(function (res) {
+            // res返回的内容与请求返回的一样，是对象
+            // 再这里返回data，请求中就是响应了
+            return res.data;
+        },function (err) {
+            console.log(err);
+        });
+        axios.get('http://localhost:3000/axios').then(data => {
+            // 响应拦截器返回后,直接获得响应信息
+            console.log(data);
+            // console.log(data.data);
+        })
+    </script>
+</body>
+</html>

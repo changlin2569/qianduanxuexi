@@ -13,10 +13,11 @@ const fs = require('fs');
 // 引入url模块
 const url = require('url');
 // const { url } = require('inspector');
+const bodyParser = require('body-parser')
 // 解析url参数
-// app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded());
 // 解析json数据
-// app.use(bodyParser.json());
+app.use(bodyParser.json());
 // 静态资源访问服务功能
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -63,6 +64,26 @@ app.get('/fetch',(req,res) => {
 
 app.get('/axios',(req,res) => {
     res.send('hello axios');
+});
+
+app.get('/axiosget',(req,res) => {
+    res.send(req.query);
+});
+
+app.get('/axiosget/:id',(req,res) => {
+    res.send(req.params);
+});
+
+app.post('/axiospost',(req,res) => {
+    res.send(req.body);
+});
+
+app.get('/async',(req,res) => {
+    res.send('hello world');
+});
+
+app.get('/asyncTwo',(req,res) => {
+    res.send(req.query);
 });
 // 监听端口
 app.listen(3000);
