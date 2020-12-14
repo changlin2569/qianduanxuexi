@@ -85,6 +85,29 @@ app.get('/async',(req,res) => {
 app.get('/asyncTwo',(req,res) => {
     res.send(req.query);
 });
+
+app.get('/list',(req,res) => {
+    res.send([{
+        id: '0',
+        name: '西游记',
+        time: new Date(),
+    },
+    {
+        id: '1',
+        name: '摆渡人',
+        time: new Date(),
+    },
+    {
+        id: '2',
+        name: '云边有个小卖部',
+        time: new Date(),
+    },
+    {
+        id: '3',
+        name: '三体',
+        time: new Date(),
+    }])
+})
 // 监听端口
 app.listen(3000);
 

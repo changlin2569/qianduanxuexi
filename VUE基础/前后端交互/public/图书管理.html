@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            width: 500px;
+            margin: 0 auto;
+        }
+
+        .container .header {
+            width: 100%;
+            font-weight: bold;
+            text-align: center;
+            font-size: 30px;
+        }
+
+        .container .info {
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            border-bottom: 1px dashed black;
+            box-sizing: border-box;
+            background-color: skyblue;
+        }
+
+        .container .bookCount {
+            background-color: skyblue;
+        }
+
+        table {
+            width: 100%;
+            background-color: skyblue;
+        }
+
+        .bookmsg td {
+            /* width: 25%; */
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">图书管理</div>
+        <div class="content">
+            <div class="info">
+                <span>编号：</span>
+                <input type="text" v-model="bookId" v-bind:disabled="flag">
+                <span>名称：</span>
+                <input type="text" v-model="bookName">
+                <button @click="addBook" :disabled="bookFlag">提交</button>
+            </div>
+            <div class="bookCount">
+                <span>图书书目：</span>
+                <span>{{count}}</span>
+            </div>
+            <div class="bookmsg">
+                <table>
+                    <tr class="thead">
+                        <td>编号</td>
+                        <td>名称</td>
+                        <td>时间</td>
+                        <td>操作</td>
+                    </tr>
+                    <tr :key="index" v-for="(item,index) in bookInfo">
+                        <td>{{index}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.time | formatTime}}</td>
+                        <td>
+                            <a v-on:click.prevent="changeBook(index)" href="">修改</a>
+                            <a v-on:click.prevent="removeBook(index)" href="">删除</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="js/vue.js"></script>
+    <script src="js/axios.js"></script>
+    <script>
+        axios.baseURL = 'http://localhost:3000/';
+        let vue = new Vue({
+            el: '.container',
+            data: {
+                bookName: '',
+                bookId: '',
+                flag: false,
+                bookFlag: false,
+                bookInfo: [],
+            },
+            methods: {
+                addBook: function () {
+                    if (this.bookId == '' || this.bookName == '') {
+                        return;
+                    } else if (this.flag == true) {
+                        this.bookInfo.some(item => {
+                            if (item.id == this.bookId) {
+                                item.name = this.bookName;
+                            }
+                        });
+                        this.flag = false;
+                        this.bookId = '';
+                        this.bookName = '';
+                    } else {
+                        let bookobj = {};
+                        bookobj.id = this.bookId;
+                        bookobj.name = this.bookName;
+                        bookobj.time = new Date();
+                        this.bookInfo.push(bookobj);
+                        this.bookName = '',
+                            this.bookId = '';
+                        // console.log(this.bookInfo);
+                    }
+                },
+                changeBook: function (index) {
+                    // console.log(index);
+                    this.bookId = this.bookInfo[index].id;
+                    this.bookName = this.bookInfo[index].name;
+                    this.flag = true;
+                    // console.log(this.flag);
+                },
+                removeBook: function (index) {
+                    this.bookInfo.splice(index, 1);
+                },
+                query: function () {
+                    let that = this;
+                    axios.get('list').then(data => {
+                        console.log(this);
+                        console.log(that);
+                        that.bookInfo = data.data;
+                    })
+                }
+            },
+            filters: {
+                formatTime: function (val) {
+                    // console.log(val);
+                    var val = new Date(val);
+                    // console.log(val);
+                    return `${val.getFullYear()}-${val.getMonth()}-${val.getDate()}`;
+                }
+            },
+            computed: {
+                count: function () {
+                    return this.bookInfo.length;
+                }
+            },
+            watch: {
+                bookName: function (val) {
+                    // 持续输出输入的书名
+                    // console.log(val);
+                    let flag = this.bookInfo.some( item => {
+                        return item.name == val;
+                    });
+                    if (flag == true) {
+                        alert('该书已存在，请不要重复输入');
+                        this.bookFlag = true;
+                    } else {
+                        this.bookFlag = false;
+                    }
+                }
+            },
+            // 页面初始化挖成，模板已经存在，可以填充数据了
+            mounted: function () {
+                this.query();
+            }
+        })
+    </script>
+</body>
+
+</html>
