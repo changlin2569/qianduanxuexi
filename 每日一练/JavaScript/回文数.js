@@ -5,4 +5,4 @@ function isPalind(argue) {
 }
 
 let x = 121;
-console.log(isPalind(x));
+console.log(isPalind(x));  
