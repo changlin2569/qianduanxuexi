@@ -32,6 +32,7 @@ class Deque {
         } else {
             let x = this.items[this.lowestCount];
             delete this.items[this.lowestCount];
+            this.lowestCount++;
             return x;
         }
     }
@@ -42,6 +43,7 @@ class Deque {
         } else {
             let y = this.items[this.count - 1];
             delete this.items[this.count - 1];
+            this.count--;
             return y;
         }
     }
@@ -65,6 +67,29 @@ class Deque {
     }
     // tostring方法
     toString() {
-        
+        if (this.isEmpty()) {
+            return '';
+        } else {
+            let str = '';
+            for (var i = this.lowestCount;i < this.count;i++) {
+                str += `,${this.items[i]}`
+            }
+            return str.substring(1);
+        }
     }
 }
+
+let deque = new Deque();
+console.log(deque.isEmpty());
+deque.addBack('john');
+deque.addBack('jack');
+console.log(deque.toString());
+deque.addBack('danny');
+console.log(deque.toString());
+console.log(deque.isEmpty());
+deque.removeFront();
+console.log(deque.toString());
+deque.removeBack();
+console.log(deque.toString());
+deque.addFront('john');
+console.log(deque.toString());
