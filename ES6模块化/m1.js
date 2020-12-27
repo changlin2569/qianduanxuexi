@@ -11,3 +11,9 @@ export default {
     b,
     test,
 };
+
+export let x = 11;
+export let y = 12;
+export function show() {
+    console.log(13);
+};
