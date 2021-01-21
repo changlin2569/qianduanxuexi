@@ -4,3 +4,10 @@ body {
 body ul {
   font-size: 20px;
 }
+
+#box {
+  width: 200px;
+  height: 200px;
+  background-color: aquamarine;
+  background: url('../images/1.jpg');
+}
