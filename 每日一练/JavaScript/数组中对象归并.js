@@ -16,30 +16,34 @@ let inArr = [
   let outArr = [
     {
         company: 'COM1',
-        custome: ['CUS1', 'CUS2']
+        customer: ['CUS1', 'CUS2']
     },
     {
         company: 'COM2',
-        custome: ['CUS3']
+        customer: ['CUS3']
     }
   ]
 
 function classy(inArr) {
-    let arr = [];
-    for (let i = 0;i < inArr.length - 1;i++) {
-        if (inArr[i].company == inArr[i + 1].company) {
+    let inMap = new Map();
+    let item;
+    let outArr = [];
+    for (let i = 0; i < inArr.length; i++) {
+        if (inMap.has(inArr[i].company)) {
+            item = inMap.get(inArr[i].company);
+            item = item + ',' + inArr[i].customer;
+            inMap.set(inArr[i].company, item);
             continue;
         }
-        for (let j = 0;j < inArr.length;j++) {
-            if (inArr[i].company == inArr[j].company) {
-                arr.push(inArr[j].customer);
-            }
-        }
-        inArr[i].customer = arr;
-        arr = [];
+        inMap.set(inArr[i].company, inArr[i].customer);
     }
-    return inArr;
+    for (let i of inMap) {
+        let obj = {
+            [i[0]]: i[1]
+        }
+        outArr.push(obj);
+    }
+    return outArr;
 }
 
 console.log(classy(inArr));
-// console.log(inArr[1].company);
