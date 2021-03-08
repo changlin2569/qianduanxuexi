@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="height: 2000px;">
+    <script>
+        let body = document.body;
+
+        function fn(cb, delay) {
+            var timer = null;
+            return function () {
+                // console.log(arguments);
+                const context = this;
+                const args = arguments;
+                clearTimeout(timer);
+                timer = setTimeout(function () {
+                    cb.apply(context, args);
+                }, delay);
+            }
+        }
+        body.onscroll = fn(function(e){
+            console.log(e);
+            console.log(document.documentElement.scrollTop);
+        }, 1000)
+    </script>
+</body>
+
+</html>
