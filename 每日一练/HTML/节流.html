@@ -9,7 +9,7 @@
 <body style="height: 3000px;">
     <script>
         let body = document.body;
-        function throttle(cb, delay) {
+        function throttle1(cb, delay) {
             let prev = Date.now();
             return function () {
                 const context = this;
@@ -20,12 +20,23 @@
                 }
             }
         }
-        // body.onscroll = function() {
-        //     console.log(document.documentElement.scrollTop);
-        // }
-        body.onscroll = throttle(function() {
+
+        function throttle2(cb, delay) {
+            let timer = null;
+            return function () {
+                const context = this;
+                const options = arguments;
+                if (!timer) {
+                    timer = setTimeout(function () {
+                        cb.apply(context, arguments);
+                        timer = null;
+                    }, delay);
+                }
+            }
+        }
+        body.onscroll = throttle2(function() {
             console.log(document.documentElement.scrollTop);
-        }, 500)
+        }, 1000)
     </script>
 </body>
 </html>
