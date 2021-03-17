@@ -18,6 +18,37 @@ function deepClone(target) {
     }
 }
 
+function deepClone(target) {
+    if (typeof target === 'object' && target !== null) {
+        let res = Array.isArray(target) ? [] : {};
+        for (let key in target) {
+            res[key] = deepClone(target[key]);
+        }
+        return res;
+    }
+    return target;
+}
+
+function deepClone(target) {
+    let map = new Map();
+    let result = clone(target, map);
+    return result;
+    function clone(target, map) {
+        if (typeof target === 'object' && target !== null) {
+            let res = Array.isArray(target) ? [] : {};
+            if (map.has(target)) {
+                return target;
+            }
+            // 考虑循环引用的情况
+            map.set(target);
+            for (let key in target) {
+                res[key] = clone(target[key], map);
+            }
+            return res;
+        }
+        return target;
+    }
+}
 let obj1 = {
     name : 'cl',
     age: 20,
@@ -30,7 +61,7 @@ let obj1 = {
 // obj1.obj = obj1
 let obj2 = deepClone(obj1);
 
+obj2.arr = [];
 console.log(obj1);
 console.log(obj2);
-// obj2.arr = [];
-// console.log(obj2);
+// console.log(obj2.obj);
