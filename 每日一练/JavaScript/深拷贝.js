@@ -58,10 +58,10 @@ let obj1 = {
     },
     arr: [1,2,3,4,5]
 };
-// obj1.obj = obj1
+obj1.obj = obj1
 let obj2 = deepClone(obj1);
 
-obj2.arr = [];
+obj2.obj = {};
 console.log(obj1);
 console.log(obj2);
 // console.log(obj2.obj);
