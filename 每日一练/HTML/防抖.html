@@ -1,34 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-
-<body style="height: 2000px;">
-    <script>
-        let body = document.body;
-
-        function fn(cb, delay) {
-            var timer = null;
-            return function () {
-                // console.log(arguments);
-                const context = this;
-                const args = arguments;
-                clearTimeout(timer);
-                timer = setTimeout(function () {
-                    cb.apply(context, args);
-                }, delay);
-            }
+    <style>
+        .container {
+            width: 100%;
+            height: 200px;
+            background-color: pink;
+            text-align: center;
+            line-height: 200px;
+            font-size: 36px;
         }
-        body.onscroll = fn(function(e){
+    </style>
+</head>
+<body style="background-color: black;">
+    <div class="container"></div>
+    <button>取消防抖</button>
+    <script src="../JavaScript/debounce.js"></script>
+    <script>
+        let container = document.querySelector('.container');
+        let btn = document.querySelector('button');
+        let count = 0;
+        let fn = function(e) {
             console.log(e);
-            console.log(document.documentElement.scrollTop);
-        }, 1000)
+            console.log(this);
+            container.innerHTML = `${count++}`;
+        }
+        let debounced = debounce(fn,3000);
+        container.addEventListener('mousemove', debounced);
+        btn.addEventListener('click', debounced.cancel);
     </script>
 </body>
-
 </html>
