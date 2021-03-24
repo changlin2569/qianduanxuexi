@@ -5,38 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        div {
+            width: 100%;
+            height: 200px;
+            text-align: center;
+            line-height: 200px;
+            font-size: 36px;
+            background-color: pink;
+        }
+    </style>
 </head>
-<body style="height: 3000px;">
+<body style="background-color: black;">
+    <div></div>
+    <script src="../JavaScript/throttle.js"></script>
     <script>
-        let body = document.body;
-        function throttle1(cb, delay) {
-            let prev = Date.now();
-            return function () {
-                const context = this;
-                const options = arguments;
-                if (Date.now() - prev >= delay) {
-                    prev = Date.now();
-                    cb.apply(context, arguments)
-                }
-            }
+        let div = document.querySelector('div');
+        let count = 0;
+        let fn = function(e) {
+            console.log(e);
+            console.log(this);
+            div.innerHTML = `${count++}`;
         }
-
-        function throttle2(cb, delay) {
-            let timer = null;
-            return function () {
-                const context = this;
-                const options = arguments;
-                if (!timer) {
-                    timer = setTimeout(function () {
-                        cb.apply(context, arguments);
-                        timer = null;
-                    }, delay);
-                }
-            }
-        }
-        body.onscroll = throttle2(function() {
-            console.log(document.documentElement.scrollTop);
-        }, 1000)
+        div.addEventListener('mousemove', throttle(fn, 1000, {
+            leading: false,
+            trailing: true
+        }));
+        // div.addEventListener('mousemove', fn);
     </script>
 </body>
 </html>
