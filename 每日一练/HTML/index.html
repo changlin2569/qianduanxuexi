@@ -17,8 +17,10 @@
         </ul>
         <h3>{{msg}}</h3>
         <div v-text="msg"></div>
+        <div v-text="person.school"></div>
         <div v-html="htmlStr"></div>
         <input type="text" v-model="msg">
+        <button v-on:click="clickHandler">点击按钮</button>
     </div>
     <!-- <script src="../../vue.js"></script> -->
     <script src="../JavaScript/fakeVue.js"></script>
@@ -33,7 +35,14 @@
                 },
                 msg: '学习vue原理',
                 htmlStr: '<div>我是htmlStr</div>'
-            }
+            },
+            methods: {
+                    clickHandler: function (e) {
+                        console.log('clickHandler start');
+                        console.log(this);
+                        console.log(e);
+                    }
+                }
         });
     </script>
 </body>
