@@ -62,6 +62,7 @@ class fakeVue {
         // 判断传入的el是否有值
         if (this.$el) {
             // 劫持监听所有属性 observer
+            new Observer(this.$data)
             // 解析执行  compile
             new Compile(this.$el, this);
         }
@@ -131,5 +132,40 @@ class Compile {
     // 判断是否为vue属性
     isDirective(name) {
         return name.startsWith('v-');
+    }
+}
+
+// 劫持监听所有属性 observer
+class Observer {
+    constructor(data) {
+        if (Object.prototype.toString.call(data) == '[object Object]') {
+            this.observer(data);
+        }
+    }
+    observer(data) {
+        Object.keys(data).forEach(key => {
+            this.defineReactive(key, data[key], data);
+        })
+    }
+    defineReactive(key, value, data) {
+        if (Object.prototype.toString.call(value) === '[object Object]') {
+            this.observer(value);
+        }
+        Object.defineProperty(data, key, {
+            enumerable: true,
+            configurable: true,
+            get() {
+                return value;
+            },
+            set: (newValue) => {
+                // 如果为一个新对象赋值，再次劫持监听此新对象
+                if (Object.prototype.toString.call(value) === '[object Object]') {
+                    this.observer(newValue)
+                }
+                if (value !== newValue) {
+                    value = newValue;
+                }
+            }
+        });
     }
 }
