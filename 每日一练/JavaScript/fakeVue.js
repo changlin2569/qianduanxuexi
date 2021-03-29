@@ -10,6 +10,20 @@ const compileUtil = {
             return prev;
         }, data);
     },
+    setNewValue(vm, attrValueArr, newValue) {
+        return attrValueArr.split('.').reduce((prev, item, index) => {
+            if (index === attrValueArr.split('.').length - 1) {
+                prev[item] = newValue;
+            }
+            return prev[item];
+        }, vm.$data);
+
+    },
+    getContentValue(attrValue, vm) {
+        return attrValue.replace(/\{\{(.+?)\}\}/g, (...args) => {
+            return this.getDataValue(args[1], vm);
+        });
+    },
     text(node, value, vm) {
         // let current = data;
         // valueArr.forEach(item => {
@@ -19,23 +33,39 @@ const compileUtil = {
         let current;
         if (/\{\{(.+?)\}\}/.test(value)) {
             current = value.replace(/\{\{(.+?)\}\}/g, (...args) => {
+                new Watch(args[1], vm, () => {
+                    this.Updater.updateText(node, this.getContentValue(value, vm));
+                });
                 return this.getDataValue(args[1], vm);
             });
         } else {
             current = this.getDataValue(value, vm);
             // console.log(current);
             // node.innerHTML = current;
+            new Watch(value, vm, (newValue) => {
+                this.Updater.updateText(node, newValue);
+            });
         }
         this.Updater.updateText(node, current);
     },
     html(node, value, vm) {
         const current = this.getDataValue(value, vm);
         // node.innerHTML = current;
+        new Watch(value, vm, (newValue) => {
+            this.Updater.updateHtml(node, newValue);
+        });
         this.Updater.updateHtml(node, current);
     },
     model(node, value, vm) {
         const current = this.getDataValue(value, vm);
         // node.value = current;
+        new Watch(value, vm, (newValue) => {
+            this.Updater.updateModel(node, newValue);
+        });
+        // 实现双向绑定
+        node.addEventListener('input', (e) => {
+            this.setNewValue(vm, value, e.target.value);
+        })
         this.Updater.updateModel(node, current)
     },
     on(node, value, vm, eventName) {
@@ -43,7 +73,8 @@ const compileUtil = {
     },
     Updater: {
         updateText(node, current) {
-            node.nodeValue = current;
+            // console.log(node);
+            node.textContent = current;
         },
         updateHtml(node, current) {
             node.innerHTML = current;
@@ -65,6 +96,20 @@ class fakeVue {
             new Observer(this.$data)
             // 解析执行  compile
             new Compile(this.$el, this);
+            // 代理 proxy 实现this.[xxx]访问this.$data[xxx]
+            this.dataProxy(this.$data);
+        }
+    }
+    dataProxy(data) {
+        for (const key in data) {
+            Object.defineProperty(this, key, {
+                get() {
+                    return data[key];
+                },
+                set(value) {
+                    data[key] = value;
+                }
+            })
         }
     }
 }
@@ -151,10 +196,13 @@ class Observer {
         if (Object.prototype.toString.call(value) === '[object Object]') {
             this.observer(value);
         }
+        const dep = new Dep();
         Object.defineProperty(data, key, {
             enumerable: true,
             configurable: true,
             get() {
+                // 当dep中target有值时猜添加
+                Dep.target && dep.addWhatch(Dep.target)
                 return value;
             },
             set: (newValue) => {
@@ -165,7 +213,52 @@ class Observer {
                 if (value !== newValue) {
                     value = newValue;
                 }
+                dep.notify();
             }
         });
+    }
+}
+
+// 订阅者
+class Watch {
+    constructor(attrValue, vm, callback) {
+        this.attrValue = attrValue;
+        this.vm = vm;
+        this.callback = callback;
+        this.oldValue = this.getOldValue();
+    }
+    getOldValue() {
+        Dep.target = this;
+        const oldValue = compileUtil.getDataValue(this.attrValue, this.vm);
+        Dep.target = null;
+        return oldValue;
+    }
+    getNewValue() {
+        const newValue = compileUtil.getDataValue(this.attrValue, this.vm);
+        return newValue;
+    }
+    // 更新
+    update() {
+        const newValue = this.getNewValue();
+        if (newValue !== this.oldValue) {
+            this.callback(newValue);
+        }
+    }
+}
+
+// 存储订阅者
+class Dep {
+    constructor() {
+        this.whatchers = [];
+    }
+    addWhatch(whatcher) {
+        this.whatchers.push(whatcher);
+    }
+    // 数据变化时通知订阅者更新
+    notify() {
+        console.log(this.whatchers);
+        this.whatchers.forEach(item => {
+            item?.update();
+        })
     }
 }

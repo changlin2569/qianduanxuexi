@@ -6,7 +6,6 @@ function isValid(s) {
         if (sArr[i] === '(' || sArr[i] === '[' || sArr[i] === '{') {
             stack.push(sArr[i]);
         } else {
-            index++;
             switch(sArr[i]) {
                 case ')': 
                     flag = stack.pop() === '(';
