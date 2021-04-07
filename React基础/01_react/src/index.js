@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Hello from './Hello.js';
+import LifeCycle from './LifeCycle'
 
 // let person = {
 //     name: 'cl',
@@ -38,4 +39,5 @@ function Welcome(props) {
 //     }
 // }
 
-ReactDOM.render(<Hello name="cl" />, document.querySelector('#root'));
+// ReactDOM.render(<Hello name="cl" />, document.querySelector('#root'));
+ReactDOM.render(<LifeCycle />, document.querySelector('#root'));
