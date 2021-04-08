@@ -1,8 +1,10 @@
 // 项目的入口文件
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ControlInput from './ControlInput.js';
 import Hello from './Hello.js';
 import LifeCycle from './LifeCycle'
+import NotControlInput from './NotControlInput.js';
 
 // let person = {
 //     name: 'cl',
@@ -40,4 +42,6 @@ function Welcome(props) {
 // }
 
 // ReactDOM.render(<Hello name="cl" />, document.querySelector('#root'));
-ReactDOM.render(<LifeCycle />, document.querySelector('#root'));
+// ReactDOM.render(<LifeCycle />, document.querySelector('#root'));
+// ReactDOM.render(<ControlInput />, document.querySelector('#root'));
+ReactDOM.render(<NotControlInput />, document.querySelector('#root'));
