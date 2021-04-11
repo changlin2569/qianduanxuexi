@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ControlInput from './ControlInput.js';
+import Form from './Form.js';
 import Hello from './Hello.js';
 import LifeCycle from './LifeCycle'
 import NotControlInput from './NotControlInput.js';
@@ -44,4 +45,5 @@ function Welcome(props) {
 // ReactDOM.render(<Hello name="cl" />, document.querySelector('#root'));
 // ReactDOM.render(<LifeCycle />, document.querySelector('#root'));
 // ReactDOM.render(<ControlInput />, document.querySelector('#root'));
-ReactDOM.render(<NotControlInput />, document.querySelector('#root'));
+// ReactDOM.render(<NotControlInput />, document.querySelector('#root'));
+ReactDOM.render(<Form />, document.querySelector('#root'));
