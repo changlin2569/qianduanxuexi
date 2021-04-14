@@ -16,7 +16,7 @@ let obj: {
 
 // 类
 class Person {}
-let person: Person = new Person
+// let person: Person = new Person
 
 // 函数  必须是函数且返回值为string类型
 let bar: () => string = () => 'hello bar'
