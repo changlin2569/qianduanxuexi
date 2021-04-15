@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./EventEmitter.js"></script>
+    <script>
+        function handleOne(a, b, c) {
+            console.log('第一个监听函数', a, b, c)
+        }
+
+        function handleSecond(a, b, c) {
+            console.log('第二个监听函数', a, b, c)
+        }
+
+        function handleThird(a, b, c) {
+            console.log('第三个监听函数', a, b, c)
+        }
+
+        let emitter = new EventEmitter();
+        emitter.on("demo", handleOne)
+            .once("demo", handleSecond)
+            .on("demo", handleThird);
+
+        emitter.emit('demo', [1, 2, 3]);
+        // => 第一个监听函数 1 2 3
+        // => 第二个监听函数 1 2 3
+        // => 第三个监听函数 1 2 3
+
+        emitter.off('demo', handleThird);
+        emitter.emit('demo', [1, 2, 3]);
+        // => 第一个监听函数 1 2 3
+
+        emitter.allOff();
+        emitter.emit('demo', [1, 2, 3]);
+    </script>
+</body>
+
+</html>
