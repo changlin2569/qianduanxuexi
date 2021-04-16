@@ -24,6 +24,8 @@
         }
 
         let emitter = new EventEmitter();
+
+        // emitter.once("demo", handleSecond)
         emitter.on("demo", handleOne)
             .once("demo", handleSecond)
             .on("demo", handleThird);
@@ -36,7 +38,6 @@
         emitter.off('demo', handleThird);
         emitter.emit('demo', [1, 2, 3]);
         // => 第一个监听函数 1 2 3
-
         emitter.allOff();
         emitter.emit('demo', [1, 2, 3]);
     </script>
