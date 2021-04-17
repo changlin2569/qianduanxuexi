@@ -1,16 +1,27 @@
-(function () {
-    ProgressIndicator = function (color = {
-        color: "#e74c3c"
-    }) {
-        this.barStyle = color;
-        this.el = document.querySelector('body');
+(function() {
+    var _this = (typeof window === "object" && window) || (typeof global === "object" && global);
+
+
+    let Util = {
+        assign: function(target) {
+            let length = arguments.length;
+            for (let i = 0; i < length; i++) {
+                for (let key in arguments[i]) {
+                    if (arguments[i].hasOwnProperty(key)) {
+                        target[key] = arguments[i][key];
+                    }
+                }
+            }
+            return target;
+        },
+        isListener: function() {
+            
+        }
     }
 
-    ProgressIndicator.prototype.on = function(event) {
+    ProgressIndicator = function(options) {
 
     }
 
-    ProgressIndicator.prototype.once = function(event) {
-
-    }
+    _this.ProgressIndicator = ProgressIndicator;
 })()
