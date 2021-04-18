@@ -15,9 +15,14 @@
 </head>
 
 <body style="height: 2000px;">
-    <script src="./ProgressIndicator.js"></script>
+    <!-- <script src="./ProgressIndicator.js"></script> -->
     <script>
-        let progressBar = new ProgressIndicator();
+        // let progressBar = new ProgressIndicator();
+        document.body.onscroll = function() {
+            console.log(document.documentElement.scrollTop);
+            console.log(document.body.scrollTop);
+            console.log(window.pageYOffset + 'wwwwwwwww');
+        }
     </script>
 </body>
 
