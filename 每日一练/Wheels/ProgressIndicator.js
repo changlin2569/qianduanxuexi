@@ -23,11 +23,11 @@
             }
             return false;
         },
-        indexOf: function(eventName, event) {
+        indexOf: function(eventArr, event) {
             let _index = -1;
             let current = typeof event === 'function' ? event : event.listener;
-            for (let i = 0; i < this.events[eventName].length; i++) {
-                if (this.events[eventName][i].listener === current) {
+            for (let i = 0; i < eventArr.length; i++) {
+                if (eventArr[i].listener === current) {
                     _index = i;
                     break;
                 }
@@ -65,11 +65,12 @@
     ProgressIndicator.prototype.on = function(eventName, event) {
         if (!eventName || !event) {
             return
-        } else if (Util.isListener(event)) {
-            throw new Error('event must be a function');
-        }
+        } 
+        // else if (!Util.isListener(event)) {
+        //     throw new Error('event must be a function');
+        // }
         this.events[eventName] = this.events[eventName] || [];
-        if (!~Util.indexOf(eventName, event)) {
+        if (!~Util.indexOf(this.events[eventName], event)) {
             event.once ? this.events[eventName].push(event) : this.events[eventName].push({
                 listener: event,
                 once: false
@@ -82,7 +83,7 @@
     ProgressIndicator.prototype.once = function(eventName, event) {
         if (!eventName || !event) {
             return
-        } else if (Util.isListener(event)) {
+        } else if (!Util.isListener(event)) {
             throw new Error('event must be a function');
         }
         return this.on(eventName, {
@@ -93,7 +94,7 @@
 
     ProgressIndicator.prototype.emit = function(eventName, args) {
         if (!this.events[eventName]) {
-            throw new Error('EventName is not defined');
+            return new Error('EventName is not defined');
         }
         let eventArr = this.events[eventName];
         for (let i = 0;i < eventArr.length;i++) {
@@ -107,17 +108,49 @@
     }
 
     ProgressIndicator.prototype.createProgress = function() {
-        let div = document.createElement('div');
-        div.className = 'progress-indicator';
-        div.style.position = 'fixed';
-        div.style.top = '0';
-        div.style.left = '0';
-        div.style.height = '3px';
-        div.style.backgroundColor = this.options.color;
-        document.body.appendChild(div);
+        this.div = document.createElement('div');
+        this.div.className = 'progress-indicator';
+        this.div.style.position = 'fixed';
+        this.div.style.top = '0';
+        this.div.style.left = '0';
+        this.div.style.height = '3px';
+        this.div.style.backgroundColor = this.options.color;
+        document.body.appendChild(this.div);
     }
 
-    ProgressIndicator.prototype.get
+    ProgressIndicator.prototype.getDiffHeight = function() {
+        // 文档高度
+        this.allHeight = Math.max(document.body.clientHeight, document.documentElement.scrollHeight);
+        // 视口高度
+        this.viewHeight = Util.getViewHeight();
+        // 被卷去的距离
+        this.scrollHeight = Util.getScrollHeight();
+        // 差值
+        this.diffHeight = this.allHeight - this.viewHeight;
+        return this.scrollHeight / this.diffHeight
+    }
+
+    ProgressIndicator.prototype.setWidth = function(width) {
+        this.div.style.width = width * 100 + '%';
+    }
+
+    ProgressIndicator.prototype.bindScroll = function() {
+        let _this = this;
+        window.addEventListener('scroll', function() {
+            let current = _this.getDiffHeight();
+            _this.setWidth(current);
+            if (current === 1) {
+                _this.emit('end');
+            }
+        })
+    }
+
+    ProgressIndicator.prototype.init = function() {
+        this.createProgress();
+        let prev = this.getDiffHeight();
+        this.setWidth(prev);
+        this.bindScroll();
+    }
 
     _this.ProgressIndicator = ProgressIndicator;
 })()

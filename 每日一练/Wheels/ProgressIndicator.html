@@ -15,14 +15,14 @@
 </head>
 
 <body style="height: 2000px;">
-    <!-- <script src="./ProgressIndicator.js"></script> -->
+    <script src="./ProgressIndicator.js"></script>
     <script>
-        // let progressBar = new ProgressIndicator();
-        document.body.onscroll = function() {
-            console.log(document.documentElement.scrollTop);
-            console.log(document.body.scrollTop);
-            console.log(window.pageYOffset + 'wwwwwwwww');
-        }
+        let progressBar = new ProgressIndicator({
+            color: '#181a1b'
+        });
+        progressBar.once("end", function () {
+            alert('恭喜您已经阅读完毕')
+        })
     </script>
 </body>
 
