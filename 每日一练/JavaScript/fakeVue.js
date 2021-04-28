@@ -226,6 +226,7 @@ class Watch {
         this.vm = vm;
         this.callback = callback;
         this.oldValue = this.getOldValue();
+        console.log(this);
     }
     getOldValue() {
         Dep.target = this;
