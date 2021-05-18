@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sticky</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            height: 2000px;
+        }
+
+        .header-bar {
+            width: 100px;
+            height: 300px;
+            line-height: 300px;
+            color: #fff;
+            background-color: aquamarine;
+        }
+
+        #sticky {
+            max-width: 980px;
+            height: 100px;
+            margin: 0 auto;
+            line-height: 100px;
+            font-size: 26px;
+            color: #fff;
+            background-color: lightblue;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-bar">Hello Sticky</div>
+    <div id="sticky">I am a sticky</div>
+    <script src="./sticky.js"></script>
+    <script>
+        let sticky = new Sticky('#sticky', {
+            offset: 300
+        });
+
+        sticky.on('onStick', function() {
+            console.log(this);
+            console.log(1);
+        })
+
+        sticky.on('onDetach', function() {
+            console.log(2);
+        })
+    </script>
+</body>
+</html>
