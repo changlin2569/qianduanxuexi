@@ -1,14 +1,34 @@
 Function.prototype.fakeCall = function (context) {
-    if (context === null && context === undefined) {
-        context = window;
-    } else {
-        context = Object(context);
+    if (typeof this !== 'function') {
+        return
     }
-    context.f = this;
-    const args = [...arguments].slice(1);
-    const result = context.f(...args);
-    delete context.f;
-    return result;
+    // 检测是否为严格模式
+    const isStrict = (function () {
+        return this === undefined
+    }())
+    const args = [].slice.call(arguments, 1);
+    const fn = Symbol('fn');
+    if (!isStrict) {
+        const type = typeof context
+        if (Object.prototype.toString.call(context) === '[object Null]' || type === 'undefined') {
+            context = (function () {
+                return this
+            }())
+        } else if (type === 'number') {
+            context = Number(context)
+        } else if (type === 'boolean') {
+            context = Boolean(context)
+        } else if (type === 'string') {
+            context = String(context)
+        }
+    }
+    if (Object.prototype.toString.call(context) === '[object Null]' || typeof context === 'undefined') {
+        return this(...args)
+    }
+    context[fn] = this;
+    const result = context[fn](...args)
+    delete context[fn]
+    return result
 }
 
 var obj = {
@@ -19,5 +39,7 @@ var color = 'red';
 function logColor() {
     console.log(this.color);
 }
+
+logColor.call(null);
 
 logColor.fakeCall();
