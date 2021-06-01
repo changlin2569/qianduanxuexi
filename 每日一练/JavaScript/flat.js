@@ -43,6 +43,9 @@ function flat3(arr, deep = 1) {
 }
 
 Array.prototype.fakeFlat = function (depth = 1) {
+    if (!Array.isArray(this)) {
+        return
+    }
     return this.reduce((prev, cur) => {
         if (Array.isArray(cur) && depth > 0) {
             prev.push(...cur.fakeFlat(depth - 1));
