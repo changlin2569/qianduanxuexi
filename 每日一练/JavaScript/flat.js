@@ -42,4 +42,15 @@ function flat3(arr, deep = 1) {
     return result;
 }
 
+Array.prototype.fakeFlat = function (depth = 1) {
+    return this.reduce((prev, cur) => {
+        if (Array.isArray(cur) && depth > 0) {
+            prev.push(...cur.fakeFlat(depth - 1));
+        } else {
+            prev.push(cur);
+        }
+        return prev;
+    }, [])
+}
+
 console.log(flat3(arr, Infinity));
