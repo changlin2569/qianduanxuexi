@@ -10,16 +10,17 @@ Function.prototype.fakeCall = function (context) {
     const fn = Symbol('fn');
     if (!isStrict) {
         const type = typeof context
-        if (Object.prototype.toString.call(context) === '[object Null]' || type === 'undefined') {
-            context = (function () {
-                return this
-            }())
-        } else if (type === 'number') {
-            context = Number(context)
-        } else if (type === 'boolean') {
-            context = Boolean(context)
-        } else if (type === 'string') {
-            context = String(context)
+        switch (type) {
+            case 'object':
+                break;
+            case 'string':
+                context = String(context);
+                break;
+            case 'number':
+                context = Number(context);
+                break;
+            case 'boolean':
+                context = Boolean(context);
         }
     }
     if (Object.prototype.toString.call(context) === '[object Null]' || typeof context === 'undefined') {
