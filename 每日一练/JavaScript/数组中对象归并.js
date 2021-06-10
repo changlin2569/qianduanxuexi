@@ -46,4 +46,30 @@ function classy(inArr) {
     return outArr;
 }
 
+
+// ----------------------------------------------------------------------------
+function classyPlus(arr) {
+    if (!Array.isArray(arr) || !arr.length) {
+        return
+    }
+    const map = new Map();
+    const res = [];
+    for (let i = 0, len = arr.length; i < len; i++) {
+        if (map.has(arr[i].company)) {
+            let cur = map.get(arr[i].company);
+            if (!Array.isArray(cur.customer)) {
+                let res = [];
+                res.push(cur.customer, arr[i].customer);
+                cur.customer = res;
+            } else {
+                cur.customer.push(arr[i].customer);
+            }
+        } else {
+            map.set(arr[i].company, arr[i]);
+            res.push(arr[i])
+        }
+    }
+    return res
+}
+
 console.log(classy(inArr));
