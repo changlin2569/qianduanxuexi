@@ -10,30 +10,28 @@
 
 <body>
     <script>
-        const repeatFunc = repeat(console.log, 4, 1000);
+        class App {
+            name = [1, 2, 3]
 
+            foo = function () {
+                // console.log(this);
+                console.log(1);
+            }
 
-        repeatFunc("helloworld");
-
-        // 每3秒打印一个helloworld，总计执行4次
-
-        function repeat(fn, count, timeout) {
-            let temp = 0
-            let timer = null
-            return function _repeat(...args) {
-                timer = setTimeout(() => {
-                    console.log(temp)
-                    console.log(timer);
-                    if (temp >= count) {
-                        console.log(timer);
-                        clearTimeout(timer)
-                    }
-                    fn.apply(null, args)
-                    temp++
-                    _repeat()
-                }, timeout)
+            bar() {
+                // console.log(2);
+                this.name.push(4)
+                // console.log(this);
             }
         }
+
+        const app = new App();
+        const app1 = new App();
+        // console.log(app);
+        app.bar();
+        // app.bar();
+        console.log(app);
+        console.log(app1);
     </script>
 </body>
 
