@@ -5,6 +5,12 @@ function bucketSort(arr, bucketSize = 5) {
     const [maxVal, minVal] = getExtremum(arr)
     const bucketNum = Math.floor((maxVal - minVal) / bucketSize) + 1
     const bucket = Array.from(Array(bucketNum), () => [])
+    for (let i = 0, len = arr.length; i < len; i++) {
+        const index = Math.floor((arr[i] - minVal) / bucketSize)
+        bucket[index].push(arr[i])
+    }
+    bucket.forEach(item => item.sort((x, y) => x - y))
+    return bucket.flat()
 }
 
 function getExtremum(arr) {
@@ -17,3 +23,5 @@ function getExtremum(arr) {
 }
 
 const arr = [6, 3, 8, 4, 0, 1, 2, 7, 12, 16]
+
+bucketSort(arr)
