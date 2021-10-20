@@ -60,19 +60,24 @@ export function createDOM(fiber) {
 let nextUnitOfWork = null
 // DOM修改记录
 let wipRoot = null
+// 上次提交到 DOM 节点的 fiber树
+let currentRoot = null
 
 export function render(element, container) {
     wipRoot = {
         dom: container,
         props: {
             children: [element],
-        }
+        },
+        // 对于旧 fiber 节点的引用
+        alternate: currentRoot,
     }
     nextUnitOfWork = wipRoot
 }
 
 export function commitRoot() {
-    commitWork(wipRoot)
+    commitWork(wipRoot.child)
+    currentRoot = wipRoot
     wipRoot = null
 }
 
@@ -80,7 +85,7 @@ export function commitWork(fiber) {
     if (!fiber) {
         return
     }
-    const parentDom = fiber.parent
+    const parentDom = fiber.parent.dom
     parentDom.appendChild(fiber.dom)
     commitWork(fiber.child)
     commitWork(fiber.sibling)
@@ -95,7 +100,7 @@ export function workLoop(deadline) {
         // 判断是否还有时间执行耗时任务
         shouldYield = deadline.timeRemaining() < 1
     }
-    // 完成workInProgressRoot的所有任务,将变更提交到DOM上
+    // 完成workInProgressRoot的所有任务,将变更提交到 DOM上
     if (!nextUnitOfWork && wipRoot) {
         commitRoot()
     }
@@ -118,27 +123,7 @@ export function preformUnitOfWork(fiber) {
 
     // 为每个子节点创建对应的 fiber 节点
     const children = fiber.props.children
-    let index = 0
-    let prevSibling = null
-    while (index < children.length) {
-        const child = children[index]
-
-        const newFiber = {
-            type: child.type,
-            parent: fiber,
-            props: child.props,
-            dom: null,
-        }
-        // 判断是否是第一个 fiber 来设置父 fiber 的child
-        if (!index) {
-            fiber.child = newFiber
-        } else {
-            prevSibling.sibling = newFiber
-        }
-
-        prevSibling = newFiber
-        index++
-    }
+    reconcileChildren(fiber, children)
 
     // 返回下一个任务单元 (fiber)
     if (fiber.children) {
@@ -151,6 +136,30 @@ export function preformUnitOfWork(fiber) {
             }
             nextFiber = nextFiber.parent
         }
+    }
+}
+
+export function reconcileChildren(wipFiber, children) {
+    let index = 0
+    let prevSibling = null
+    while (index < children.length) {
+        const child = children[index]
+
+        const newFiber = {
+            type: child.type,
+            parent: wipFiber,
+            props: child.props,
+            dom: null,
+        }
+        // 判断是否是第一个 fiber 来设置父 fiber 的child
+        if (!index) {
+            wipFiber.child = newFiber
+        } else {
+            prevSibling.sibling = newFiber
+        }
+
+        prevSibling = newFiber
+        index++
     }
 }
 
