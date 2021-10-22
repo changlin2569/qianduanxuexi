@@ -43,15 +43,16 @@ export function creatTextElement(text) {
 
 // 利用feiber创建DOM节点
 export function createDOM(fiber) {
-    const { type, props, props: { children } } = fiber
+    const { type, props } = fiber
     // 根据 type 值创建节点，需特殊处理文本值情况
     const dom = type === 'TEXT_ELEMENT' ? document.createTextNode('') : document.createElement(type)
     // 添加 props 中的其他属性值
-    Object.keys(props)
-        .filter(prop => prop !== 'children')
-        .forEach(prop => {
-            dom[prop] = props[prop];
-        })
+    updateDOM(dom, {}, props)
+    // Object.keys(props)
+    //     .filter(prop => prop !== 'children')
+    //     .forEach(prop => {
+    //         dom[prop] = props[prop];
+    //     })
     // 返回创建好的DOM节点
     return dom
 }
@@ -62,6 +63,8 @@ let nextUnitOfWork = null
 let wipRoot = null
 // 上次提交到 DOM 节点的 fiber树
 let currentRoot = null
+// 需要一个数组来保存需要移除的旧节点
+let deletions = null
 
 export function render(element, container) {
     wipRoot = {
@@ -72,10 +75,55 @@ export function render(element, container) {
         // 对于旧 fiber 节点的引用
         alternate: currentRoot,
     }
+    deletions = []
     nextUnitOfWork = wipRoot
+    // requestIdleCallback(workLoop)
+}
+
+// 是否为节点属性
+// const isProperty = key => key !== 'children'
+const isEvent = key => key.startsWith('on')
+const isProperty = key => key !== 'children' && !isEvent(key)
+// 新的节点属性
+const isNew = (prevProps, nextProps) => key => prevProps[key] !== nextProps[key]
+// 旧的节点属性
+const isGone = (prevProps, nextProps) => key => !(key in nextProps)
+
+export function updateDOM(dom, prevProps, nextProps) {
+    // 对于事件属性，专门做处理
+    Object.keys(prevProps)
+        .filter(isEvent)
+        .filter(key => {
+            return isGone(prevProps, nextProps)(key) || isNew(prevProps, nextProps)(key)
+        }).forEach(key => {
+            const eventName = key.toLowerCase().substring(2)
+            dom.removeEventListener(eventName, prevProps[key])
+        })
+
+    // 移除旧的节点属性
+    Object.keys(prevProps)
+        .filter(isProperty)
+        .filter(isGone(prevProps, nextProps))
+        .forEach(oldKey => dom[oldKey] = '')
+
+    // 添加新的节点属性
+    Object.keys(nextProps)
+        .filter(isProperty)
+        .filter(isNew(prevProps, nextProps))
+        .forEach(newKey => dom[newKey] = nextProps[newKey])
+
+    // 添加新事件
+    Object.keys(nextProps)
+        .filter(isEvent)
+        .filter(isNew(prevProps, nextProps))
+        .forEach(key => {
+            const eventName = key.toLowerCase().substring(2)
+            dom.addEventListener(eventName, nextProps[key])
+        })
 }
 
 export function commitRoot() {
+    deletions.forEach(commitWork)
     commitWork(wipRoot.child)
     currentRoot = wipRoot
     wipRoot = null
@@ -86,7 +134,14 @@ export function commitWork(fiber) {
         return
     }
     const parentDom = fiber.parent.dom
-    parentDom.appendChild(fiber.dom)
+    if (fiber.effectTag === 'PLACEMENT' && fiber.dom !== null) {
+        parentDom.appendChild(fiber.dom)
+    } else if (fiber.effectTag === 'UPDATE' && fiber.dom !== null) {
+        updateDOM(fiber.dom, fiber.alternate.props, fiber.props)
+    } else if (fiber.effectTag === 'DELETION') {
+        parentDom.removeChild(fiber.dom)
+    }
+    // parentDom.appendChild(fiber.dom)
     commitWork(fiber.child)
     commitWork(fiber.sibling)
 }
@@ -107,6 +162,8 @@ export function workLoop(deadline) {
     requestIdleCallback(workLoop)
 }
 
+requestIdleCallback(workLoop)
+
 export function preformUnitOfWork(fiber) {
     // 把 element 添加到 DOM 上
     // 为该 fiber 节点的子节点新建 fiber
@@ -126,8 +183,8 @@ export function preformUnitOfWork(fiber) {
     reconcileChildren(fiber, children)
 
     // 返回下一个任务单元 (fiber)
-    if (fiber.children) {
-        return fiber.children
+    if (fiber.child) {
+        return fiber.child
     } else {
         let nextFiber = fiber
         while (nextFiber) {
@@ -141,16 +198,46 @@ export function preformUnitOfWork(fiber) {
 
 export function reconcileChildren(wipFiber, children) {
     let index = 0
+    let oldFiber = wipFiber.alternate && wipFiber.alternate.child
     let prevSibling = null
-    while (index < children.length) {
+    while (index < children.length || oldFiber) {
         const child = children[index]
+        let newFiber = null
+        const sameType = oldFiber && child && child.type === oldFiber.type
 
-        const newFiber = {
-            type: child.type,
-            parent: wipFiber,
-            props: child.props,
-            dom: null,
+        // 新老节点 type 相同 复用 修改属性
+        if (sameType) {
+            newFiber = {
+                type: oldFiber.type,
+                props: child.props,
+                parent: oldFiber.parent,
+                alternate: oldFiber,
+                dom: oldFiber.dom,
+                effectTag: 'UPDATE'
+            }
         }
+        // 新老节点type不同 创建新节点
+        if (child && !sameType) {
+            newFiber = {
+                type: child.type,
+                props: child.props,
+                parent: wipFiber,
+                dom: null,
+                alternate: null,
+                effectTag: 'PLACEMENT'
+            }
+        }
+        // 老节点存在且type不同 移除旧节点
+        if (oldFiber && !sameType) {
+            oldFiber.effectTag = 'DELETION'
+            deletions.push(oldFiber)
+        }
+        // const newFiber = {
+        //     type: child.type,
+        //     parent: wipFiber,
+        //     props: child.props,
+        //     dom: null,
+        // }
         // 判断是否是第一个 fiber 来设置父 fiber 的child
         if (!index) {
             wipFiber.child = newFiber
