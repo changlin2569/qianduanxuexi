@@ -10,28 +10,34 @@
 
 <body>
     <script>
-        class App {
-            name = [1, 2, 3]
-
-            foo = function () {
-                // console.log(this);
-                console.log(1);
+        function cloneDeep(data) {
+            // your code here
+            const map = new Map()
+            // const res = Array.isArray(data) ? [] : {}
+            const _cloneDeep = (obj) => {
+                if (map.has(obj)) {
+                    return obj
+                }
+                console.log(obj);
+                const res = Array.isArray(obj) ? [] : {}
+                console.log(res);
+                map.set(obj, obj)
+                const property = Object.keys(obj).concat(Object.getOwnPropertySymbols(obj))
+                for (let key of property) {
+                    res[key] = typeof obj[key] === 'object' ? _cloneDeep(obj[key]) : obj[key]
+                }
+                return res
             }
-
-            bar() {
-                // console.log(2);
-                this.name.push(4)
-                // console.log(this);
-            }
+            const res = _cloneDeep(data)
+            console.log(res);
+            return res
         }
 
-        const app = new App();
-        const app1 = new App();
-        // console.log(app);
-        app.bar();
-        // app.bar();
-        console.log(app);
-        console.log(app1);
+        const arr = [1, 2]
+        arr[2] = {
+            a: arr
+        }
+        cloneDeep(arr)
     </script>
 </body>
 
