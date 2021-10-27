@@ -33,4 +33,4 @@ var longestPalindrome = function (s) {
     return s.slice(begin, begin + maxLen)
 };
 
-longestPalindrome("cbbd")
+longestPalindrome("babad")
