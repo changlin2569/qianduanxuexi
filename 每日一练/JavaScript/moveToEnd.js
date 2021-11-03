@@ -21,3 +21,23 @@ function test(arr) {
 }
 
 console.log(test(arr));
+
+
+const arr = [1, 2, 3, 4, 5, 3, 7, 8, 9, 4, 4]
+
+function test(arr) {
+    if (!Array.isArray(arr)) {
+        return
+    }
+    const len = arr.length
+    for (let i = j = 0; i < len; i++) {
+        [arr[i], arr[j]] = [arr[j], arr[i]]
+        if (arr[j] !== 3) {
+            j++
+        }
+    }
+    console.log(arr)
+    return arr
+}
+
+test(arr)
