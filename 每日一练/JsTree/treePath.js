@@ -70,4 +70,28 @@ function treePath(tree, id) {
     return result
 }
 
+function treePath(tree, id) {
+    if (!Array.isArray(tree)) {
+        return
+    }
+    const res = []
+    const _treePath = (tree, targetId) => {
+        for (let { id, children } of tree) {
+            if (targetId === id) {
+                res.push(id)
+                // console.log(res);
+                return true
+            }
+            res.push(id)
+            let flag = Array.isArray(children) && _treePath(children, targetId)
+            if (flag) {
+                return true
+            }
+            flag || res.pop()
+        }
+    }
+    _treePath(tree, id)
+    return res
+}
+
 console.log(treePath(tree, 112));
