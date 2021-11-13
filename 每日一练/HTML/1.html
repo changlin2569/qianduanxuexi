@@ -18,7 +18,75 @@
 <body>
     <div id="test"></div>
     <script>
+        console.log(document.querySelector('#test').tagName);
+        class Test {
+            constructor(name, logFn) {
+                this.queue = [{
+                    name,
+                    id: 1
+                }]
+                this.logFn = logFn
+                setTimeout(() => {
+                    this.init()
+                }, 0)
+            }
 
+            init() {
+                while (this.queue.length) {
+                    const item = this.queue.shift()
+                    switch (item.id) {
+                        case 0:
+                            setTimeout(() => {
+                                this.logFn(`Wake up after ${item.delay} seconds.`)
+                                this.init()
+                            }, item.delay * 1000)
+                            return
+                        case 1:
+                            this.logFn(`Hi, I'm ${item.name}`)
+                            break
+                        case 2:
+                            this.logFn(`Eat ${item.data}`)
+                            break
+                        default:
+                            setTimeout(() => {
+                                this.logFn(`Wake up after ${item.delay} seconds.`)
+                                this.init()
+                            }, item.delay * 1000)
+                            return
+                    }
+                }
+            }
+
+            eat(data) {
+                this.queue.push({
+                    data,
+                    id: 2
+                })
+                return this
+            }
+
+            sleep(delay) {
+                this.queue.push({
+                    delay,
+                    id: 3
+                })
+                return this
+            }
+
+            sleepFirst(delay) {
+                this.queue.unshift({
+                    delay,
+                    id: 0
+                })
+                return this
+            }
+        }
+
+        function LazyMan(name, logFn) {
+            return new Test(name, logFn)
+        }
+
+        LazyMan('Jack', console.log).eat('banana').sleepFirst(1).eat('apple').sleep(1)
     </script>
 </body>
 
