@@ -8,7 +8,7 @@ Function.prototype.myBind = function (_this) {
     const toBind = function () {
         bindFunc.prototype = this instanceof bindFunc ? new bindFunc() : bindFunc.prototype
         return oldFunc.apply(this instanceof bindFunc ?
-            this : _this, args, args)
+            this : _this, args)
     }
     if (this.prototype) {
         bindFunc.prototype = this.prototype

@@ -18,25 +18,22 @@
 <body>
     <div id="test"></div>
     <script>
-        function test(num) {
-            if (num <= 0) {
-                return false
-            }
-            let temp = num
-            while (temp !== 1) {
-                temp = temp / 2
-                let [, right] = `${temp}`.split('.')
-                console.log(temp)
-                if (right) {
-                    return false
+        function myExpect(input) {
+            // your code here
+            return {
+                noted: false,
+                toBe(val) {
+                    console.log(this);
+                    return this.noted ? val !== input : val === input
+                },
+                get not() {
+                    this.not = true
+                    return this
                 }
             }
-            return true
         }
 
-        console.log(test(0));
-        console.log(test(8));
-        // console.log(test(12));
+        console.log(myExpect(3).toBe(3));
     </script>
 </body>
 
