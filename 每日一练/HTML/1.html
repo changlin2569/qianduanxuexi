@@ -16,24 +16,39 @@
 </head>
 
 <body>
-    <div id="test"></div>
+    <div id="test">
+        <input type="text" name="hello" />
+        <div class="test">
+            <button>你好</button>
+            <input type="checkbox" name="hello" id="">
+        </div>
+        nihao
+    </div>
     <script>
-        function myExpect(input) {
+        function virtualize(element) {
             // your code here
-            return {
-                noted: false,
-                toBe(val) {
-                    console.log(this);
-                    return this.noted ? val !== input : val === input
-                },
-                get not() {
-                    this.not = true
-                    return this
-                }
+            const res = {}
+            res.type = element.tagName.toLowerCase()
+            res.props = {
+                children: [],
+                className: element.className
             }
+            Array.from(element.attributes).filter(({
+                name
+            }) => name !== 'class').forEach(({
+                name,
+                value
+            }) => {
+                res.props[name] = value
+            })
+            Array.from(element.childNodes).forEach(item => {
+                item.nodeType === 3 && res.props.children.push(item.textContent)
+                item.nodeType === 1 && res.props.children.push(virtualize(item))
+            })
+            return res
         }
 
-        console.log(myExpect(3).toBe(3));
+        console.log(virtualize(test));
     </script>
 </body>
 
