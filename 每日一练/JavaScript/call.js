@@ -32,6 +32,23 @@ Function.prototype.fakeCall = function (context) {
     return result
 }
 
+
+Function.prototype.mycall = function (thisArg, ...args) {
+    if (typeof this !== 'function') {
+        throw Error('need funtion')
+    }
+    const id = Symbol('id')
+    if (typeof thisArg !== 'object' && thisArg) {
+        thisArg = Object(thisArg)
+    } else {
+        thisArg = thisArg || window
+    }
+    thisArg[id] = this
+    const res = thisArg[id](...args)
+    delete thisArg[id]
+    return res
+}
+
 var obj = {
     color: 'black'
 };

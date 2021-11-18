@@ -27,4 +27,46 @@ function PromiseAll(arr) {
         resolve(arr)
     })
 }
-PromiseAll([1]).then((res) => console.log(res));
+
+function all(promises) {
+    promises = Array.from(promises)
+    return new Promise((resolve, reject) => {
+        promises.length || resolve(promises)
+        const res = []
+        for (let i = 0, j = len = promises.length; i < len; i++) {
+            Promise.resolve(promises[i]).then(data => {
+                res[i] = data
+                if (--j) {
+                    resolve(res)
+                }
+                // --j || resolve(res)
+            }, err => {
+                reject(err)
+            })
+        }
+    })
+}
+
+async function all(promises) {
+    const res = []
+
+    for (const promise of promises) {
+        res.push(await promise)
+    }
+
+    return res
+}
+
+function all(promises) {
+    promises = Array.from(promises)
+    return promises.reduce((prev, promise) => {
+        return prev.then(results => Promise.resolve(promise).then(data => [...results, data]))
+    }, Promise.resolve([]))
+}
+
+// PromiseAll([1]).then((res) => console.log(res));
+// all([Promise.resolve(4), Promise.resolve(4), Promise.resolve(4), Promise.resolve(4)]).then((res) => console.log(res));
+
+all([1, 2, new Promise((resolve, reject) => {
+    setTimeout(resolve, 1000, 3);
+}), 4]).then((res) => console.log(res), err => console.log(err));
