@@ -14,7 +14,25 @@ function isEqual(a, b) {
     }
     for (let key of properties1) {
         map.set(a)
-        flag = isEqual(a[key], b[key])
+        const flag = isEqual(a[key], b[key])
+        if (!flag) {
+            return false
+        }
+    }
+    return true
+}
+
+function isEqual(a, b) {
+    if (typeof a !== 'object' || typeof b !== 'object') {
+        return a === b
+    }
+    const keys1 = Reflect.ownKeys(a)
+    const keys2 = Reflect.ownKeys(b)
+    if (keys1.length !== keys2.length) {
+        return false
+    }
+    for (const key of keys1) {
+        const flag = isEqual(a[key], b[key])
         if (!flag) {
             return false
         }
