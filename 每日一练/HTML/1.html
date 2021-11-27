@@ -25,30 +25,80 @@
         nihao
     </div>
     <script>
-        function virtualize(element) {
-            // your code here
-            const res = {}
-            res.type = element.tagName.toLowerCase()
-            res.props = {
-                children: [],
-                className: element.className
+        // function virtualize(element) {
+        //     // your code here
+        //     const res = {}
+        //     res.type = element.tagName.toLowerCase()
+        //     res.props = {
+        //         children: [],
+        //         className: element.className
+        //     }
+        //     Array.from(element.attributes).filter(({
+        //         name
+        //     }) => name !== 'class').forEach(({
+        //         name,
+        //         value
+        //     }) => {
+        //         res.props[name] = value
+        //     })
+        //     Array.from(element.childNodes).forEach(item => {
+        //         item.nodeType === 3 && res.props.children.push(item.textContent)
+        //         item.nodeType === 1 && res.props.children.push(virtualize(item))
+        //     })
+        //     return res
+        // }
+
+        // console.log(virtualize(test));
+
+        class EventEmitter {
+
+            constructor() {
+                this.events = {}
             }
-            Array.from(element.attributes).filter(({
-                name
-            }) => name !== 'class').forEach(({
-                name,
-                value
-            }) => {
-                res.props[name] = value
-            })
-            Array.from(element.childNodes).forEach(item => {
-                item.nodeType === 3 && res.props.children.push(item.textContent)
-                item.nodeType === 1 && res.props.children.push(virtualize(item))
-            })
-            return res
+
+            subscribe(eventName, callback) {
+                if (!this.events[eventName]) {
+                    this.events[eventName] = []
+                }
+                const event = this.events[eventName]
+                event.push(callback)
+                return {
+                    release: () => {
+                        this.release(eventName)
+                    }
+                }
+            }
+
+            emit(eventName, ...args) {
+                const event = this.events[eventName]
+                if (!event) {
+                    throw Error('no cb')
+                }
+                event.forEach(cb => {
+                    cb.apply(null, args)
+                })
+            }
+
+            release(eventName) {
+                delete this.events[eventName]
+            }
         }
 
-        console.log(virtualize(test));
+        const emitter = new EventEmitter()
+
+        const sub1 = emitter.subscribe('event1', (...args) => {
+            console.log(args);
+        })
+        const sub2 = emitter.subscribe('event2', (...args) => {
+            console.log(args);
+        })
+
+        // 同一个callback可以重复订阅同一个事件
+        const sub3 = emitter.subscribe('event1', (...args) => {
+            console.log(...args);
+        })
+
+        emitter.emit('event1', 1, 2);
     </script>
 </body>
 
