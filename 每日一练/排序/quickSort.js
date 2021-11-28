@@ -21,4 +21,5 @@ function partition(arr, left, right) {
     return j
 }
 
+
 console.log(quickSort([3, 2, 1, 5, 6, 4]))

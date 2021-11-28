@@ -12,4 +12,5 @@ function insertSort(arr) {
     return arr
 }
 
+
 console.log(insertSort([3, 2, 1, 5, 6, 4]))

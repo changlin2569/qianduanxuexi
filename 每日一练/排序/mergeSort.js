@@ -18,4 +18,5 @@ function merge(left, right) {
     return res.concat(i === left.length ? right.slice(j) : left.slice(i))
 }
 
+
 console.log(mergeSort([3, 2, 1, 5, 6, 4]))
