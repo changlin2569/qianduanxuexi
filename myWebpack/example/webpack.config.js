@@ -1,4 +1,6 @@
 const path = require('path')
+const PluginA = require('./../plugins/plugin-a.js')
+const PluginB = require('./../plugins/plugin-b.js')
 
 module.exports = {
     mode: 'development',
