@@ -10,33 +10,11 @@ function findTopSum(arr, k, m) {
     if (!Array.isArray(arr)) {
         return
     }
-    const targetK = arr.length - k
-    const targetM = arr.length - m
-    let res = 0
-    while (true) {
-        const count = partition(arr, 0, arr.length - 1)
-        if (count === targetK) {
-            let countK = 1
-            let tempK = arr[count]
-            let [leftK, rightK] = [count - 1, count + 1]
-            while (arr[leftK] === tempK) {
-                countK++
-            }
-            while (arr[rightK] === tempK) {
-                countK++
-            }
-            res += tempK * countK
-        } else if (count === targetM) {
-            let countM = 1
-            let tempM = arr[count]
-            let [leftM, rightM] = [count - 1, count + 1]
-            while (arr[leftM] === tempM) {
-                countM++
-            }
-            while (arr[rightM] === tempM) {
-                countM++
-            }
-            res += tempM * countM
-        }
-    }
+    const newArr = [...new Set(arr)].sort((x, y) => x - y)
+        ;[k, m] = [newArr.length - k, newArr.length - m]
+    return arr
+        .filter(item => item === newArr[k] || item === newArr[m])
+        .reduce((prev, item) => prev += item)
 }
+
+console.log(findTopSum([1, 2, 4, 4, 3, 5], 2, 4))
