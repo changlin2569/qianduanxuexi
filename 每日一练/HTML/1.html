@@ -27,56 +27,27 @@
         <div class="child"></div>
     </div>
     <script>
-        function multiFetch(urls, max) {
-            if (!Array.isArray(urls) || urls.length === 0) {
-                return null
-            }
+        function throttlePromises(funcs, max) {
+            // your code here
             return new Promise((resolve, reject) => {
                 const res = []
-                let temp = Math.floor(urls.length / max)
-                let current = Promise.all(urls.slice(0, max))
-                let count = 1
-                while (temp !== 0) {
+                let count = Math.ceil(funcs.length / max)
+                let current = Promise.all(funcs.splice(0, max).map(func => func()))
+                while (count--) {
                     current = current.then(data => {
-                        console.log(data);
                         res.push(...data)
-                        return Promise.all(urls.slice(count * max, max + count * max))
-                    }).catch(err => {
-                        temp = 0
-                        return err
+                        return Promise.all(funcs.splice(0, max).map(func => func()))
                     })
-                    temp--
                 }
-                current.then(() => {
-                    resolve(res)
-                })
+                current.then(() => resolve(res))
+                    .catch(err => reject(err))
             })
         }
 
-        multiFetch([
-            new Promise((resolve, reject) => {
-                setTimeout((i) => {
-                    resolve(i)
-                }, 1000, 1)
-            }),
-            new Promise((resolve, reject) => {
-                setTimeout((i) => {
-                    resolve(i)
-                }, 2000, 2)
-            }),
-            new Promise((resolve, reject) => {
-                setTimeout((i) => {
-                    resolve(i)
-                }, 1000, 3)
-            }),
-            new Promise((resolve, reject) => {
-                setTimeout((i) => {
-                    resolve(i)
-                }, 2000, 4)
-            }),
-        ], 2).then((responses) => {
-            console.log(responses); // [a, b, c, d]
-        })
+
+        const promises = Array(15).fill(() => Promise.resolve(1))
+
+        throttlePromises(promises, 5).then(data => console.log(data))
     </script>
 </body>
 

@@ -20,4 +20,22 @@ function deThreeZero(arr) {
     return arr
 }
 
+function test(arr) {
+    if (!Array.isArray(arr)) {
+        return
+    }
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] === 0) {
+            let j = i + 1
+            let count = 1
+            while (arr[j++] === 0) {
+                count++
+            }
+            count >= 3 && arr.splice(i, count)
+        }
+    }
+    console.log(arr)
+    return arr
+}
+
 console.log(deThreeZero(data));
