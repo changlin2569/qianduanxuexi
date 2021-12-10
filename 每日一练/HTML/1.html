@@ -7,47 +7,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .parent {
+        div {
+            float: left;
             width: 100px;
             height: 100px;
-            background-color: aqua;
         }
 
-        .child {
-            width: 10px;
-            height: 10px;
-            background-color: blanchedalmond;
-            margin: 0 50px 0 60px;
+        div:nth-child(1) {
+            background-color: antiquewhite;
+            clear: right;
+        }
+
+        div:nth-child(2) {
+            background-color: pink;
+        }
+
+        div:nth-child(3) {
+            background-color: blue;
         }
     </style>
 </head>
 
 <body>
-    <div class="parent">
+    <!-- <div class="parent">
         <div class="child"></div>
-    </div>
+    </div> -->
+    <div></div>
+    <div></div>
+    <div></div>
     <script>
-        function throttlePromises(funcs, max) {
-            // your code here
-            return new Promise((resolve, reject) => {
-                const res = []
-                let count = Math.ceil(funcs.length / max)
-                let current = Promise.all(funcs.splice(0, max).map(func => func()))
-                while (count--) {
-                    current = current.then(data => {
-                        res.push(...data)
-                        return Promise.all(funcs.splice(0, max).map(func => func()))
-                    })
+        function get(val) {
+            return {
+                val,
+                add: function (val) {
+                    this.val += val
+                    return this
+                },
+                sub: function (val) {
+                    this.val -= val
+                    return this
+                },
+                mul: function (val) {
+                    this.val *= val
+                    return this
                 }
-                current.then(() => resolve(res))
-                    .catch(err => reject(err))
-            })
+            }
         }
 
-
-        const promises = Array(15).fill(() => Promise.resolve(1))
-
-        throttlePromises(promises, 5).then(data => console.log(data))
+        console.log(get(0).add(1).sub(2).mul(3))
     </script>
 </body>
 
