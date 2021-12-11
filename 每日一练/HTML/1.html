@@ -36,25 +36,24 @@
     <div></div>
     <div></div>
     <script>
-        function get(val) {
-            return {
-                val,
-                add: function (val) {
-                    this.val += val
-                    return this
-                },
-                sub: function (val) {
-                    this.val -= val
-                    return this
-                },
-                mul: function (val) {
-                    this.val *= val
-                    return this
+        var reverseWords = function (s) {
+            let res = ''
+            let i = j = 0
+            while (i < s.length - 1 && j < s.length - 1) {
+                while (s.charAt(j) !== ' ' && s.charAt(j)) {
+                    j++
                 }
+                for (let k = j - 1; k <= i; k--) {
+                    res += s.charAt(k)
+                }
+                i = j + 1
+                j++
             }
+            console.log(res)
+            return res
         }
 
-        console.log(get(0).add(1).sub(2).mul(3))
+        reverseWords("Let's take LeetCode contest")
     </script>
 </body>
 
