@@ -279,7 +279,7 @@ function compress(str) {
     return [...str].reduce((prev, item, index, arr = [...str]) => {
         if (arr[index] === arr[index - 1]) {
             // prev[index] = (+prev[index] || 1) + 1
-            const i = prev.indexOf(arr[index])
+            const i = prev.lastIndexOf(arr[index])
             prev = prev.slice(0, i + 1) + ((+prev[i + 1] || 1) + 1)
         } else {
             prev += item
@@ -288,4 +288,176 @@ function compress(str) {
     }, '')
 }
 
-console.log(compress('aaabba'));
+// console.log(compress('aaabbaaa'));
+
+function deduplicate(arr) {
+    // your code here
+    if (!Array.isArray(arr)) {
+        return arr
+    }
+    return arr.reduce((prev, item) => {
+        return prev.includes(item) ? prev : [...prev, item]
+    }, [])
+}
+
+
+// 编程题：实现一个拼手气分红包的方法，传入总金额及人数，返回每个人分得的金额数组（单位为分）
+
+// 每个人至少要有1分钱
+
+// 总金额不能超过或不到
+
+function redBox(money, n) {
+    const res = Array(n).fill(1)
+    let count = money
+    money -= n
+    let i = 0
+    while (money && i < n) {
+        const amount = Math.random() * money
+        // console.log(amount)
+        res[i] = res[i] + amount
+        money -= amount
+        i++
+    }
+    console.log(res)
+    const Idx = Math.floor(Math.random() * (n + 1))
+    const total = res.reduce((total, amount) => total + amount)
+    res[Idx] = count - total + res[Idx]
+    return res
+}
+
+// redBox(10, 4)
+
+
+// fn([['a', 'b'], ['n', 'm'], ['0', '1']]) => ['an0', 'am0', 'an1', 'am1', 'bn0', 'bm0', 'bn1', 'bm0']
+
+function rank(arr) {
+    if (!Array.isArray(arr)) {
+        return
+    }
+    const res = []
+    const dfs = (path = [], cur = 0) => {
+        if (path.length === arr.length) {
+            res.push(path.join(''))
+            return
+        }
+        for (let i = 0; i < arr[cur].length; i++) {
+            path.push(arr[cur][i])
+            dfs(path, cur + 1)
+            path.pop()
+        }
+    }
+    dfs()
+    console.log(res)
+    return res
+}
+
+// rank([['a', 'b'], ['n', 'm'], ['0', '1']])
+
+
+// 给数组中的字符串编号，f(['ab', 'c', 'd', 'ab', 'c']) => ['ab1', 'c1', 'd', 'ab2', 'c2']
+
+function f(arr) {
+    if (!Array.isArray(arr)) {
+        return
+    }
+    const map = new Map()
+    return arr.reduce((prev, item) => {
+        if (map.has(item)) {
+            map.set(item, map.get(item) + 1)
+            prev = [...prev, item + map.get(item)]
+        } else {
+            map.set(item, 1)
+            prev = [...prev, item + 1]
+        }
+        return prev
+    }, [])
+}
+
+// console.log(f(['ab', 'c', 'd', 'ab', 'c']))
+
+function createCounter() {
+    // your code here
+    const counter = {}
+    let val = 0
+    Reflect.defineProperty(counter, 'count', {
+        enumerable: true,
+        // writable: false,
+        configurable: true,
+        get() {
+            return val++
+        }
+    })
+    return counter
+}
+
+// console.log(createCounter().count)
+
+
+function useFetch(url) {
+    let [response, serResponse] = useState(null)
+    let [loading, setLoading] = useState(true)
+    let [error, setError] = useState(false)
+    let [get, serGet] = useState({})
+    let [post, setPost] = useState({})
+
+    useEffect(async () => {
+        const newUrl = Object.entries(get).reduce((prev, [key, val]) => {
+            if (prev.includes('?')) {
+                prev = prev + `&${key}=${val}`
+            } else {
+                prev = prev + '?' + `${key}=${val}`
+            }
+            return prev
+        }, url)
+        try {
+            let res = await fetch(newUrl)
+            res = await res.json()
+            serResponse(res)
+            setLoading(false)
+        } catch (err) {
+            setError(true)
+            throw err
+        }
+    }, [get])
+
+    useEffect(async () => {
+        try {
+            let res = await fetch(url, {
+                method: 'POST',
+                ...post
+            })
+            res = await res.json()
+            serResponse(res)
+            setLoading(false)
+        } catch (err) {
+            setError(true)
+            throw err
+        }
+    }, [post])
+
+    return {
+        response,
+        loading,
+        error,
+        post: setPost,
+        get: serGet
+    }
+}
+
+const repeatFunc = repeat(console.log, 4, 1000);
+
+function repeat(cb, count, delay) {
+    return function _repeat(args) {
+        if (!count--) {
+            return
+        }
+        setTimeout((args) => {
+            // Reflect.apply(cb, null, args)
+            cb.call(null, args)
+            _repeat(args)
+        }, delay, args)
+    }
+}
+
+// repeatFunc("helloworld")

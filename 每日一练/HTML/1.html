@@ -36,24 +36,7 @@
     <div></div>
     <div></div>
     <script>
-        var reverseWords = function (s) {
-            let res = ''
-            let i = j = 0
-            while (i < s.length - 1 && j < s.length - 1) {
-                while (s.charAt(j) !== ' ' && s.charAt(j)) {
-                    j++
-                }
-                for (let k = j - 1; k <= i; k--) {
-                    res += s.charAt(k)
-                }
-                i = j + 1
-                j++
-            }
-            console.log(res)
-            return res
-        }
 
-        reverseWords("Let's take LeetCode contest")
     </script>
 </body>
 
