@@ -461,3 +461,53 @@ function repeat(cb, count, delay) {
 }
 
 // repeatFunc("helloworld")
+
+
+// 多层数组反转（ [1, [2, [3, [4, [5, 'null']]]]] => [5, [4, [3, [2, [1, 'null']]]]]）；
+
+function reverseArr(arr) {
+    if (!Array.isArray(arr)) {
+        return
+    }
+    ;[arr[0], arr[1]] = [arr[1], arr[0]]
+    for (let i = 1; i < arr.length; i++) {
+        Array.isArray(arr[i - 1]) && reverseArr(arr[i])
+    }
+    return arr
+}
+
+// console.log(reverseArr([1, [2, [3, [4, [5, 'null']]]]]))
+
+
+// 调整数组使奇数在前偶数在后，保证顺序，不使用额外空间
+
+const isOdd = (num) => {
+    return !!(num & 1)
+}
+
+function moveArr(arr) {
+    if (!Array.isArray(arr)) {
+        return
+    }
+    for (let i = j = 0; i < arr.length; i++) {
+        if (isOdd(arr[i])) {
+            ;[arr[i], arr[j]] = [arr[j], arr[i]]
+            j++
+        }
+    }
+    console.log(arr)
+    return arr
+}
+
+// moveArr([1, 2, 3, 4, 5, 6, 7, 8])
+
+// fill(n, v) => [v,...,v]//输出n个v,v可以是任何类型
+
+function fill(n, v) {
+    if (n === 0) {
+        return []
+    }
+    return [v, ...fill(n - 1, v)]
+}
+
+// console.log(fill(4, 1))
