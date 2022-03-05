@@ -769,5 +769,3 @@ function parseName(obj) {
 }
 
 console.log(parseName(obj11))
-
-const a = 1;
