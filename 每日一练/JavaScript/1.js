@@ -511,3 +511,261 @@ function fill(n, v) {
 }
 
 // console.log(fill(4, 1))
+
+// 题目：输入一个字符串，要求删除其中由相同字符组成的长度大于等于2的子串。
+// 示例：输入"abbbaca"->删掉bbb变成"aaca"->删掉aa，得到结果"ca"
+
+
+
+
+var simplifyPath = function (path) {
+    path = path.split('/')
+    const stack = []
+    for (let i = 0; i < path.length; i++) {
+        const item = path[i]
+        if (item === '.' || !item) {
+            continue
+        } else if (item === '..') {
+            stack.pop()
+        } else {
+            stack.push(`/${item}`)
+        }
+    }
+    return stack.join('')
+}
+
+// console.log(simplifyPath("/home/"))
+
+
+// reduce实现map
+
+function reduce(cb) {
+    const arr = this
+    arr.reduce((prev, cur, index) => {
+        prev = [...prev, cb(cur, index)]
+    }, [])
+}
+
+
+function sum(arr, target) {
+    var res = []
+    var temp = []
+    arr.sort((a, b) => a - b)
+
+    function getSum(arr) {
+        let total = 0;
+        for (let i = 0; i < arr.length; i++) {
+            total += arr[i]
+        }
+        return total
+    }
+
+    function dfs(arr, target, index) {
+        for (let i = index; i < arr.length; i++) {
+            if (getSum(temp) + arr[i] < target) {
+                temp.push(arr[i])
+                while (arr[i] == arr[i + 1]) { //防止重复元素
+                    i++;
+                }
+                dfs(arr, target, i)
+                temp.pop()
+            } else if (getSum(temp) + arr[i] === target) {
+                temp.push(arr[i])
+                res.push(temp.slice());
+                temp.pop()
+            }
+        }
+    }
+    dfs(arr, target, 0)
+    return res
+}
+
+// console.log(sum([2, 3, 6, 7], 7));
+
+
+
+有这么一个数据结构:
+
+var data2 = [
+    {
+        "id": "1",
+        "sub": [
+            {
+                "id": "2",
+                "sub": [
+                    {
+                        "id": "3",
+                        "sub": null
+                    },
+                    {
+                        "id": "4",
+                        "sub": [
+                            {
+                                "id": "6",
+                                "sub": null
+                            }
+                        ]
+                    },
+                    {
+                        "id": "5",
+                        "sub": null
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "sub": [
+            {
+                "id": "8",
+                "sub": [
+                    {
+                        "id": "9",
+                        "sub": null
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "sub": null
+    }
+]
+// 现在给定一个id，要求实现一个函数
+
+function findPath(tree, target) {
+    const res = []
+    const dfs = (data = tree, path = [], flag = false) => {
+        if (path.length > 0 && flag) {
+            res.push(...path)
+            return
+        }
+        if (!Array.isArray(data)) {
+            return
+        }
+        for (const item of data) {
+            const { id, sub } = item
+            if (id == target) {
+                flag = true
+            }
+            path.push(id)
+            dfs(sub, path, flag)
+            path.pop()
+            flag = false
+        }
+    }
+    dfs(tree)
+    return res
+}
+
+
+console.log(findPath(data2, 9));
+// 返回给定id在 data 里的路径
+// 示例:
+
+// id = "1" => ["1"]
+// id = "9" => ["7", "8", "9"]
+// id = "100"=> []
+// PS: id 全局唯一，无序
+
+
+
+function reverseArray(arr) {
+    let a = arr.flat(Infinity);
+
+    for (let i = 0; i < Math.floor((a.length - 1) / 2); i++) {
+        [a[i], a[a.length - 2 - i]] = [a[a.length - 2 - i], a[i]]
+    }
+
+    for (let i = a.length - 2; i >= 1; i--) {
+        if (i === a.length - 2) {
+            a[i] = [a[i], null];
+            continue;
+        }
+        a[i] = [a[i], a[i + 1]]
+    }
+    return a.slice(0, 2);
+}
+
+//测试
+let arr = [1, [2, [3, [4, [5, 'null']]]]]
+
+// console.log(reverseArray(arr));
+
+
+
+
+
+var deleteDuplicates = function (head) {
+
+    var res = head;
+
+    while (head && head.next) {
+
+        if (head.val == head.next.val) head.next = head.next.next;
+
+        else head = head.next;
+
+    }
+
+    return res;
+
+};
+
+
+let obj11 = {
+    UserList: [
+        {
+            UserId: '1244',
+            Nickname: 'aaaa',
+            Friends: {
+                UserId: '2222',
+                Nickname: 'bbbb'
+            }
+        },
+        {
+            UserId: '1244',
+            Nickname: 'aaaa'
+        }
+    ],
+    Total: 1111
+}
+// 将这种数据格式，所有的key换成下划线UserList -> user_list
+
+const parseClone = (result, target) => {
+    if (!target || typeof target !== 'object') {
+        return target
+    } else if (Array.isArray(target)) {
+        return []
+    } else {
+        return {}
+    }
+}
+
+function splitCamel(str) {
+    return str.replace(/([A-Z])/g, function (s) {
+        return ' ' + s.toLowerCase();
+    }).trim().split(' ').join('_');
+}
+
+function parseName(obj) {
+    if (!obj || typeof obj !== 'object') {
+        return obj
+    }
+    const parse_name = target => {
+        if (!target || typeof target !== 'object') {
+            return target
+        }
+        const result = Array.isArray(target) ? [] : {}
+        for (const key in target) {
+            const newKey = splitCamel(key)
+            result[newKey] = parse_name(target[key])
+        }
+        return result
+    }
+    return parse_name(obj)
+}
+
+console.log(parseName(obj11))

@@ -94,4 +94,4 @@ function treePath(tree, id) {
     return res
 }
 
-console.log(treePath(tree, 112));
+console.log(treePath(tree, 1));
